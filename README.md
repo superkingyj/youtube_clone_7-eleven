@@ -4,7 +4,7 @@
 
 <br>
 
-## decsription
+## desription
 
 - 오르미 2기 프로젝트 - 유튜브 클론 코딩
 
