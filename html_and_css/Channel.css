@@ -1,0 +1,84 @@
+/* 전체 화면 기본 스타일 */
+header {
+    background-color: #212121;
+    padding: 10px;
+    display: flex;
+    padding : 10px 20px;
+}
+body {
+    background-color: #212121;
+    padding: 10px;
+}
+/* 네비게이션 및 검색창 스타일 */
+.navigations {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#searchInput {
+    background-color: #121212;
+    color: #ffffff;
+    border: none;
+    padding: 10px 40px;
+    width: 100%;
+    margin-right: 0px;
+    font-size : 16px;
+}
+#searchInput::placeholder {
+    color: #191919;
+}
+#glassIcon{
+    background-color : #303030;
+    padding : 5px;
+    margin-right: 5px;
+}
+#micIcon{
+    background-color :#000000;
+    padding: 5px;
+    border-radius : 50%;
+    margin-right:10px;
+}
+
+
+#top_2 img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+/* channel 콘텐츠 및 메뉴바 */
+ul.menu{
+    display : flex;
+    align-items : center;
+    list-style: none;
+    padding : 0;
+    margin : 0;
+}
+
+ul.menu li{
+    margin-right : 10px;
+}
+ul.menu li:last-child{
+    margin-right:0;
+}
+ul.menu li a{
+    color: #ffffff;
+    text-decoration : none;
+}
+ul.menu li a:hover{
+    color: #ff0000;
+}
+/* 시맨틱 태그의 배경 색상 설정 */
+main, aside, footer {
+    background-color: #212121;
+    color: #ffffff;
+    padding: 10px;
+}
+
+main section, aside {
+    margin: 10px;
+}
+
+/* 사이드바 메뉴와 유튜브 아이콘 */
