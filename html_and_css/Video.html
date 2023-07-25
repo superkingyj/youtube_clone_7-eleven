@@ -22,6 +22,7 @@
         <main>
           <!--메인 동영상-->
           <iframe
+            class="video"
             width="996"
             height="560"
             src="https://www.youtube.com/embed/A06sJ4moRmA"
@@ -30,35 +31,35 @@
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
           ></iframe>
+
+          <section class="video-info">
+            <!--동영상 정보-->
+            <div class="video-title">왜 이제 왔냐</div>
+            <div class="video-info-desc">
+              <div class="info-text">120000 views • Oct 8, 2021</div>
+              <div class="info-buttons">
+                <div class="up">up</div>
+                <div class="down">down</div>
+                <div class="share">share</div>
+                <div class="save">save</div>
+                <div class="etc">...</div>
+              </div>
+            </div>
+          </section>
         </main>
 
-        <section class="video_info">
-          <!--동영상 정보-->
-          <div class="title">왜 이제 왔냐</div>
-          <div class="info">
-            <div class="info_text">120000 views • Oct 8, 2021</div>
-            <div class="info_buttons">
-              <div class="up">up</div>
-              <div class="down">down</div>
-              <div class="share">share</div>
-              <div class="save">save</div>
-              <div class="etc">...</div>
-            </div>
-          </div>
-        </section>
-
-        <section class="video_desc">
+        <section class="video-channel">
           <!--동영상 정보-->
           <div class="channel">
-            <div class="channel_title">
-              <div class="user_">
-                <div class="user_avatar">
+            <div class="channel-title">
+              <div class="user">
+                <div class="user-avatar">
                   <img
                     src="./img/body/primary/User-Avatar.png"
                     alt="User Avatar"
                   />
                 </div>
-                <div class="user_profile">
+                <div class="user-profile">
                   <div class="user_name">Marcus Levin</div>
                   <div class="user_sub">1.2M subscribers</div>
                 </div>
@@ -70,7 +71,8 @@
                 />
               </div>
             </div>
-            <div class="video_descs">
+
+            <div class="video-desc">
               <div class="desc">이러저러해서 저러저저 합니다.</div>
               <div class="btn">show more</div>
             </div>
@@ -78,48 +80,49 @@
         </section>
         <section>
           <!--댓글 화면-->
-          <div class="comment">
-            <div class="short_by">
-              <div class="comment_cnt">286 comments</div>
+          <div class="comment-desc">
+            <div class="sort-by">
+              <div class="comment-cnt">286 comments</div>
               <div class="sort">short by</div>
             </div>
-            <div class="comment_">
-              <div class="comment_pic">
+            <div class="comment">
+              <div class="comment-pic">
                 <img
                   src="./img/body/primary/User-Avatar (1).png"
                   alt="User Avatar"
                 />
               </div>
               <input
-                class="comment_area"
+                class="comment-area"
                 type="text"
                 placeholder="Add a comment..."
               />
             </div>
           </div>
+
           <div class="comments">
-            <div class="comments_pic">
+            <div class="comments-pic">
               <img
                 src="./img/body/primary/User-Avatar (2).png"
                 alt="User Avatar"
               />
             </div>
-            <div class="comments_info">
-              <div class="comments_id">James Gouse • 8 hours ago</div>
-              <div class="comments_text">떡볶이 좋아요</div>
-              <div class="comments_btn">
-                <div class="comments_btn_up">up</div>
-                <div class="comments_btn_down">down</div>
-                <div class="comments_btn_reply">reply</div>
+            <div class="comments-info">
+              <div class="comments-id">James Gouse • 8 hours ago</div>
+              <div class="comments-text">떡볶이 좋아요</div>
+              <div class="comments-btn">
+                <div class="comments-btn-up">up</div>
+                <div class="comments-btn-down">down</div>
+                <div class="comments-btn-reply">reply</div>
               </div>
             </div>
           </div>
         </section>
       </section>
 
-      <aside class="secondary">
+      <aside class="other-list">
         <!--우측 동영상 목록-->
-        <div class="top_menu">
+        <div class="top-menu">
           <div class="item1">
             <img src="./img/body/secondary/Button.png" alt="Button 1" />
           </div>
@@ -127,15 +130,16 @@
             <img src="./img/body/secondary/Button2.png" alt="Button 2" />
           </div>
         </div>
-        <div class="videos">
-          <div class="video1">
-            <div class="video1_thumbnail">
+
+        <div class="other-videos">
+          <div class="other-video">
+            <div class="other-video-thumbnail">
               <img
                 src="./img/body/secondary/Images.png"
                 alt="Video Thumbnail"
               />
             </div>
-            <div class="video_text">
+            <div class="other-video-text">
               <img src="./img/body/secondary/Video-Text.png" alt="Video Text" />
             </div>
           </div>
