@@ -42,6 +42,7 @@ async function getVideoInfo(id) {
     }
 }
 
+// TODO - 아직 기능 구현 안함
 async function getOtherVideos(){
     const data = fetchData(videoData);
     
