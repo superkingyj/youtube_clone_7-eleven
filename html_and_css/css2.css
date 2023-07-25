@@ -1,0 +1,205 @@
+/*common (background-color)*/
+body{
+    font-family: Arial, sans-serif;
+    color:white;
+    line-height: 1.6;
+    background-color: #212121;
+}
+
+/*----------------------------------------------------*/
+/* Home 화면 메인 */
+
+#filtering-buttons {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+main {
+    margin: 1%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.video {
+    margin: 1%;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-and-desc {
+    display: flex;
+}
+
+/*----------------------------------------------------*/
+/*<Header> 상단 바 부분(공통)*/
+header{
+    width: 1440px;
+    height: 56px;
+    flex-shrink: 0;
+    background: var(--background-color, #212121);
+}
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    padding: 5px;
+}
+/* .top-right-icons span {
+    margin-left: 10px;
+}
+.top-right-icons {
+    display: flex;
+    align-items: center;
+} */
+
+/* 요소 하나씩 */
+.hamburger{             /* TO DO : html에 hamburger class 추가 필요*/
+    width: 24px;
+    height: 24px;
+}
+.youtube_logo{          /* TO DO : html에 _ 를 -로 수정 필요 (통일성) */
+    width: 90px;
+    height: 20px;
+}
+.searchbox{
+    display: flex;
+    width: 470px;
+    height: 40px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4px;
+    flex-shrink: 0;
+}
+#search{
+    width: 362px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 2px 0px 0px 2px;
+    background: #121212;
+}
+.search-btn{
+    display: flex;
+    width: 50px;
+    height: 36px;
+    padding: 6px 13px;
+    justify-content: center;
+    align-items: center;
+    background: #303030;
+}
+.icon{
+    width: 24px;
+    height: 24px;
+}
+.top-right-icons{
+    display: flex;
+    width: 204px;
+    height: 40px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+} 
+
+/*----------------------------------------------------*/
+/*<aside> 사이드 바 (공통)*/
+.list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+.side1 {
+    position: fixed;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #212121;
+}
+.side1 a {
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 65px;
+    font-size: 20px;
+    color: white;
+    padding-left: 40px;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255, 255, 255, .1);
+
+}
+.side1 a img {
+    margin-right: 24px;
+    vertical-align: middle;
+}
+.side2 a {
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 65px;
+    font-size: 20px;
+    color: white;
+    padding-left: 40px;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255, 255, 255, .1);
+
+}
+.side2 a img {
+    margin-right: 24px;
+    vertical-align: middle;
+}
+.side3 h1 {
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 65px;
+    font-size: 20px;
+    color: #aaa;
+    padding-left: 40px;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255, 255, 255, .1);
+}
+.subscription-user-img {
+    width: 24px;
+    height: 24px;
+    border-radius: 70%;
+    overflow: hidden;
+}
+.side3 a {
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 65px;
+    font-size: 20px;
+    color: white;
+    padding-left: 40px;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255, 255, 255, .1);
+}
+.side4 h1 {
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 65px;
+    font-size: 20px;
+    color: #aaa;
+    padding-left: 40px;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255, 255, 255, .1);
+}
+.side4 a {
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 65px;
+    font-size: 20px;
+    color: white;
+    padding-left: 40px;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255, 255, 255, .1);
+
+}
+.side4 a img {
+    margin-right: 24px;
+    vertical-align: middle;
+}
+
