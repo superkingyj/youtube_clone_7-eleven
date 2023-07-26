@@ -1,0 +1,7 @@
+/*common (background-color)*/
+body{
+    font-family: Arial, sans-serif;
+    color:white;
+    line-height: 1.6;
+    background-color: #212121;
+}
