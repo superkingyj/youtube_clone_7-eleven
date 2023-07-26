@@ -10,12 +10,35 @@
     <!-- 1. 네비게이션 및 검색창 -->
     <header>
     </header>
-    <!-- 2.  채널 콘텐츠 -->
+    <!-- 2.  채널 콘텐츠  -->
     <main>
-        <section>
-            <h1>채널 이름</h1>
-            <!-- 채널 콘텐츠 -->
+        <section class="channel">
+            <div class="main_01">
+            <img src="channel/image2.png" id="background">
+            </div>
+            <div class="main_02">
+            <img src="channel/User-Avatar.png" id="profileIcon2">
+            <div class="profileInfo">
+                <p>Marcus Levin</p>
+                <p>1.2M subscribers</p>
+            </div>
+            <img src="channel/Subscribes-Btn.png" id="subscribesIcon" onclick="subscribes()" >
+            </div>
         </section>
+        <!-- 채널 콘텐츠 메뉴 -->
+        <section class="menuBar">
+            <div class="channelmenu" style="overflow : auto">
+                <button onclick>HOME</button>
+                <button onclick>VIDEOS</button>
+                <button onclick>PLAYLISTS</button>
+                <button onclick>COMMUNITY</button>
+                <button onclick>CHANNELS</button>
+                <button onclick>ABOUT</button>
+                <button><img src="channel/search.png" id="searchIcon" onclick="menuSearch()"></button>
+                <button><img src="channel/leftArrow.png" id="ArrowIcon" onclick="menuArrow()"></button>
+            </div>
+        </section>
+        </div>
     </main>
 
     <!-- 3. 맨 좌측 사이드바 -->
@@ -23,13 +46,179 @@
         <!-- 사이드바 콘텐츠 -->
     </aside>
 
-    <!-- 4. 미니 비디오 리스트 -->
-    <section>
-        <!-- 미니 비디오 리스트 콘텐츠 -->
+    <!-- 4. 스몰 비디오 -->
+   <section class="mainVideo">   
+        <button a href="video_page.html"></button> 
+<!-- 원랜 미니 비디오가 페이지를 가만히 두면 자동재생하고 미니비디오 안에 재생 플레이어를 클릭하면 빅 화면으로 비디오 재생을 생각했는데 도저히 모르겠어요..도와주세요-->
+        <div class = "miniVideo">
+            <video controls autoplay>
+                <source src="videos/video2.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="videoInfo">
+            <p id="videoTitle">Blind Woodturner: Turning passion into fine art</p>
+            <p id="videoViews">576,969 views</p>
+            <p id="video&"> . </p>
+            <p id="videoTime">3 weeks ago</p>
+            <p id="videoInfo">Chris Fisher, also known as the Blind Woodturner, learned his craft by listening to hundreds of hours of YouTube videos and experimenting in his workshop. Now he's a YouTube creator himself, sells his products worldwide, and does demonstrations all around the country.</p>
+        </div>
     </section>
 
-    <footer>
-        <!-- 푸터 콘텐츠 -->
+    <!-- 스몰 비디오에서 재생버튼 클릭했을 경우 큰 비디오 페이지 
+    <section class="fullScreenVideo">
+        <video controls autoplay>
+            <source src="videos/video1.mp4" type="video/mp4">
+        </video>
+    </section>-->
+
+   <footer>
+    <!-- 5. 푸터 콘텐츠 -->
+           <!-- 푸터 콘텐츠 1-->
+    <section class="footerlist">
+        <span class="title">Search On '21</span>
+            <div id="playallList">
+            <img src="videolist/Vector.jpg" id="vectorIcon" onclick="()">
+            <span id="playall">PLAY ALL</span>
+            </div>
+        <div class="content">
+            <img src="videolist/Images.jpg" id="thumbnail" onclick="()">
+            <div id="contentDetail">
+                <div id="title">Lorem ipsum dolor sit amet, consecte...</div>
+                <div id="videoDetail">
+                    <span id="userID">Marcus Levin</span>
+                    <span id="userview">329K views </span>
+                    <span id="user&">. </span>
+                    <span id="usertime">1 month ago</span>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="content2">
+            <img src="videolist/Images2.jpg" id="thumbnail2" onclick="()">
+            <div id="contentDetail">
+                <div id="title">Lorem ipsum dolor sit amet, consecte...</div>
+                <div id="videoDetail">
+                    <span id="userID">Marcus Levin</span>
+                    <span id="userview">329K views </span>
+                    <span id="user&">. </span>
+                    <span id="usertime">1 month ago</span>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="content3">
+            <img src="videolist/Images3.jpg" id="thumbnail3" onclick="()">
+            <div id="contentDetail">
+                <div id="title">Lorem ipsum dolor sit amet, consecte...</div>
+                <div id="videoDetail">
+                    <span id="userID">Marcus Levin</span>
+                    <span id="userview">329K views </span>
+                    <span id="user&">. </span>
+                    <span id="usertime">1 month ago</span>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="content4">
+            <img src="videolist/Images4.jpg" id="thumbnail4" onclick="()">
+            <div id="contentDetail">
+                <div id="title">Lorem ipsum dolor sit amet, consecte...</div>
+                <div id="videoDetail">
+                    <span id="userID">Marcus Levin</span>
+                    <span id="userview">329K views </span>
+                    <span id="user&">. </span>
+                    <span id="usertime">1 month ago</span>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="content5">
+            <img src="videolist/Images5.jpg" id="thumbnail5" onclick="()">
+            <div id="contentDetail">
+                <div id="title">Lorem ipsum dolor sit amet, consecte...</div>
+                <div id="videoDetail">
+                    <span id="userID">Marcus Levin</span>
+                    <span id="userview">329K views </span>
+                    <span id="user&">. </span>
+                    <span id="usertime">1 month ago</span>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+           <!-- 푸터 콘텐츠 2-->
+    <section class="footerlist">
+        <span class="title">Search On '21</span>
+            <div id="playallList">
+            <img src="videolist/Vector.jpg" id="vectorIcon" onclick="()">
+            <span id="playall">PLAY ALL</span>
+            </div>
+        <div class="content">
+            <img src="videolist/Images.jpg" id="thumbnail" onclick="()">
+            <div id="contentDetail">
+                <div id="title">Lorem ipsum dolor sit amet, consecte...</div>
+                <div id="videoDetail">
+                    <span id="userID">Marcus Levin</span>
+                    <span id="userview">329K views </span>
+                    <span id="user&">. </span>
+                    <span id="usertime">1 month ago</span>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="content2">
+            <img src="videolist/Images2.jpg" id="thumbnail2" onclick="()">
+            <div id="contentDetail">
+                <div id="title">Lorem ipsum dolor sit amet, consecte...</div>
+                <div id="videoDetail">
+                    <span id="userID">Marcus Levin</span>
+                    <span id="userview">329K views </span>
+                    <span id="user&">. </span>
+                    <span id="usertime">1 month ago</span>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="content3">
+            <img src="videolist/Images3.jpg" id="thumbnail3" onclick="()">
+            <div id="contentDetail">
+                <div id="title">Lorem ipsum dolor sit amet, consecte...</div>
+                <div id="videoDetail">
+                    <span id="userID">Marcus Levin</span>
+                    <span id="userview">329K views </span>
+                    <span id="user&">. </span>
+                    <span id="usertime">1 month ago</span>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="content4">
+            <img src="videolist/Images4.jpg" id="thumbnail4" onclick="()">
+            <div id="contentDetail">
+                <div id="title">Lorem ipsum dolor sit amet, consecte...</div>
+                <div id="videoDetail">
+                    <span id="userID">Marcus Levin</span>
+                    <span id="userview">329K views </span>
+                    <span id="user&">. </span>
+                    <span id="usertime">1 month ago</span>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="content5">
+            <img src="videolist/Images5.jpg" id="thumbnail5" onclick="()">
+            <div id="contentDetail">
+                <div id="title">Lorem ipsum dolor sit amet, consecte...</div>
+                <div id="videoDetail">
+                    <span id="userID">Marcus Levin</span>
+                    <span id="userview">329K views </span>
+                    <span id="user&">. </span>
+                    <span id="usertime">1 month ago</span>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
     </footer>
 </body>
 </html>
