@@ -1,4 +1,3 @@
-/* 상단 구성 */
 header{
     width: 1440px;
     height: 56px;
@@ -11,19 +10,14 @@ header{
     justify-content: space-between;
     color: #fff;
     padding: 5px;
+    
 }
-.top-right-icons span {
-    margin-left: 10px;
-}
-.top-right-icons {
-    display: flex;
-    align-items: center;
-}
-
-/* 요소 하나씩 */
 .hamburger{
-    width: 24px;
-    height: 24px;
+    position: absolute;
+    left: 12.5%;
+    right: 12.5%;
+    top: 20.83%;
+    bottom: 25%;
 }
 .youtube_logo{
     width: 90px;
@@ -56,15 +50,15 @@ header{
     align-items: center;
     background: #303030;
 }
-.icon{
+.top-right-icons {
+    align-items: center;
+}
+
+.top-right-icons span {
+    margin-left: 10px;
+}
+
+.header-icon{
     width: 24px;
     height: 24px;
 }
-.top-right-icons{
-    display: flex;
-    width: 204px;
-    height: 40px;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 8px;
-} 
