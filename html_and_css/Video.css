@@ -2,6 +2,8 @@ body {
     background-color: #181818;    
     margin: 0px;    
 }
+
+
 .nav{    
     background-color: #212121;
     display: flex;
@@ -49,69 +51,167 @@ body {
     .body {
         max-width: 100vw;
     }
-} */
+}  */
+
+/* 메인동영상  반응형 적용*/
+
+.video{
+    max-width: 100vw;
+    position: sticky;
+    top: 0;
+    text-align: center;
+}
 
 .primary{
     margin-left: 24px;
     padding-top: 24px;
     padding-right: 24px;    
-    /* max-width: 100vw; */
 }
 
+/* 영상 정보란 */
 .video_info{
     display: flex;
     /* align-items: center; */
     flex-direction: column;
 }
-.title{
+.video-title{
     padding-top: 10px;
     padding-bottom: 10px;
+    font-size: 18px;
 }
-.info{
+.video-info-desc{
     display: flex;
     align-items: center;
     justify-content: space-between;    
-    padding-bottom: 10px;
+    flex-wrap: 10px;
+    margin-top: 10px;
+}
+.info-text{
+    font-size: 14px;
+    color: #aaa;
 }
 
+/* buttons 이미지 추가 필요 */
 .info_buttons{
-    display: flex;
-    align-items: center;    
+    font-size:14px;
+    font-weight: 700;
+    flex-direction: row;
+    /* margin: ; 
+        padding: ; <---margin padding 값 부여*/
 }
 
-.channel_title{
+/* 비디오 채널 */
+.channel-title{
     display: flex;
-    justify-content: space-between;  
+    justify-content: space-between; 
     border-top: 1px solid #303030;
     padding-top: 15px;
 }
-
-.user_{
+.user-avatar img{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+.user-profile{
     display: flex;
+    flex-direction: column;
 }
 
-.video_descs{
+.user-profile .user_name{
+    font-size: 14px;
+    color: white;
+}
+
+.user-profile .user_sub{
+    font-size: 12px;
+    color: #aaa;
+}
+
+/* subscribers 버튼 추가 필요
+.subscribers{
+
+} */
+
+.video-desc .desc{
     padding-left: 50px;
     padding-bottom: 15px;
     border-bottom: 1px solid #303030;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-.short_by{
+/* html show more 버튼 부분 체크박스형식으로 만들어놓음 */
+.video-desc .btn{
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    /* padding: ;
+    margin: ; <--- padding margin값 부여해야함 */
+}
+/* showmore 누르기 전 후 */
+.video-desc .btn ::before{
+    content: 'show more';
+    font-size: 12px;
+    color:#aaa
+}
+.video-desc .btn :checked::before{
+    content: close;
+    font-size: 12px;
+    color:#aaa
+}
+.video-desc .desc:has(+ .video-desc .btn:checked){
+    -webkit-line-clamp: unset;
+}
+
+
+/*  html short오타 수정 */
+.sort-by{
     display: flex;
     padding-top: 25px;
     padding-bottom: 25px;
 }
-
 .comment_cnt{
     padding-right: 20px;
+    font-size: 16px;
 }
 
-.comment_{
+/* sort-by btn 이미지 버튼 추가 필요 */
+.sort-by .sort{
+    margin-left: 50px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.comment{
     display: flex;
 }
 
+/* 댓글창 */
+.comment-area {
+    border: none;
+    outline: none; 
+    border-bottom: 1px solid #303030;
+    width: 100%;
+    padding-top: 10px;
+    background: transparent;
+}
+.comment-area :focus {
+    border: none;
+    outline: none;
+    border-bottom: 3px solid white;
+    background: transparent;
+}
 .comments{
     display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+.comments-pic img{
+    width: 35px;
+    border-radius: 50%;
+    margin-right: 15px;
 }
 
 .comments_info{
@@ -119,27 +219,56 @@ body {
     flex-direction: column;
 }
 
-.comments_btn{
+/* html 이름 시간 나누어야함 */
+/* .comments-id{
+
+} */
+
+/* 버튼 이미지 추가  필요*/
+.comments-btn{
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    margin: 8px 0;
+    font-size: 12px;
+    color:#aaa
 }
 
+
+
+/* checkbox */
 .top_menu{
     display: flex;
 }
 
-.video1{
+.other-videos{
     display: flex;
 }
 
-.secondary{
+.other-video{
+    display:flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+.other-video .other-video-thumbnail img{
+    width:100%;
+}
+
+.other-video .other-video-thumbnail{
+    flex-basis: 49%;
+}
+.other-video .other-video-text{
+    flex-basis: 49%;
+}
+
+
+/* .secondary{
     padding-top: 24px;
     padding-right: 24px;
 }
 
 .sidebar_top, .sidebar_top2{
     border-bottom: 1px solid #303030;
-}
+} */
 
 #sidebar{
     display: none;
