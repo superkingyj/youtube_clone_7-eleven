@@ -315,7 +315,7 @@ button{
     height: 100%;
 }
 
-/*0727 text부분 3단계로 분리(제목, 채널명, 날짜/조회수)*/
+/*0727 html : text부분 3단계로 분리(제목, 채널명, 날짜/조회수)*/
 .other-video .other-video-text{
     display: flex;
     width: 226px;

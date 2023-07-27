@@ -1,4 +1,6 @@
 /* 전체 화면 기본 스타일 */
+
+/* 전체적인 구조 확인을 위해 border 추가*/
 *{
     border: solid 1px white;
 }
