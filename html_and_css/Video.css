@@ -1,3 +1,6 @@
+*{
+    border: 1px solid white;
+}
 body {
     background-color: #181818;    
     margin: 0px;    
@@ -236,34 +239,6 @@ body {
     color:#aaa
 }
 
-
-
-/* checkbox */
-.top_menu{
-    display: flex;
-}
-
-.other-videos{
-    display: flex;
-}
-
-.other-video{
-    display:flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-}
-.other-video .other-video-thumbnail img{
-    width:100%;
-}
-
-.other-video .other-video-thumbnail{
-    flex-basis: 49%;
-}
-.other-video .other-video-text{
-    flex-basis: 49%;
-}
-
-
 /* .secondary{
     padding-top: 24px;
     padding-right: 24px;
@@ -283,3 +258,96 @@ body {
     max-width: 1280px;    
     max-height: 720px;
 } */
+
+/* 우측 동영상 목록 부분 */
+.other-list{
+    display: flex;
+    padding: 24px 24px 0px 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left : 20px;
+}
+.top_menu{
+    display: flex;
+    width: 402px;
+    padding: 1px 12px 2px 0px;
+    align-items: flex-start;
+}
+
+/* <!-- 0727 사항 : item1,item2 -> item 으로 통일--> */
+/* <!-- 0727 : img-> button 수정--> */
+.item1,
+.item2{
+    display: inline-block;
+    padding: 8px 8px 8px 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+button{
+    color : white;
+    border-radius: 24px;
+    border: 0.3px solid var(--gray-color, #AAA);
+    background: var(--border-color, hsl(0, 0%, 19%));
+
+    display: inline-flex;
+    padding: 12px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: center;
+    gap: 15px;
+}
+
+.other-videos{
+    display: flex;
+}
+.other-video{
+    display: flex;
+    padding-top: 8px;
+    align-items: flex-start;
+}
+.other-video .other-video-thumbnail{
+    width: 168px;
+    height: 94px;
+}
+.other-video .other-video-thumbnail img{
+    width: 100%;
+    height: 100%;
+}
+
+/*0727 text부분 3단계로 분리(제목, 채널명, 날짜/조회수)*/
+.other-video .other-video-text{
+    display: flex;
+    width: 226px;
+    padding: 7px 0px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.other-video-text-title{
+    width: 202px;
+    color: var(--white-color, #FFF);
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+.other-video-text-name{
+    flex: 1 0 0;
+    color: var(--gray-color, #AAA);
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+}
+.other-video-text-day{
+    flex: 1 0 0;
+    color: var(--gray-color, #AAA);
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+}
+
