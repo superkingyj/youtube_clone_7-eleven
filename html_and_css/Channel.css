@@ -1,4 +1,9 @@
 /* 전체 화면 기본 스타일 */
+
+/* 전체적인 구조 확인을 위해 border 추가*/
+*{
+    border: solid 1px white;
+}
 header {
     background-color: #212121;
     padding: 10px;
@@ -39,7 +44,6 @@ body {
     border-radius : 50%;
     margin-right:10px;
 }
-
 
 #top_2 img {
     width: 30px;
