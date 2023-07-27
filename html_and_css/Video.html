@@ -38,11 +38,11 @@
             <div class="video-info-desc">
               <div class="info-text">120000 views • Oct 8, 2021</div>
               <div class="info-buttons">
-                <div class="up">up</div>
-                <div class="down">down</div>
-                <div class="share">share</div>
-                <div class="save">save</div>
-                <div class="etc">...</div>
+                <button><img src="./img/video/like.svg" alt=""><span>1.7K</span></button>
+                <button><img src="./img/video/DisLiked.svg" alt=""><span>632</span></button>
+                <button><img src="./img/video/Group2.svg" alt=""><span>SHARE</span></button>
+                <button><img src="./img/video/Group.svg" alt=""><span>SAVE</span></button>
+                <button><img src="./img/video/more.svg" alt=""></button>
               </div>
             </div>
           </section>
@@ -55,7 +55,7 @@
               <div class="user">
                 <div class="user-avatar">
                   <img
-                    src="./img/body/primary/User-Avatar.png"
+                    src="./img/video/User-Avatar2.svg"
                     alt="User Avatar"
                   />
                 </div>
@@ -66,7 +66,7 @@
               </div>
               <div class="subscribers">
                 <img
-                  src="./img/body/primary/Subscribes-Btn.png"
+                  src="./img/video/Subscribes-Btn.svg"
                   alt="Subscribe"
                 />
               </div>
@@ -74,7 +74,8 @@
 
             <div class="video-desc">
               <div class="desc">이러저러해서 저러저저 합니다.</div>
-              <div class="btn">show more</div>
+                <!-- Video.css 클래스 변경 해야함 -->
+              <input type="checkbox" class="btn">
             </div>
           </div>
         </section>
@@ -83,12 +84,12 @@
           <div class="comment-desc">
             <div class="sort-by">
               <div class="comment-cnt">286 comments</div>
-              <div class="sort">short by</div>
+              <button><img src="./img/video/sort.svg" alt=""><span>SORT BY</span></button>
             </div>
             <div class="comment">
               <div class="comment-pic">
                 <img
-                  src="./img/body/primary/User-Avatar (1).png"
+                  src="./img/video/User-Avatar (2).svg"
                   alt="User Avatar"
                 />
               </div>
@@ -103,17 +104,17 @@
           <div class="comments">
             <div class="comments-pic">
               <img
-                src="./img/body/primary/User-Avatar (2).png"
+                src="./img/video/User-Avatar.svg"
                 alt="User Avatar"
               />
             </div>
             <div class="comments-info">
-              <div class="comments-id">James Gouse • 8 hours ago</div>
+              <div class="comments-id">James Gouse <span> 8 hours ago</span></div>
               <div class="comments-text">떡볶이 좋아요</div>
               <div class="comments-btn">
-                <div class="comments-btn-up">up</div>
-                <div class="comments-btn-down">down</div>
-                <div class="comments-btn-reply">reply</div>
+                <button><img src="./img/video/like.svg" alt=""><span>3</span></button>
+                <button><img src="./img/video/DisLiked.svg" alt=""></button>
+                <button><img src="./img/video/reply.svg" alt=""></button>
               </div>
             </div>
           </div>
@@ -124,10 +125,10 @@
         <!--우측 동영상 목록-->
         <div class="top-menu">
           <div class="item1">
-            <img src="./img/body/secondary/Button.png" alt="Button 1" />
+            <button onclick>All</button>
           </div>
           <div class="item2">
-            <img src="./img/body/secondary/Button2.png" alt="Button 2" />
+            <button onclick>From Marcus Levin</button>
           </div>
         </div>
 
@@ -147,4 +148,5 @@
       </aside>
     </section>
   </body>
+  <script src="../js/Video.js"></script>
 </html>
