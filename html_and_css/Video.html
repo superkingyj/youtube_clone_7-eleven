@@ -5,17 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="Video.css" />
+    <link rel="stylesheet" href="Header.css" />
+    <link rel="stylesheet" href="Sidebar.css" />
   </head>
-  <!-- 3. 재생화면 -->
-
   <body>
+    <!--상단부분-->
     <header>
-      <!--상단부분-->
+      <div class="top">
+        <div class="top-left-icons">
+          <img src="./img/header/hamburger.svg"/>
+          <a href="#"><img src="./img/header/Youtube-Logo.svg" class="youtube_logo" /></a>
+        </div>
+        <div class="searchbox">
+          <input type="text" id="search" placeholder="Search" />
+          <button onclick="" class="search-btn">
+            <img src="./img/header/search.svg" alt="search_icon" class="header-icon" />
+          </button>
+          <button onclick="">
+            <img src="./img/header/Icon.svg" alt="mic_icon" class="header-icon" />
+          </button>
+        </div>
+        <div class="top-right-icons">
+          <span
+            ><button onclick="">
+              <img
+                src="./img/header/create.svg"
+                alt="video_icon"
+                class="header-icon"
+              /></button
+          ></span>
+          <span
+            ><button onclick="">
+              <img src="./img/header/apps.svg" alt="more_icon" class="header-icon" /></button
+          ></span>
+          <span
+            ><button onclick="">
+              <img
+                src="./img/header/notifications.svg"
+                alt="alarm_icon"
+                class="header-icon"
+              /></button
+          ></span>
+          <span
+            ><button onclick="">
+              <img
+                src="./img/header/Profile-pic.svg"
+                alt="profile_icon"
+                class="header-icon"
+              /></button
+          ></span>
+        </div>
+      </div>
     </header>
     <section class="body">
       <!-- 하단 부분-->
       <aside>
         <!--왼쪽 사이드 바 내용-->
+        <div class="sidebar-body" style="overflow: auto">
+          <div class="side1">
+              <li class="sidebar-text"><a href="#"><img src="./img/sidebar/home-fill.svg" />Home</a></li>
+              <li class="sidebar-text"><a href="#"><img src="./img/sidebar/explore.svg" />Explore</a></li>
+              <li class="sidebar-text"><a href="#"><img src="./img/sidebar/subscriptions.svg" />Subscription</a></li>
+  
+          </div>
+          <div class="side2">
+            <li class="sidebar-text"><a href="#"><img src="./img/sidebar/library.svg" />Library</a></li>
+            <li class="sidebar-text"><a href="#"><img src="./img/sidebar/history.svg" />History</a></li>
+            <li class="sidebar-text"><a href="#"><img src="./img/sidebar/yourVideos.svg" />Your Videos</a></li>
+            <li class="sidebar-text"><a href="#"><img src="./img/sidebar/watchLater.svg" />Watch Later</a></li>
+            <li class="sidebar-text"><a href="#"><img src="./img/sidebar/liked.svg"/>Liked Videos</a></li>
+            <li class="sidebar-text"><a href="#"><img src="./img/sidebar/more.svg" />Show More</a></li>
+          </div>
+  
+          <div class="side3">
+            <h1>SUBSCRIPTION</h1>     
+            <div class="subscription-user-img">
+              <li class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar1.svg" alt="">James Gouse</a></li>
+              <li class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar2.svg" alt="">Alan Cooper</a></li>
+              <li class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar3.svg" alt="">Marcus Levin</a></li>
+              <li class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar4.svg" alt="">Alexis Sears</a></li>
+              <li class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar5.svg" alt="">Jesica Lambert</a></li>
+              <li class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar6.svg" alt="">Anna White</a></li>
+              <li class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar7.svg" alt="">Skylar Dias</a></li>
+              <li class="sidebar-text"><a href="#"><img src="./img/sidebar/more.svg" alt="">Show 13 More</a></li>
+            </div>
+          </div>
+  
+          <div class="side4">
+            <h1>MORE FROM YOUTUBE</h1>
+            <li class="sidebar-text"><a href="#"><img src="./img/sidebar/premium.svg" />Youtube PREMIUM</a></li>
+            <li class="sidebar-text"><a href="#"><img src="./img/sidebar/gaming.svg" />Gaming</a></li>
+            <li class="sidebar-text"><a href="#"><img src="./img/sidebar/live.svg" />Live</a></li>
+            <li class="sidebar-text"><a href="#"><img src="./img/sidebar/sports.svg" />Sports</a></li>
+          </div>
+        </div>
       </aside>
       <section>
         <!---->
