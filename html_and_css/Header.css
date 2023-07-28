@@ -1,9 +1,12 @@
 header{
-    width: 1440px;
+    position: fixed; /* 요소를 고정시킴 */
+    top: 0; /* 화면 상단에 고정 */
+    width: 100%;
     height: 56px;
     flex-shrink: 0;
     background: var(--background-color, #212121);
 }
+
 .top {
     display: flex;
     align-items: center;

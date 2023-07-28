@@ -1,99 +1,22 @@
-.list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    text-decoration: none;
-}
-a:hover{
-    background-color: #aaa;
-}
+/* list 태그 span 변경으로 인한 list css 삭제 */
+
+/* width 240px로 변경
+유튜브 페이지 참조 */
+
 .sidebar-body{
-    background-color: #212121;
-    width : 300px;
+    background-color: #212121;  
+    position: fixed; /* 요소를 고정시킴 */
+    left: 0; /* 화면 상단에 고정 */    
+    width: 240px;
 }
-.side1 {
-    left: 0;
-    width: 250px;
-}
-.profile-user-img {
-    width: 24px;
-    height: 24px;
-    border-radius: 70%;
-    overflow: hidden;
-}
-.side1 a {
-    display: flex;
-    padding: 8px 8px 8px 24px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
 
-}
-.side1 a img {
-    margin-right: 24px;
-    vertical-align: middle;
-    width : 192px;
-    height : 24px
-}
-.side2 a {
-    display: flex;
-    padding: 8px 8px 8px 24px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+/* profile-user-img 클래스가 안보여서 삭제 */
 
-}
-.side2 a img {
-    margin-right: 24px;
-    vertical-align: middle;
-}
-.side3 a {
-    display: block;
-    height: 100%;
-    width: 100%;
-    line-height: 65px;
-    font-size: 20px;
-    color: white;
-    padding-left: 40px;
-    box-sizing: border-box;
-    border-top: 1px solid rgba(255, 255, 255, .1);
 
-}
-.side3 h1 {
-    display: block;
-    height: 100%;
-    width: 100%;
-    line-height: 65px;
-    font-size: 20px;
-    color: #aaa;
-    padding-left: 40px;
-    box-sizing: border-box;
-    border-top: 1px solid rgba(255, 255, 255, .1);
-}
-.side4 a {
-    display: block;
-    height: 100%;
-    width: 100%;
-    line-height: 65px;
-    font-size: 20px;
-    color: white;
-    padding-left: 40px;
-    box-sizing: border-box;
-    border-top: 1px solid rgba(255, 255, 255, .1);
+/* side1,2,3,4 css 삭제 */
 
-}
-.side4 a img {
-    margin-right: 24px;
-    vertical-align: middle;
-}
-.side4 h1 {
-    display: block;
-    height: 100%;
-    width: 100%;
-    line-height: 65px;
-    font-size: 20px;
-    color: #aaa;
-    padding-left: 40px;
-    box-sizing: border-box;
-    border-top: 1px solid rgba(255, 255, 255, .1);
+
+/* 사이드바의 이미지들 hover시 색상 변경 */
+.sidebar-body div span a img:hover {
+    background-color: #303030;    
 }
