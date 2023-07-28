@@ -45,3 +45,58 @@ button{
 .profile-and-desc {
     display: flex;
 }
+
+/* 메인의 네비 부분 상단 구분짓는 border 처리 */
+.video-container nav{
+    border-top: 2px solid #303030;
+    padding-top: 10px;
+}
+
+/* section 안의 태그들을 위아래가 아닌 좌우로 정렬하게 함 */
+.home-body{
+    display: flex;
+}
+
+
+/* 비디오 span 태그들을 꼭 일렬로만이 아닌 해당 태그 공간이 차면 아래로 내려 갈수 있게 조절 */
+#mainContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px;
+}
+  
+
+/* 비디오 span 태그 크기를 상위 태그의 크기의 20%로 제한 및 한줄에 5개 표현되게 처리 */
+/* 이거 완성 안되었음 수정필요 */
+#mainContainer span{
+    flex: 0 0 18%;
+    /* 
+    5개의 span 태그를 한 줄에 표시하려면 flex-basis 값을 20%로 설정합니다.
+    20% * 5 = 100%이므로 5개가 한 줄에 정확히 들어갑니다.
+    */
+    
+    /* box-sizing: border-box; */
+    /* max-width: 20%; */
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 20px;
+    display: flex; 
+    flex-direction: column;
+    height: 100%;
+}
+
+
+/* 채널 이미지 크기 수정 필요 */
+/* #mainContainer span img{
+    width: 100%;
+    height: auto;
+    flex: 8;  
+} */
+
+
+/* 헤더와 사이드는 고정 된 상태라 나머지 Main 부분을 띄워서 겹치지 않게 조정 해당부분 수정 필요 */
+body > :not(header) {
+    padding-top: 55px;   
+    padding-left: 240px;
+}
+
