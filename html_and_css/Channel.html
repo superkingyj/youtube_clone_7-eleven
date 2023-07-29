@@ -10,143 +10,172 @@
     <link rel="stylesheet" href="../common/common.css" />
 </head>
 <body>
-  <!--상단부분(공통)-->
-  <header>
-    <div class="top">
-      <div class="top-left-icons">
-        <a href = "#"><img src="./img/header/hamburger.svg"/></a>
-        <a href="#"><img src="./img/header/Youtube-Logo.svg" class="youtube_logo" /></a>
-      </div>
-      <div class="searchbox">
-        <input type="text" id="search" placeholder="Search" />
-        <a href="#"><img src="./img/header/search.svg" class="header-icon"/></a>
-        <a href="#"><img src="./img/header/mic.svg" class="header-icon"/></a>
-      </div>
-      <div class="top-right-icons">
-          <a href="#"><img src="./img/header/create.svg" alt="profile_icon" class="header-icon"/></a>
-          <a href="#"><img src="./img/header/apps.svg" alt="profile_icon" class="header-icon"/></a>
-          <a href="#"><img src="./img/header/notifications.svg" alt="profile_icon" class="header-icon"/></a>
-          <a href="#"><img src="./img/header/profile-pic.svg" alt="profile_icon" class="header-icon"/></a>
-      </div>
-    </div>
-  </header>
-    <!-- 하단 부분-->
-  <section>
-      <!--왼쪽 사이드 바(공통)-->
-        <aside>
-          <div class="sidebar-body" style="overflow: auto">
-            <div class="side1">
-                <span class="sidebar-text"><a href="#"><img src="./img/sidebar/home-fill.svg"/></a></span>
-                <span class="sidebar-text"><a href="#"><img src="./img/sidebar/explore.svg"/></a></span>
-                <span class="sidebar-text"><a href="#"><img src="./img/sidebar/subscriptions.svg" /></a></span>
-            </div>
-            <div class="side2">
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/library.svg" /></a></span>
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/history.svg" /></a></span>
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/yourVideos.svg" /></a></span>
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/watchLater.svg" /></a></span>
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/liked.svg"/></a></span>
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/more.svg" /></a></span>
-            </div>
-            <div class="side3">
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/subscription-title.svg" alt=""></a></span>    
-              <div class="subscription-user-img">
-                <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar1.svg" alt=""></a></span>
-                <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar2.svg" alt=""></a></span>
-                <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar3.svg" alt=""></a></span>
-                <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar4.svg" alt=""></a></span>
-                <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar5.svg" alt=""></a></span>
-                <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar6.svg" alt=""></a></span>
-                <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar7.svg" alt=""></a></span>
-                <span class="sidebar-text"><a href="#"><img src="./img/sidebar/more.svg" alt=""></a></span>
-              </div>
-            </div>
-            <div class="side4">
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/more-from-youtube.svg" alt=""></a></span> 
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/premium.svg" /></a></span >
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/gaming.svg" /></a></span >
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/live.svg" /></a></span >
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/sports.svg" /></a></span >
-            </div>
-            <div class="side5">
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/settings.svg" /></a></span >
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/reporthistory.svg" /></a></span >
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/help.svg" /></a></span >
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/sendfeedback.svg" /></a></span >
-            </div>
+    <header>
+        <div class="top">
+          <div class="top-left-icons">
+            <img src="./img/header/hamburger.svg"/>
+            <a href="#"><img src="./img/header/Youtube-Logo.svg" class="youtube_logo" /></a>
           </div>
-        </aside>
-        <section class = channel-main>
-          <!--채널 메인 화면-->
-          <article class = "channel">
-              <div class = "channel-cover">
-                  <img src="./img/channel/background.svg" id="background">
+          <div class="searchbox">
+            <input type="text" id="search" placeholder="Search" />
+            <button onclick="" class="search-btn">
+              <img src="./img/header/search.svg" alt="search_icon" class="header-icon" />
+            </button>
+            <button onclick="">
+              <img src="./img/header/Icon.svg" alt="mic_icon" class="header-icon" />
+            </button>
+          </div>
+          <div class="top-right-icons">
+            <span
+              ><button onclick="">
+                <img
+                  src="./img/header/create.svg"
+                  alt="video_icon"
+                  class="header-icon"
+                /></button
+            ></span>
+            <span
+              ><button onclick="">
+                <img src="./img/header/apps.svg" alt="more_icon" class="header-icon" /></button
+            ></span>
+            <span
+              ><button onclick="">
+                <img
+                  src="./img/header/notifications.svg"
+                  alt="alarm_icon"
+                  class="header-icon"
+                /></button
+            ></span>
+            <span
+              ><button onclick="">
+                <img
+                  src="./img/header/Profile-pic.svg"
+                  alt="profile_icon"
+                  class="header-icon"
+                /></button
+            ></span>
+          </div>
+        </div>
+      </header>
+    <!-- 하단 부분-->
+    <section>
+        <!-- 왼쪽 사이드바-->
+        <aside>
+            <div class="sidebar-body" style="overflow: auto">
+              <div class="side1">
+                  <span class="sidebar-text"><a href="#"><img src="./img/sidebar/home-fill.svg"/></a></span>
+                  <span class="sidebar-text"><a href="#"><img src="./img/sidebar/explore.svg"/></a></span>
+                  <span class="sidebar-text"><a href="#"><img src="./img/sidebar/subscriptions.svg" /></a></span>
               </div>
-              <div class = "channel-title">
-                  <div class ="channel-profile">
-                    <img src="./img/channel/User-Avatar.svg" id="profileIcon2">  
-                  </div>
-                  <div class ="subscribe-icon">
-                    <img src="./img/channel/Subscribes-Btn.svg" id="subscribesIcon" onclick="" >
-                  </div>
+              <div class="side2">
+                <span class="sidebar-text"><a href="#"><img src="./img/sidebar/library.svg" /></a></span>
+                <span class="sidebar-text"><a href="#"><img src="./img/sidebar/history.svg" /></a></span>
+                <span class="sidebar-text"><a href="#"><img src="./img/sidebar/yourVideos.svg" /></a></span>
+                <span class="sidebar-text"><a href="#"><img src="./img/sidebar/watchLater.svg" /></a></span>
+                <span class="sidebar-text"><a href="#"><img src="./img/sidebar/liked.svg"/></a></span>
+                <span class="sidebar-text"><a href="#"><img src="./img/sidebar/more.svg" /></a></span>
               </div>
-              <div class ="channel-toolbar">
-                  <div class = "toolbars">
-                    <span class="toolbar-btn"><a href="#"><img src="./img/channel/toolbar-home.svg"/></a></span >
-                    <span class="toolbar-btn"><a href="#"><img src="./img/channel/toolbar-videos.svg"/></a></span >
-                    <span class="toolbar-btn"><a href="#"><img src="./img/channel/toolbar-playlists.svg"/></a></span >
-                    <span class="toolbar-btn"><a href="#"><img src="./img/channel/toolbar-community.svg"/></a></span >
-                    <span class="toolbar-btn"><a href="#"><img src="./img/channel/toolbar-channels.svg"/></a></span >
-                    <span class="toolbar-btn"><a href="#"><img src="./img/channel/toolbar-about.svg"/></a></span >
-                  </div>
-                  <div class ="toolbars-search">
-                    <span  class="toolbar-btn"><a href="#"><img src="./img/channel/search-icon.svg"/></a></span >
-                    <input type="text" id="toolbar-searchbox"/>
-                    <span  class="toolbar-btn"><a href="#"><img src="./img/channel/search-btn.svg"/></a></span >
-                  </div>
-              </div>
-          </article>
-          <article class = "small-video">
-              <div class = "youtube-player">
-                  <!--동영상 썸네일-->
-              </div>
-              <div class = "video/desc">
-                  <div class = "title">
-                      <!--제목-->
-                  </div>
-                  <div class = "time">
-                      <!--시간 정보-->
-                  </div>
-                  <div class = "description">
-                      <!--설명-->
-                  </div>
-              </div>
-              <!--영상 정보-->
-          </article>
-          <article class = "play-lists">
-              <div class ="play-list"> <!--play lists의 각 줄-->
-                <div class = "content">
-                  <div class ="content-top">
-                    <!--날짜, play all 버튼 부분-->
-                    <span><a href="#"><img src="./img/channel/day-btn.svg"/></a></span >
-                    <span><a href="#"><img src="./img/channel/play-btn.svg"/></a></span >
-                  </div>
-                  <div class ="video-card">
-                    <div class ="xsmall-video">
-                      <div class="xsmall-thumbnail">
-                        <!--썸네일 화면-->
-                      </div>
-                      <div class ="xsmall-desc">
-                          <div id="title"><!--xsmall video 제목--></div>
-                          <div id="views"><!--xsmall video views--></div>
-                      </div>
-                  </div>
-                  </div>
+              <div class="side3">
+                <span class="sidebar-text"><a href="#"><img src="./img/sidebar/subscription-title.svg" alt=""></a></span>    
+                <div class="subscription-user-img">
+                  <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar1.svg" alt=""></a></span>
+                  <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar2.svg" alt=""></a></span>
+                  <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar3.svg" alt=""></a></span>
+                  <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar4.svg" alt=""></a></span>
+                  <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar5.svg" alt=""></a></span>
+                  <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar6.svg" alt=""></a></span>
+                  <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar7.svg" alt=""></a></span>
+                  <span class="sidebar-text"><a href="#"><img src="./img/sidebar/more.svg" alt=""></a></span>
                 </div>
               </div>
-          </article>
+              <div class="side4">
+                <span class="sidebar-text"><a href="#"><img src="./img/sidebar/more-from-youtube.svg" alt=""></a></span> 
+                <span class="sidebar-text"><a href="#"><img src="./img/sidebar/premium.svg" /></a></span >
+                <span class="sidebar-text"><a href="#"><img src="./img/sidebar/gaming.svg" /></a></span >
+                <span class="sidebar-text"><a href="#"><img src="./img/sidebar/live.svg" /></a></span >
+                <span class="sidebar-text"><a href="#"><img src="./img/sidebar/sports.svg" /></a></span >
+              </div>
+              <div class="side5">
+                <span  class="sidebar-text"><a href="#"><img src="./img/sidebar/settings.svg" /></a></span >
+                <span  class="sidebar-text"><a href="#"><img src="./img/sidebar/reporthistory.svg" /></a></span >
+                <span  class="sidebar-text"><a href="#"><img src="./img/sidebar/help.svg" /></a></span >
+                <span  class="sidebar-text"><a href="#"><img src="./img/sidebar/sendfeedback.svg" /></a></span >
+              </div>
+            </div>
+          </aside>
+        <section class = channel-main>
+            <!--채널 메인 화면-->
+            <article class = "channel-main">
+                <div class = "channel-cover">
+                    <img src="./img/channel/background.svg" id="background">
+                </div>
+                <div class = "channel-title">
+                    <img src="./img/channel/User-Avatar.svg" id="profileIcon2">
+                    <div class="profileInfo">
+                        <p>Marcus Levin</p>
+                        <p>1.2M subscribers</p>
+                    </div>
+                    </div>
+                        <img src="./img/channel/Subscribes-Btn.svg" id="subscribesIcon" onclick="" >
+                    </div>
+                </div>
+                <div class ="channel-toolbar">
+                    <div class = "toolbars">
+                        <button onclick>HOME</button>
+                        <button onclick>VIDEOS</button>
+                        <button onclick>PLAYLISTS</button>
+                        <button onclick>COMMUNITY</button>
+                        <button onclick>CHANNELS</button>
+                        <button onclick>ABOUT</button>
+                    </div>
+                    <div class ="toolbar-search">
+                        <button><img src="./img/channel/search.svg" id="searchIcon" onclick=""></button>
+                        <button><img src="./img/channel/Btn.svg" id="ArrowIcon" onclick=""></button>
+                    </div>
+                </div>
+            </article>
+            <article class = "small-video">
+                <div class = "youtube-player">
+                    <!--동영상 썸네일-->
+                </div>
+                <div class = "video/desc">
+                    <div class = "title">
+                        <!--제목-->
+                    </div>
+                    <div class = "time">
+                        <!--시간 정보-->
+                    </div>
+                    <div class = "description">
+                        <!--설명-->
+                    </div>
+                </div>
+                <!--영상 정보-->
+            </article>
+            <article class = "play-list">
+                <div class ="play-list"> <!--play all button 있는 부분-->
+                    <span class="title">Search On '21</span>
+                    <div id="playallList">
+                    <img src="./img/channel/ico-play.svg" id="vectorIcon" onclick="">
+                    <span id="playall">PLAY ALL</span>
+                </div>
+                <div class = "video-card">
+                    <div class ="xsmall-video">
+                        <div class="xsmall-thumbnail">
+                            <img src="videolist/Images5.jpg" id="thumbnail5" onclick="">
+                        </div>
+                        <div class ="xsmall-desc">
+                            <div id="title">Lorem ipsum dolor sit amet, consecte...</div>
+                            <span id="userID">Marcus Levin</span>
+                            <span id="userview">329K views </span>
+                            <span id="user&">. </span>
+                            <span id="usertime">1 month ago</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 그 밖의 영상들-->
+            </article>
         </section>
-  </section>
+    </section>
 </body>
 <script src="../js/Channel.js"></script>
 <script src="../js/Sidebar.js"></script>
