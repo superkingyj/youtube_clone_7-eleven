@@ -13,7 +13,7 @@ async function fetchData() {
 }
 
 //videoinfo를 가져오는 API
-videoUrl = "http://oreumi.appspot.com/video/getVideoInfo?video_id="
+const videoUrl = "http://oreumi.appspot.com/video/getVideoInfo?video_id="
 
 async function videoData(data) {
     try {
@@ -27,6 +27,61 @@ async function videoData(data) {
         console.error('API 호출에 실패했습니다:', error);
     }
 }
+
+
+//chennelvedio를 가져오는 API
+const channelList = 'http://oreumi.appspot.com/channel/getChannelVideo?video_channel=';
+// 정보를 가져오는 함수
+async function fetchChannelData(searchValue) {
+    try {
+        const data = {"video_channel": searchValue}
+        const response = await fetch(channelList,{method: 'POST', headers: {
+            'Content-Type': 'application/json'},body: JSON.stringify(data)});
+            
+        if (!response.ok) {
+            throw new Error('API 호출에 실패했습니다');
+        }
+        const channelList_data = await response.json(); 
+
+        videoData(channelList_data);
+        console.log(channelList_data);
+
+        // 채널 정보 가져오기
+        await channelData(channelList_data);
+
+        return channelList_data;
+    } catch (error) {
+        console.error('API 호출에 실패했습니다:', error);
+    }
+}
+
+// chennelinfo를 가져오는 API
+const channelurl = "http://oreumi.appspot.com/channel/getChannelInfo?video_channel=";
+
+async function channelData(data) {
+    try {
+        for (const channelItem of data) {
+            const response = await fetch(channelurl + channelItem.channel_desc, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(channelItem) 
+            });
+            if (!response.ok) {
+                throw new Error('API 호출에 실패했습니다');
+              }
+            const channelInfoData = await response.json();
+
+            channelInfo(channelInfoData);
+            console.log(channelInfoData);
+        }
+        return data;
+    } catch (error) {
+        console.error('API 호출에 실패했습니다:', error);
+    }
+}
+
 
 function appendItemsToMain(data) { //해당 코드가 작동하기 위해선 Home.html의 main 태그에 id="mainContainer" 작업이 필요하고 하위 태그들은 삭제
 
@@ -54,7 +109,7 @@ function appendItemsToMain(data) { //해당 코드가 작동하기 위해선 Hom
     <form id="channel-Form-${data.video_id}" action="channel.html" method="GET">\n
         <input type="hidden" name="value" value="${data.video_channel}">\n                        
     </form>\n
-    <img src=${data.image_link} width=640px height=360px class="video-${data.video_id}">\n
+    <img src=${data.image_link} class="video-${data.video_id}">\n
     <div class='profile-and-desc'>\n
         <img class="channel-${data.video_id}" src='https://yt3.ggpht.com/G4UK0v62TMm55F2s4H_12Z8WdZwwGHjGybN3Ix1gwAdUIn8iBO5vgzvz7DZ9_mAv3_HBGHSJRVQ=s88-c-k-c0x00ffffff-no-rj'/>\n
         <div>\n
@@ -81,3 +136,57 @@ function appendItemsToMain(data) { //해당 코드가 작동하기 위해선 Hom
 
 fetchData();
 
+
+//search 검색창
+const mainContainer = document.getElementById("mainContainer");
+const searchInput = document.querySelector("#search");
+const searchBtn = document.querySelector(".searchbox a:first-child");
+const searchResultContainer = document.getElementById("searchResultContainer");
+let currentSearchTerm = "";
+
+// 검색 기능 구현 함수
+async function searchChannel() {
+  const searchValue = searchInput.value.trim();
+  if (searchValue === "") {
+    alert("검색어를 입력해주세요.");
+    return;
+  }
+
+ // 이전 검색 결과를 지우고 새로운 검색 결과를 표시하기 위해 기존 내용 삭제
+  if (currentSearchTerm !== searchValue) {
+    mainContainer.innerHTML = "";
+    searchResultContainer.innerHTML = "";
+  }
+  // 검색 결과 가져오기
+  const channelListData = await fetchChannelData(searchValue);
+
+  // 검색 결과를 화면에 표시
+  displaySearchResults(searchValue, channelListData);
+  currentSearchTerm = searchValue;
+}
+
+// 검색 버튼 클릭 이벤트 핸들러
+searchBtn.addEventListener("click", function (event) {
+  event.preventDefault();
+  searchChannel();
+});
+
+// Enter 키 입력 이벤트 핸들러
+searchInput.addEventListener("keyup", function (event) {
+  if (event.key === "Enter") {
+    searchChannel();
+  }
+});
+
+// fetchData 함수에서 addFormSubmitListeners를 호출하는 코드를 추가
+async function fetchData() {
+    try {
+        const response = await fetch(VideoList);
+        const VideoList_data = await response.json();
+
+        videoData(VideoList_data);
+        // 기존 videoData 호출 부분 삭제
+    } catch (error) {
+        console.error('API 호출에 실패했습니다:', error);
+    }
+}

@@ -1,5 +1,5 @@
-const toggleButton = document.querySelector('.top-left-icons a img');
-const toggleContent = document.querySelector('.sidebar');
+const toggleButton = document.querySelector('.top-left-icons img');
+const toggleContent = document.querySelector('.sidebar-body');
 // const toggleContent = document.querySelector('#search');
 
 toggleButton.addEventListener('click', () => {
