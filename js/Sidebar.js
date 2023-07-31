@@ -9,5 +9,3 @@ function toggleSide3() {
     var side3 = document.getElementById('show-more-sub');
     side3.style.display = side3.style.display === 'none' ? 'block' : 'none';
   }
-
-//aside 사이드 메뉴 내에서 스크롤 기능
