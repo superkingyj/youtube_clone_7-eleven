@@ -13,6 +13,7 @@ function getQueryParams() {
     }
     return params;
 }
+
 //숫자를 천,백만 단위에 K,M으로 변경
 function formatNumber(num) {
     if (num >= 1000000) {
@@ -59,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // section 부분 자바스크립트
                 document.getElementById("main-video").innerHTML = `
-                <video class="video" width=640px height=360px src="${data_video.video_link}" controls></video>
+                <video class="video" src="${data_video.video_link}" controls></video>
                 <section class="video-info">                    
                     <div class="video-title">${data_video.video_title}</div>
                     <div class="video-info-desc">
@@ -80,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.error('API 호출에 실패했습니다:', error);
             }
         }                
-        videoData(videoUrl+queryParams.video)
+        videoData(videoUrl+queryParams.id)
 
         // 채널 정보가 필요한 부분
         async function channelData(data) {
@@ -93,8 +94,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 };
                 const response = await fetch(data,requestOptions);  // channelUrl값으로 응답내용 호출
                 const channelUrl = await response.json();       // json 형태로 변경
-                document.querySelector(".user-avatar img").src = channelUrl.channel_profile
-                document.querySelector(".user_sub").textContent = formatNumber(channelUrl.subscibers) + " subscibers"                
+                document.querySelector(".user-avatar img").src = channelUrl.channel_profile;
+                document.querySelector(".user_sub").textContent = formatNumber(channelUrl.subscribers) + " subscibers";
             } catch (error) {
                 console.error('API 호출에 실패했습니다:', error);
             }
@@ -108,4 +109,32 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
         console.log("No query parameters found.");
     }
+});
+
+// SUBSCRIBES 버튼 클릭시 사이드바에 뜨게 하는 기능
+function addSubscribe() {
+    // 이미 구독한 상태라면 구독 취소
+    if (subscribeButton.getAttribute('data-is-subscribed') === 'true') {
+        delete subscribeButton['style'];
+
+    } else {
+        // 현재 채널 정보
+        const userImageSrc = document.querySelector('.user-avatar img').getAttribute('src');
+        const userName = document.getElementsByClassName('user_name')[0].innerText;
+    
+        // 사이드바에 추가
+        const subscibers = document.getElementsByClassName('subscription-user-img')[0];
+        subscibers.innerHTML = `<span class="sidebar-text">
+        <a href="#"><img src="${userImageSrc}" alt=""><span>${userName}</span></a>
+        </span>`;
+        
+        // SUBSCRIBES 회색으로 변경하고 사용자 정의 속성 (구독했음을 표시하는 속성) 추가
+        subscribeButton.setAttribute('data-is-subscribed', 'true');
+        subscribeButton.querySelector('img').style.filter = "grayscale(100%)";
+    }
+}
+
+const subscribeButton = document.getElementsByClassName('subscribers')[0];
+subscribeButton.addEventListener("click", function (event) {
+    addSubscribe();
 });
