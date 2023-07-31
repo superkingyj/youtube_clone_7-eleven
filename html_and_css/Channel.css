@@ -1,150 +1,24 @@
-/* 전체 화면 기본 스타일 */
-
-/* 전체적인 구조 확인을 위해 border 추가*/
-*{
-    border: solid 1px white;
-}
-header {
-    background-color: #212121;
-    padding: 10px;
-    display: flex;
-    padding : 10px 20px;
-}
 body {
-    background-color: #212121;
-    padding: 10px;
+    background-color: #212121;    
 }
-/* 네비게이션 및 검색창 스타일 */
-.navigations {
+
+.channel-title{
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
-#searchInput {
-    background-color: #121212;
-    color: #ffffff;
-    border: none;
-    padding: 10px 40px;
-    width: 100%;
-    margin-right: 0px;
-    font-size : 16px;
-}
-#searchInput::placeholder {
-    color: #191919;
-}
-#glassIcon{
-    background-color : #303030;
-    padding : 5px;
-    margin-right: 5px;
-}
-#micIcon{
-    background-color :#000000;
-    padding: 5px;
-    border-radius : 50%;
-    margin-right:10px;
-}
-
-#top_2 img {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    margin-left: 5px;
-}
-
-/* channel 콘텐츠 및 메뉴바 */
-#main_01 {
-    display : flex;
-    align-items : center;
-    list-style: none;
-    padding : 0;
-    margin : 0;
-}
-
-#main_01 {
+.profileInfo{
     display: flex;
-    list-style: none;
-    padding : 0;
 }
-.main li {
-    margin-right : 10px;
-}
-.main li: last-child{
-    margin-right : 0;
-}
-#main_02 li a {
-    text-decoration : none;
-    color : #ffffff;
-    padding : 5px 10px;
-    background-color : #212121;
-    border-radius: 5px;
-}
-#main li a: hover {
-    background-color : #303030;
-}
-.aside{
 
-}
-/* 시맨틱 태그의 배경 색상 설정 */
-main, aside, footer {
+/* 원래 버튼태그의 CCS 요소 삭제 */
+button {
+    /* appearance: none; */
+    /* 추가적인 스타일 규칙을 적용할 수 있습니다 */
     background-color: #212121;
-    color: #ffffff;
-    padding: 10px;
+    border: 0px;
 }
 
-main section, aside {
-    margin: 10px;
-}
-
-/* 푸터 콘텐츠 스타일 */
-.footerlist {
-    padding: 20px;
-    background-color: #181818;
-    color: #ffffff;
-}
-
-.title {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.content-wrapper {
+.channel-toolbar{
     display: flex;
-    flex-wrap: wrap; /* 콘텐츠들을 가로로 나열하고 줄바꿈 설정 */
-}
-
-.content {
-    width: calc(20% - 10px); /* 가로로 5개씩 콘텐츠를 나열하고 간격 설정 */
-    margin: 10px;
-}
-
-/* 콘텐츠 내용 스타일 */
-.content img {
-    max-width: 100%;
-}
-
-.contentDetail {
-    margin-top: 10px;
-}
-
-.title {
-    font-size: 14px;
-}
-
-.videoDetail {
-    font-size: 12px;
-}
-
-.userID {
-    font-weight: bold;
-}
-
-/* 콘텐츠 블록 나누는 줄 스타일 */
-.content-wrapper::before {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 1px;
-    background-color: #000000;
-    margin-top: 20px;
 }

@@ -22,3 +22,8 @@ if (toggleContent.style.display === 'none') {
 //     });
 
 // a태그 삭제필요
+
+//로고 및 aside home 버튼 클릭시 홈화면 이동
+function redirectToHome() {
+  window.location.href = 'home.html';
+}
