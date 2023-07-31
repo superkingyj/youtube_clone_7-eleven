@@ -9,3 +9,4 @@ function toggleSide3() {
     var side3 = document.getElementById('show-more-sub');
     side3.style.display = side3.style.display === 'none' ? 'block' : 'none';
   }
+
