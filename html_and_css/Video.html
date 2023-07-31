@@ -15,7 +15,7 @@
       <div class="top">
         <div class="top-left-icons">
           <img src="./img/header/hamburger.svg"/>
-          <a href="#"><img src="./img/header/Youtube-Logo.svg" class="youtube_logo" /></a>
+          <a href="home.html"><img src="./img/header/Youtube-Logo.svg" class="youtube_logo" onclick="redirectToHome()"/></a>
         </div>
         <div class="searchbox">
           <input type="text" id="search" placeholder="Search" />
@@ -63,29 +63,63 @@
       <aside>
         <div class="sidebar-body">          
           <div class="side1">
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/home-fill.svg"/></a></span>
+              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/home-fill.svg" onclick="redirectToHome()"/></a></span>
               <span class="sidebar-text"><a href="#"><img src="./img/sidebar/explore.svg"/></a></span>
               <span class="sidebar-text"><a href="#"><img src="./img/sidebar/subscriptions.svg" /></a></span>
           </div>
           <div class="side2">
-            <span class="sidebar-text"><a href="#"><img src="./img/sidebar/library.svg" /></a></span>
-            <span class="sidebar-text"><a href="#"><img src="./img/sidebar/history.svg" /></a></span>
-            <span class="sidebar-text"><a href="#"><img src="./img/sidebar/yourVideos.svg" /></a></span>
-            <span class="sidebar-text"><a href="#"><img src="./img/sidebar/watchLater.svg" /></a></span>
-            <span class="sidebar-text"><a href="#"><img src="./img/sidebar/liked.svg"/></a></span>
-            <span class="sidebar-text"><a href="#"><img src="./img/sidebar/more.svg" /></a></span>
+            <span id = "show-more">
+            <span class="sidebar-text"
+              ><a href="#"><img src="./img/sidebar/library.svg" /></a
+            ></span>
+            <span class="sidebar-text"
+              ><a href="#"><img src="./img/sidebar/history.svg" /></a
+            ></span>
+            <span class="sidebar-text"
+              ><a href="#"><img src="./img/sidebar/yourVideos.svg" /></a
+            ></span>
+            <span class="sidebar-text"
+              ><a href="#"><img src="./img/sidebar/watchLater.svg" /></a
+            ></span>
+            <span class="sidebar-text"
+              ><a href="#"><img src="./img/sidebar/liked.svg" /></a
+            ></span>
+            </span>
+            <span class="sidebar-text" onclick="toggleSide2()"><a href="#"><img src="./img/sidebar/more.svg"  /></a
+            ></span>
           </div>
           <div class="side3">
-            <span class="sidebar-text"><a href="#"><img src="./img/sidebar/subscription-title.svg" alt=""></a></span>    
+            <span class="sidebar-text"
+              ><a href="#"
+                ><img src="./img/sidebar/subscription-title.svg" alt="" /></a
+            ></span>
             <div class="subscription-user-img">
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar1.svg" alt=""></a></span>
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar2.svg" alt=""></a></span>
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar3.svg" alt=""></a></span>
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar4.svg" alt=""></a></span>
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar5.svg" alt=""></a></span>
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar6.svg" alt=""></a></span>
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar7.svg" alt=""></a></span>
-              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/more.svg" alt=""></a></span>
+              <span id = show-more-sub>
+              <span class="sidebar-text"
+                ><a href="#"><img src="./img/sidebar/avatar1.svg" alt="" /></a
+              ></span>
+              <span class="sidebar-text"
+                ><a href="#"><img src="./img/sidebar/avatar2.svg" alt="" /></a
+              ></span>
+              <span class="sidebar-text"
+                ><a href="#"><img src="./img/sidebar/avatar3.svg" alt="" /></a
+              ></span>
+              <span class="sidebar-text"
+                ><a href="#"><img src="./img/sidebar/avatar4.svg" alt="" /></a
+              ></span>
+              <span class="sidebar-text"
+                ><a href="#"><img src="./img/sidebar/avatar5.svg" alt="" /></a
+              ></span>
+              <span class="sidebar-text"
+                ><a href="#"><img src="./img/sidebar/avatar6.svg" alt="" /></a
+              ></span>
+              <span class="sidebar-text"
+                ><a href="#"><img src="./img/sidebar/avatar7.svg" alt="" /></a
+              ></span>
+              </span>
+              <span class="sidebar-text" onclick="toggleSide3()"
+                ><a href="#"><img src="./img/sidebar/more.svg" alt="" /></a
+              ></span>
             </div>
           </div>
           <div class="side4">
