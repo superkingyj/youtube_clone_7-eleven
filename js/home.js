@@ -104,10 +104,12 @@ function appendItemsToMain(data) { //해당 코드가 작동하기 위해선 Hom
     const span = document.createElement("span"); // 영상들을 어떤 태그에 담을지 선택
     span.innerHTML = `    
     <form id="video-Form-${data.video_id}" action="video.html" method="GET">\n
-        <input type="hidden" name="value" value="${data.video_id}">\n                        
+        <input type="hidden" name="id" value="${data.video_id}">\n
+        <input type="hidden" name="channel" value="${data.video_channel}">\n                         
     </form>\n
     <form id="channel-Form-${data.video_id}" action="channel.html" method="GET">\n
-        <input type="hidden" name="value" value="${data.video_channel}">\n                        
+        <input type="hidden" name="id" value="${data.video_id}">\n 
+        <input type="hidden" name="channel" value="${data.video_channel}">\n                        
     </form>\n
     <img src=${data.image_link} class="video-${data.video_id}">\n
     <div class='profile-and-desc'>\n
