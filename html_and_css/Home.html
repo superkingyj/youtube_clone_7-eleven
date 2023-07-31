@@ -15,9 +15,7 @@
       <div class="top">
         <div class="top-left-icons">
           <a href="#"><img src="./img/header/hamburger.svg" /></a>
-          <a href="#"
-            ><img src="./img/header/Youtube-Logo.svg" class="youtube_logo"
-          /></a>
+          <a href="home.html"><img src="./img/header/Youtube-Logo.svg" class="youtube_logo" onclick="redirectToHome()"/></a>
         </div>
         <div class="searchbox">
           <input type="text" id="search" placeholder="Search" />
@@ -60,7 +58,7 @@
     <section class="home-body">
       <!--왼쪽 사이드 바(공통)-->
       <aside>
-        <div class="sidebar-body" style="overflow: auto">
+        <div class="sidebar-body" style= "overflow:scroll; height:100%;">
           <div class="side1">
             <span class="sidebar-text"
               ><a href="#"><img src="./img/sidebar/home-fill.svg" /></a
@@ -73,6 +71,7 @@
             ></span>
           </div>
           <div class="side2">
+            <span id = "show-more">
             <span class="sidebar-text"
               ><a href="#"><img src="./img/sidebar/library.svg" /></a
             ></span>
@@ -88,8 +87,8 @@
             <span class="sidebar-text"
               ><a href="#"><img src="./img/sidebar/liked.svg" /></a
             ></span>
-            <span class="sidebar-text"
-              ><a href="#"><img src="./img/sidebar/more.svg" /></a
+            </span>
+            <span class="sidebar-text" onclick="toggleSide2()"><a href="#"><img src="./img/sidebar/more.svg"  /></a
             ></span>
           </div>
           <div class="side3">
@@ -98,6 +97,7 @@
                 ><img src="./img/sidebar/subscription-title.svg" alt="" /></a
             ></span>
             <div class="subscription-user-img">
+              <span id = show-more-sub>
               <span class="sidebar-text"
                 ><a href="#"><img src="./img/sidebar/avatar1.svg" alt="" /></a
               ></span>
@@ -119,7 +119,8 @@
               <span class="sidebar-text"
                 ><a href="#"><img src="./img/sidebar/avatar7.svg" alt="" /></a
               ></span>
-              <span class="sidebar-text"
+              </span>
+              <span class="sidebar-text" onclick="toggleSide3()"
                 ><a href="#"><img src="./img/sidebar/more.svg" alt="" /></a
               ></span>
             </div>
