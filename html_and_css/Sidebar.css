@@ -8,7 +8,35 @@
     position: fixed; /* 요소를 고정시킴 */
     left: 0; /* 화면 상단에 고정 */    
     width: 240px;
+    height: 907px;   
+    overflow: hidden;/* 세로 스크롤바 숨기기 */
 }
+
+
+/* .sidebar-body 태그 스크롤바 전체 스타일 */
+.sidebar-body:hover {
+    overflow: scroll;/* 세로 스크롤바 보이기 */
+}
+
+.sidebar-body::-webkit-scrollbar {
+    width: 6px; /* 스크롤바 너비 */
+    height: 6px;    
+}
+  
+/* .sidebar-body 태그 스크롤바 트랙 스타일 (배경) */
+.sidebar-body::-webkit-scrollbar-track {
+    background-color: #212121; /* 스크롤바 트랙 색상 */
+}
+  
+  /* .sidebar-body 태그 스크롤바 쓰는 부분 (버튼) 스타일 */
+.sidebar-body::-webkit-scrollbar-thumb {
+    background-color: #888; /* 스크롤바 버튼 색상 */
+    border-radius: 3px; /* 스크롤바 버튼 모서리 둥글게 */
+}
+
+
+
+
 
 /* profile-user-img 클래스가 안보여서 삭제 */
 
