@@ -33,18 +33,42 @@
     background-color: #888; /* 스크롤바 버튼 색상 */
     border-radius: 3px; /* 스크롤바 버튼 모서리 둥글게 */
 }
-
-
-
-
-
-/* profile-user-img 클래스가 안보여서 삭제 */
-
-
-/* side1,2,3,4 css 삭제 */
-
-
 /* 사이드바의 이미지들 hover시 색상 변경 */
 .sidebar-body div span a img:hover {
     background-color: #303030;    
+}
+
+#show-more-sub a:hover{
+    background-color: #303030;    
+}
+
+#show-more-sub{
+    display: flex;    
+    flex-direction: column;     
+    align-items: center;    
+    justify-content: flex-start;
+}
+.sidebar-text {
+    text-align: center;
+    font-family: 'Roboto';
+}
+
+#show-more-sub a{
+    width: 224px;
+    height: 40px;
+    display: flex; /* 링크 안의 내용들을 가운데로 정렬하기 위해 추가 */
+    align-items: center; /* 링크 안의 내용들을 수직 가운데 정렬하기 위해 추가 */
+    justify-content: center; /* 링크 안의 내용들을 수평 가운데 정렬하기 위해 추가 */    
+     /* 링크들 사이의 간격을 조절하기 위해 추가 */
+    /* padding-right: 7px; */
+    color: white;
+    text-decoration: none;    
+}
+
+#show-more-sub a img{
+    border-radius: 50%;
+}
+
+.subscription-user-img{
+    width: 224px;
 }
