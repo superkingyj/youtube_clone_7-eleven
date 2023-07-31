@@ -111,22 +111,47 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+const subscribeButton = document.getElementsByClassName('subscribers')[0];
+
 // SUBSCRIBES 버튼 클릭시 사이드바에 뜨게 하는 기능
 function addSubscribe() {
     // 이미 구독한 상태라면 구독 취소
     if (subscribeButton.getAttribute('data-is-subscribed') === 'true') {
-        delete subscribeButton['style'];
+            // 버튼 다시 빨갛게 변경
+            subscribeButton.removeAttribute('data-is-subscribed');
+            const buttonImgSrc = subscribeButton.querySelector('img').getAttribute('src');
+            subscribeButton.querySelector('img').remove();
+            subscribeButton.innerHTML = `
+            <img
+                src="${buttonImgSrc}"
+                alt="Subscribe"
+            />
+            `;
+            
+            // 사이드바에서 삭제
+            const subscribers = document.querySelectorAll('#show-more-sub .sidebar-text');
+            const idx = subscribers.length-1;
+            const target = (subscribers[idx]);
 
+            console.log(target);
+            target.remove();
     } else {
         // 현재 채널 정보
         const userImageSrc = document.querySelector('.user-avatar img').getAttribute('src');
         const userName = document.getElementsByClassName('user_name')[0].innerText;
     
         // 사이드바에 추가
-        const subscibers = document.getElementsByClassName('subscription-user-img')[0];
-        subscibers.innerHTML = `<span class="sidebar-text">
-        <a href="#"><img src="${userImageSrc}" alt=""><span>${userName}</span></a>
-        </span>`;
+        const subscibers = document.getElementById('show-more-sub');
+
+        subscibers.insertAdjacentHTML(
+        'beforeend',
+        `
+        <a href="#">
+            <span class="sidebar-text">
+                <img src="${userImageSrc}" alt="" />${userName}
+            </span>
+        </a>`
+        );
         
         // SUBSCRIBES 회색으로 변경하고 사용자 정의 속성 (구독했음을 표시하는 속성) 추가
         subscribeButton.setAttribute('data-is-subscribed', 'true');
@@ -134,7 +159,48 @@ function addSubscribe() {
     }
 }
 
-const subscribeButton = document.getElementsByClassName('subscribers')[0];
 subscribeButton.addEventListener("click", function (event) {
     addSubscribe();
+});
+
+
+const commentInput = document.getElementsByClassName('comment-area')[0];
+
+// 댓글다는 기능
+function addReply() {
+    // 댓글 단 내용 가져오기
+    const replyText = document.getElementsByClassName("comment-area")[0].value;
+    
+    document.getElementsByClassName("comment-area")[0].value = '';
+
+    // 댓글창에 추가
+    const comments = document.getElementsByClassName("comments")[0];
+    comments.insertAdjacentHTML(
+    'beforeend',
+    `
+    <div class="comments">
+        <div class="comments-pic">
+            <img src="./img/video/User-Avatar (2).svg" alt="User Avatar" />
+        </div>
+        <div class="comments-info">
+            <div class="comments-id">
+                7-eleven-team <span> 8 hours ago</span>
+            </div>
+            <div class="comments-text">${replyText}</div>
+            <div class="comments-btn">
+                <button>
+                <img src="./img/video/like.svg" alt="" /><span>0</span>
+                </button>
+                <button><img src="./img/video/DisLiked.svg" alt="" /></button>
+                <button><img src="./img/video/reply.svg" alt="" /></button>
+            </div>
+        </div>
+    </div>
+    `);
+}
+
+commentInput.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        addReply();
+    }
 });
