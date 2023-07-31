@@ -43,6 +43,7 @@ header{
     flex-shrink: 0;
     border-radius: 2px 0px 0px 2px;
     background: #121212;
+    color: #fff;
 }
 .search_btn{
     display: flex;

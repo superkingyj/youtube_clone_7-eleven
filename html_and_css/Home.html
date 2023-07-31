@@ -1,190 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="Home.css" />
-    <link rel="stylesheet" href="Header.css" />
-    <link rel="stylesheet" href="Sidebar.css" />
-    <link rel="stylesheet" href="../common/common.css" />
-    <title>Home</title>
-  </head>
-  <body>
-    <!--상단부분(공통)-->
-    <header>
-      <div class="top">
-        <div class="top-left-icons">
-          <a href="#"><img src="./img/header/hamburger.svg" /></a>
-          <a href="home.html"><img src="./img/header/Youtube-Logo.svg" class="youtube_logo" onclick="redirectToHome()"/></a>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="Reset.css" />
+  <link rel="stylesheet" href="Home.css" />
+  <link rel="stylesheet" href="Header.css" />
+  <link rel="stylesheet" href="Sidebar.css" />
+  <link rel="stylesheet" href="../common/common.css" />
+  <title>Home</title>
+</head>
+
+<body>
+  <!--상단부분(공통)-->
+  <header>
+    <div class="top">
+      <div class="top-left-icons">
+        <a href="#"><img src="./img/header/hamburger.svg" /></a>
+        <a href="home.html"><img src="./img/header/Youtube-Logo.svg" class="youtube_logo"
+            onclick="redirectToHome()" /></a>
+      </div>
+      <div class="searchbox">
+        <input type="text" id="search" placeholder="Search" />
+        <a href="#" onclick="searchChannel()"><img src="./img/header/search.svg" class="header-icon" /></a>
+        <a href="#"><img src="./img/header/mic.svg" class="header-icon" /></a>
+      </div>
+      <!-- 검색 결과 출력을 위한 컨테이너 -->
+      <div class="search-result" id="searchResultContainer"></div>
+      <div class="top-right-icons">
+        <a href="#"><img src="./img/header/create.svg" alt="profile_icon" class="header-icon" /></a>
+        <a href="#"><img src="./img/header/apps.svg" alt="profile_icon" class="header-icon" /></a>
+        <a href="#"><img src="./img/header/notifications.svg" alt="profile_icon" class="header-icon" /></a>
+        <a href="#"><img src="./img/header/profile-pic.svg" alt="profile_icon" class="header-icon" /></a>
+      </div>
+    </div>
+  </header>
+  <!-- 하단 부분-->
+  <section class="home-body">
+    <!--왼쪽 사이드 바(공통)-->
+    <aside>
+      <div class="sidebar-body">
+        <div class="side1">
+          <span class="sidebar-text"><a href="#"><img src="./img/sidebar/home-fill.svg"
+                onclick="redirectToHome()" /></a></span>
+          <span class="sidebar-text"><a href="#"><img src="./img/sidebar/explore.svg" /></a></span>
+          <span class="sidebar-text"><a href="#"><img src="./img/sidebar/subscriptions.svg" /></a></span>
         </div>
-        <div class="searchbox">
-          <input type="text" id="search" placeholder="Search" />
-          <a href="#" onclick="searchChannel()"
-            ><img src="./img/header/search.svg" class="header-icon"
-          /></a>
-          <a href="#"><img src="./img/header/mic.svg" class="header-icon" /></a>
+        <div class="side2">
+          <span id="show-more">
+            <span class="sidebar-text"><a href="#"><img src="./img/sidebar/library.svg" /></a></span>
+            <span class="sidebar-text"><a href="#"><img src="./img/sidebar/history.svg" /></a></span>
+            <span class="sidebar-text"><a href="#"><img src="./img/sidebar/yourVideos.svg" /></a></span>
+            <span class="sidebar-text"><a href="#"><img src="./img/sidebar/watchLater.svg" /></a></span>
+            <span class="sidebar-text"><a href="#"><img src="./img/sidebar/liked.svg" /></a></span>
+          </span>
+          <span class="sidebar-text" onclick="toggleSide2()"><a href="#"><img src="./img/sidebar/more.svg" /></a></span>
         </div>
-        <!-- 검색 결과 출력을 위한 컨테이너 -->
-        <div class="search-result" id="searchResultContainer"></div>
-        <div class="top-right-icons">
-          <a href="#"
-            ><img
-              src="./img/header/create.svg"
-              alt="profile_icon"
-              class="header-icon"
-          /></a>
-          <a href="#"
-            ><img
-              src="./img/header/apps.svg"
-              alt="profile_icon"
-              class="header-icon"
-          /></a>
-          <a href="#"
-            ><img
-              src="./img/header/notifications.svg"
-              alt="profile_icon"
-              class="header-icon"
-          /></a>
-          <a href="#"
-            ><img
-              src="./img/header/profile-pic.svg"
-              alt="profile_icon"
-              class="header-icon"
-          /></a>
+        <div class="side3">
+          <span class="sidebar-text"><a href="#"><img src="./img/sidebar/subscription-title.svg" alt="" /></a></span>
+          <div class="subscription-user-img">
+            <span id=show-more-sub>
+              <!-- <a href="#"><span class="sidebar-text"><img src="./img/sidebar/User-Avatar.png" alt="" /> James Gouse</span></a>
+              <a href="#"><span class="sidebar-text"><img src="./img/sidebar/User-Avatar.png" alt="" /> Aames Bouse</span></a> -->
+              <!-- <span class="sidebar-text"><a href="#"><img src="./img/sidebar/User-Avatar.png" alt="" /> James Gouse</a></span>
+              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/User-Avatar.png" alt="" /> Aames Bouse</a></span> -->              
+              <!-- <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar1.svg" alt="" /></a></span>
+              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar2.svg" alt="" /></a></span>
+              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar3.svg" alt="" /></a></span>
+              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar4.svg" alt="" /></a></span>
+              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar5.svg" alt="" /></a></span>
+              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar6.svg" alt="" /></a></span>
+              <span class="sidebar-text"><a href="#"><img src="./img/sidebar/avatar7.svg" alt="" /></a></span> -->
+            </span>
+            <span class="sidebar-text" onclick="toggleSide3()"><a href="#"><img src="./img/sidebar/more.svg"
+                  alt="" /></a></span>
+          </div>
+        </div>
+        <div class="side4">
+          <span class="sidebar-text"><a href="#"><img src="./img/sidebar/more-from-youtube.svg" alt="" /></a></span>
+          <span class="sidebar-text"><a href="#"><img src="./img/sidebar/premium.svg" /></a></span>
+          <span class="sidebar-text"><a href="#"><img src="./img/sidebar/gaming.svg" /></a></span>
+          <span class="sidebar-text"><a href="#"><img src="./img/sidebar/live.svg" /></a></span>
+          <span class="sidebar-text"><a href="#"><img src="./img/sidebar/sports.svg" /></a></span>
+        </div>
+        <div class="side5">
+          <span class="sidebar-text"><a href="#"><img src="./img/sidebar/settings.svg" /></a></span>
+          <span class="sidebar-text"><a href="#"><img src="./img/sidebar/reporthistory.svg" /></a></span>
+          <span class="sidebar-text"><a href="#"><img src="./img/sidebar/help.svg" /></a></span>
+          <span class="sidebar-text"><a href="#"><img src="./img/sidebar/sendfeedback.svg" /></a></span>
         </div>
       </div>
-    </header>
-    <!-- 하단 부분-->
-    <section class="home-body">
-      <!--왼쪽 사이드 바(공통)-->
-      <aside>
-        <div class="sidebar-body"> 
-          <div class="side1">
-            <span class="sidebar-text"><a href="#"><img src="./img/sidebar/home-fill.svg" onclick="redirectToHome()"/></a></span>
-            <span class="sidebar-text"
-              ><a href="#"><img src="./img/sidebar/explore.svg" /></a
-            ></span>
-            <span class="sidebar-text"
-              ><a href="#"><img src="./img/sidebar/subscriptions.svg" /></a
-            ></span>
-          </div>
-          <div class="side2">
-            <span id = "show-more">
-            <span class="sidebar-text"
-              ><a href="#"><img src="./img/sidebar/library.svg" /></a
-            ></span>
-            <span class="sidebar-text"
-              ><a href="#"><img src="./img/sidebar/history.svg" /></a
-            ></span>
-            <span class="sidebar-text"
-              ><a href="#"><img src="./img/sidebar/yourVideos.svg" /></a
-            ></span>
-            <span class="sidebar-text"
-              ><a href="#"><img src="./img/sidebar/watchLater.svg" /></a
-            ></span>
-            <span class="sidebar-text"
-              ><a href="#"><img src="./img/sidebar/liked.svg" /></a
-            ></span>
-            </span>
-            <span class="sidebar-text" onclick="toggleSide2()"><a href="#"><img src="./img/sidebar/more.svg"  /></a
-            ></span>
-          </div>
-          <div class="side3">
-            <span class="sidebar-text"
-              ><a href="#"
-                ><img src="./img/sidebar/subscription-title.svg" alt="" /></a
-            ></span>
-            <div class="subscription-user-img">
-              <span id = show-more-sub>
-              <span class="sidebar-text"
-                ><a href="#"><img src="./img/sidebar/avatar1.svg" alt="" /></a
-              ></span>
-              <span class="sidebar-text"
-                ><a href="#"><img src="./img/sidebar/avatar2.svg" alt="" /></a
-              ></span>
-              <span class="sidebar-text"
-                ><a href="#"><img src="./img/sidebar/avatar3.svg" alt="" /></a
-              ></span>
-              <span class="sidebar-text"
-                ><a href="#"><img src="./img/sidebar/avatar4.svg" alt="" /></a
-              ></span>
-              <span class="sidebar-text"
-                ><a href="#"><img src="./img/sidebar/avatar5.svg" alt="" /></a
-              ></span>
-              <span class="sidebar-text"
-                ><a href="#"><img src="./img/sidebar/avatar6.svg" alt="" /></a
-              ></span>
-              <span class="sidebar-text"
-                ><a href="#"><img src="./img/sidebar/avatar7.svg" alt="" /></a
-              ></span>
-              </span>
-              <span class="sidebar-text" onclick="toggleSide3()"
-                ><a href="#"><img src="./img/sidebar/more.svg" alt="" /></a
-              ></span>
-            </div>
-          </div>
-          <div class="side4">
-            <span class="sidebar-text"
-              ><a href="#"
-                ><img src="./img/sidebar/more-from-youtube.svg" alt="" /></a
-            ></span>
-            <span class="sidebar-text"
-              ><a href="#"><img src="./img/sidebar/premium.svg" /></a
-            ></span>
-            <span class="sidebar-text"
-              ><a href="#"><img src="./img/sidebar/gaming.svg" /></a
-            ></span>
-            <span class="sidebar-text"
-              ><a href="#"><img src="./img/sidebar/live.svg" /></a
-            ></span>
-            <span class="sidebar-text"
-              ><a href="#"><img src="./img/sidebar/sports.svg" /></a
-            ></span>
-          </div>
-          <div class="side5">
-            <span class="sidebar-text"
-              ><a href="#"><img src="./img/sidebar/settings.svg" /></a
-            ></span>
-            <span class="sidebar-text"
-              ><a href="#"><img src="./img/sidebar/reporthistory.svg" /></a
-            ></span>
-            <span class="sidebar-text"
-              ><a href="#"><img src="./img/sidebar/help.svg" /></a
-            ></span>
-            <span class="sidebar-text"
-              ><a href="#"><img src="./img/sidebar/sendfeedback.svg" /></a
-            ></span>
-          </div>
+    </aside>
+    <!--Home page video container-->
+    <section class="video-container">
+      <!--전체,실시간 등 item 항목 바-->
+      <nav>
+        <div class="filtering-buttons">
+          <!-- 수정 -->
+          <button onclick="">전체</button>
+          <button onclick="">게임</button>
+          <button onclick="">음악</button>
+          <button onclick="">믹스</button>
+          <button onclick="">뉴스</button>
+          <button onclick="">실시간</button>
+          <button onclick="">뷰티 팁</button>
+          <button onclick="">액션 어드벤처 게임</button>
+          <button onclick="">축구</button>
+          <button onclick="">요리</button>
+          <button onclick="">만화영화</button>
+          <button onclick="">최근에 업로드된 동영상</button>
+          <button onclick="">새로운 맞춤 동영상</button>
         </div>
-      </aside>
-      <!--Home page video container-->
-      <section class="video-container">
-        <!--전체,실시간 등 item 항목 바-->
-        <nav>
-          <div class="filtering-buttons">
-            <!-- 수정 -->
-            <button onclick="">전체</button>
-            <button onclick="">게임</button>
-            <button onclick="">음악</button>
-            <button onclick="">믹스</button>
-            <button onclick="">뉴스</button>
-            <button onclick="">실시간</button>
-            <button onclick="">뷰티 팁</button>
-            <button onclick="">액션 어드벤처 게임</button>
-            <button onclick="">축구</button>
-            <button onclick="">요리</button>
-            <button onclick="">만화영화</button>
-            <button onclick="">최근에 업로드된 동영상</button>
-            <button onclick="">새로운 맞춤 동영상</button>
-          </div>
-        </nav>
+      </nav>
 
-        <!--동영상 목록 구역-->
-        <main id="mainContainer"></main>
-      </section>
+      <!--동영상 목록 구역-->
+      <main id="mainContainer"></main>
     </section>
-  </body>
-  <script src="../js/home.js"></script>
-  <script src="../js/Sidebar.js"></script>
-  <script src="../js/Header.js"></script>
+  </section>
+</body>
+<script src="../js/Home.js"></script>
+<script src="../js/Sidebar.js"></script>
+<script src="../js/Header.js"></script>
+
 </html>
