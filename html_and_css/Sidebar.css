@@ -8,7 +8,7 @@
     position: fixed; /* 요소를 고정시킴 */
     left: 0; /* 화면 상단에 고정 */    
     width: 240px;
-    height: 907px;   
+    height: 100vh; /*최대 확대 최소 축소 시 배경색 유지  */
     overflow: hidden;/* 세로 스크롤바 숨기기 */
 }
 
