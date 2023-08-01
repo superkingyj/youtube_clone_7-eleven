@@ -5,6 +5,8 @@ header{
     height: 56px;
     flex-shrink: 0;
     background: var(--background-color, #212121);
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .top {
@@ -12,47 +14,52 @@ header{
     align-items: center;
     justify-content: space-between;
     color: #fff;
-    padding: 5px;
+    padding: 2px;
     
 }
-.hamburger{
+.top-left-icons .hamburger{
     position: absolute;
     left: 12.5%;
     right: 12.5%;
     top: 20.83%;
     bottom: 25%;
 }
-.youtube_logo{
+.top-left-icons .youtube_logo{
     width: 90px;
     height: 20px;
+    margin-left: 22px;
 }
 
-.searchbox{
-    display: flex;
-    width: 470px;
-    height: 40px;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 4px;
-    flex-shrink: 0;
-}
-
-#search{
-    width: 362px;
-    height: 40px;
-    flex-shrink: 0;
-    border-radius: 2px 0px 0px 2px;
+.searchbox {
+    margin-bottom: 7px;
     background: #121212;
-    color: #fff;
+    border: 1px solid #303030;
+    border-radius: 2px;
+    padding: 0;
 }
-.search_btn{
+#search{
+    width: 426px;
+    height: 40px;
+    background: transparent;
+    color: #fff;
+    border: 0;
+    outline: 0;
+    padding: 0;
+}
+.searchbox .search-icon{
     display: flex;
-    width: 50px;
-    height: 36px;
-    padding: 6px 13px;
+    width: 60px;
+    height: 40px;
     justify-content: center;
     align-items: center;
     background: #303030;
+    border: none;
+}
+.mic-icon{
+    margin-left: 4px;
+    width: 40px;
+    height: 50px;
+    align-items: center;
 }
 .top-right-icons {
     align-items: center;
@@ -62,7 +69,12 @@ header{
     margin-left: 10px;
 }
 
+.top-right-icons .user-icon{
+    width: 60px;
+    height: 50px;
+    margin-right: 30px;
+}
 .header-icon{
-    width: 24px;
-    height: 24px;
+    width: 50px;
+    height: 40px;
 }
