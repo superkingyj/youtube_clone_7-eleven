@@ -13,8 +13,14 @@ article{
 .profileInfo{
     display: flex;
     margin-left:20px;
-
+    
 }
+.profileInfo img{
+    width:80px;
+    height:80px;
+    border-radius: 50%;
+}
+
 #subscribesIcon{
     margin-right:65px;
 }
@@ -33,17 +39,76 @@ button {
 .channel-toolbar button :hover{
     background-color: gray;
 }
+/* small-video 부분 */
+.small-video {  
+    display: inline-flex;
+    padding: 24px 287px 24px 65px;
+    align-items: flex-start;
+  }
+  
+.youtube-player {
+    display: flex;
+    padding-right: 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+.video-desc {
+    display: flex;
+    padding-bottom: 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 24px;
+}
+.title{
+    color: var(--white-color, #FFF);
+    font-variant-numeric: stacked-fractions;
+    font-feature-settings: 'hlig' on, 'dlig' on;
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.14px;
+    margin-bottom: 20px;
+}  
+.time{
+    color: var(--gray-color, #AAA);
+    font-family: Roboto;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom:19px;
+}
+.description{
+    color: var(--white-color, #FFF);
+    font-variant-numeric: stacked-fractions;
+    font-feature-settings: 'hlig' on, 'dlig' on;
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.14px;
+    width: 400px;
+    flex-shrink: 0;
+}
 /* search bar 기능*/
 .hidden {
     display: none;
+}
+
+.toolbar-search{
+    display: inline-flex;
 }
 
 #searchBar input{
     width: 202px;
     height: 47px;
     flex-shrink: 0;
-    border-radius: 2px 0px 0px 2px;
-    background: #121212;
+    background: #212121; 
     color: #fff;
 }
 
@@ -60,7 +125,6 @@ button {
     padding: 0px 65px;
     flex-direction: column;
     align-items: flex-start;
-    border:1px solid white;
 }
 #play-list-nav{
     display: flex;
@@ -91,13 +155,13 @@ button :hover{
     align-items: flex-start;
 }
 
+
 .xsmall-video{
     display: flex;
     width: 214px;
     padding-right: 0px;
     flex-direction: column;
     align-items: flex-start;
-    border:1px solid white;
     margin-right : 5px;
 }
 .xsmall-thumbnail{
