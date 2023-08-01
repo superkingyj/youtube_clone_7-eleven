@@ -25,5 +25,5 @@ if (toggleContent.style.display === 'none') {
 
 //로고 및 aside home 버튼 클릭시 홈화면 이동
 function redirectToHome() {
-  window.location.href = 'home.html';
+  window.location.href = 'Home.html';
 }
