@@ -1,2 +1,4 @@
-*.html
-*.css
+*.js
+html_and_css/Header.css
+html_and_css/Home.css
+html_and_css/Sidebar.css
