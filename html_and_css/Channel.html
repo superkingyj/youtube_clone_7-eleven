@@ -11,53 +11,31 @@
     <link rel="stylesheet" href="../common/common.css" />
 </head>
 <body>
-    <header>
-        <div class="top">
-          <div class="top-left-icons">
-            <img src="./img/header/hamburger.svg"/>
-            <a href="home.html"><img src="./img/header/Youtube-Logo.svg" class="youtube_logo" onclick="redirectToHome()"/></a>
-          </div>
-          <div class="searchbox">
-            <input type="text" id="search" placeholder="Search" />
-            <button onclick="" class="search-btn">
-              <img src="./img/header/search.svg" alt="search_icon" class="header-icon" />
-            </button>
-            <button onclick="">
-              <img src="./img/header/Icon.svg" alt="mic_icon" class="header-icon" />
-            </button>
-          </div>
-          <div class="top-right-icons">
-            <span
-              ><button onclick="">
-                <img
-                  src="./img/header/create.svg"
-                  alt="video_icon"
-                  class="header-icon"
-                /></button
-            ></span>
-            <span
-              ><button onclick="">
-                <img src="./img/header/apps.svg" alt="more_icon" class="header-icon" /></button
-            ></span>
-            <span
-              ><button onclick="">
-                <img
-                  src="./img/header/notifications.svg"
-                  alt="alarm_icon"
-                  class="header-icon"
-                /></button
-            ></span>
-            <span
-              ><button onclick="">
-                <img
-                  src="./img/header/Profile-pic.svg"
-                  alt="profile_icon"
-                  class="header-icon"
-                /></button
-            ></span>
-          </div>
+  <header>
+      <div class="top">
+        <div class="top-left-icons top">
+          <a href="#"><img src="./img/header/hamburger.svg" /></a>
+          <a href="home.html"><img src="./img/header/Youtube-Logo.svg" class="youtube_logo"
+              onclick="redirectToHome()" /></a>
         </div>
-      </header>
+        <div class="top-middle-icons top">
+          <div class="searchbox top">
+            <input type="text" id="search" placeholder="Search" />
+            <a href="#" onclick="searchChannel()"><img src="./img/header/search.svg" class="search-icon" /></a>
+          </div>
+            <a href="#"><img src="./img/header/mic.svg" class="mic-icon" /></a>
+            <!-- 검색 결과 출력을 위한 컨테이너 -->
+            <div class="search-result" id="searchResultContainer"></div>
+          </div>
+  
+        <div class="top-right-icons top">
+          <a href="#"><img src="./img/header/create.svg" alt="profile_icon" class="header-icon" /></a>
+          <a href="#"><img src="./img/header/apps.svg" alt="profile_icon" class="header-icon" /></a>
+          <a href="#"><img src="./img/header/notifications.svg" alt="profile_icon" class="header-icon" /></a>
+          <a href="#"><img src="./img/header/profile-pic.svg" alt="profile_icon" class="user-icon" /></a>
+        </div>
+      </div>
+    </header>
     <!-- 하단 부분-->
     <section>
         <!-- 왼쪽 사이드바-->
@@ -96,28 +74,9 @@
                 ></span>
                 <div class="subscription-user-img">
                   <span id = show-more-sub>
-                  <span class="sidebar-text"
-                    ><a href="#"><img src="./img/sidebar/avatar1.svg" alt="" /></a
-                  ></span>
-                  <span class="sidebar-text"
-                    ><a href="#"><img src="./img/sidebar/avatar2.svg" alt="" /></a
-                  ></span>
-                  <span class="sidebar-text"
-                    ><a href="#"><img src="./img/sidebar/avatar3.svg" alt="" /></a
-                  ></span>
-                  <span class="sidebar-text"
-                    ><a href="#"><img src="./img/sidebar/avatar4.svg" alt="" /></a
-                  ></span>
-                  <span class="sidebar-text"
-                    ><a href="#"><img src="./img/sidebar/avatar5.svg" alt="" /></a
-                  ></span>
-                  <span class="sidebar-text"
-                    ><a href="#"><img src="./img/sidebar/avatar6.svg" alt="" /></a
-                  ></span>
-                  <span class="sidebar-text"
-                    ><a href="#"><img src="./img/sidebar/avatar7.svg" alt="" /></a
-                  ></span>
-                  </span>
+                    <a href="#"><span class="sidebar-text"><img src="./img/avatar/User-Avatar1.svg" alt="" />James Gouse</span></a>
+                    <a href="#"><span class="sidebar-text"><img src="./img/avatar/User-Avatar2.svg" alt="" />Alan Cooper</span></a>
+                    <a href="#"><span class="sidebar-text"><img src="./img/avatar/User-Avatar3.svg" alt="" />Marcus Levin</span></a>
                   <span class="sidebar-text" onclick="toggleSide3()"
                     ><a href="#"><img src="./img/sidebar/more.svg" alt="" /></a
                   ></span>
@@ -146,10 +105,10 @@
                 </div>
                 <div class = "channel-title">                    
                     <div class="profileInfo">
-                        <img src="./img/channel/User-Avatar.svg" id="profileIcon2">
-                        <div>
+                        <img src="./img/avatar/User-Avatar.svg" id="profileIcon2">
+                        <div style = "margin-left:15px;">
                           <p>Marcus Levin</p>
-                          <p>1.2M subscribers</p>                        
+                          <p id = "userview">1.2M subscribers</p>                        
                         </div>                        
                     </div>                    
                     <img src="./img/channel/Subscribes-Btn.svg" id="subscribesIcon" onclick="" >
@@ -164,7 +123,8 @@
                         <button onclick><img src="./img/channel/Channel-Menu-5.svg"></button>
                     </div>
                     <div class ="toolbar-search">
-                        <button><img src="./img/channel/search.svg" id="searchIcon" onclick=""></button>
+                        <button><img src="./img/channel/search.svg" id="searchIcon" onclick="toggleSearchBar()"></button>
+                        <span id="searchBar" class="hidden"><input type="text" id="searchbox" placeholder="Search" /></span>
                         <button><img src="./img/channel/Btn.svg" id="ArrowIcon" onclick=""></button>
                     </div>
                 </div>
@@ -173,7 +133,7 @@
                 <div class = "youtube-player">
                     <!--동영상 썸네일-->
                 </div>
-                <div class = "video/desc">
+                <div class = "video-desc">
                     <div class = "title">
                         <!--제목-->
                     </div>
@@ -186,27 +146,81 @@
                 </div>
                 <!--영상 정보-->
             </article>
-            <article class = "play-list">
-                <div class ="play-list"> <!--play all button 있는 부분-->
-                    <span class="title">Search On '21</span>
-                    <div id="playallList">
-                    <img src="./img/channel/ico-play.svg" id="vectorIcon" onclick="">
-                    <span id="playall">PLAY ALL</span>
+            <article class = "play-lists"> <!-- 전체 아래쪽 부분-->
+              <div class ="play-list">  <!-- 한줄의 영상 목록 부분-->
+                <div id ="play-list-nav"> <!--play all button 있는 부분-->
+                    <span id="search-day">Search On '21</span>
+                    <button><img src="./img/channel/play.svg" onclick=""></button>
                 </div>
                 <div class = "video-card">
-                    <div class ="xsmall-video">
+                      <div class ="xsmall-video">
+                          <div class="xsmall-thumbnail">
+                              <img src="./img/channel/thumbnail.svg" id="thumbnail5" onclick="">
+                          </div>
+                          <div class ="xsmall-desc">
+                              <div id="title">Lorem ipsum dolor sit amet, consecte...</div>
+                              <div id="userID">Marcus Levin</div>
+                              <div>
+                              <span id="userview">329K views </span>
+                              <span id="user&">. </span>
+                              <span id="usertime">1 month ago</span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class ="xsmall-video">
                         <div class="xsmall-thumbnail">
-                            <img src="videolist/Images5.jpg" id="thumbnail5" onclick="">
+                            <img src="./img/channel/thumbnail.svg" id="thumbnail5" onclick="">
                         </div>
                         <div class ="xsmall-desc">
                             <div id="title">Lorem ipsum dolor sit amet, consecte...</div>
-                            <span id="userID">Marcus Levin</span>
+                            <div id="userID">Marcus Levin</div>
+                            <div>
                             <span id="userview">329K views </span>
                             <span id="user&">. </span>
                             <span id="usertime">1 month ago</span>
+                            </div>
                         </div>
+                      </div>
                     </div>
                 </div>
+              </div>
+              <div class ="play-list">  <!-- 한줄의 영상 목록 부분-->
+                <div id ="play-list-nav"> <!--play all button 있는 부분-->
+                    <span id="search-day">Search On '21</span>
+                    <button><img src="./img/channel/play.svg" onclick=""></button>
+                </div>
+                <div class = "video-card">
+                      <div class ="xsmall-video">
+                          <div class="xsmall-thumbnail">
+                              <img src="./img/channel/thumbnail.svg" id="thumbnail5" onclick="">
+                          </div>
+                          <div class ="xsmall-desc">
+                              <div id="title">Lorem ipsum dolor sit amet, consecte...</div>
+                              <div id="userID">Marcus Levin</div>
+                              <div>
+                              <span id="userview">329K views </span>
+                              <span id="user&">. </span>
+                              <span id="usertime">1 month ago</span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class ="xsmall-video">
+                        <div class="xsmall-thumbnail">
+                            <img src="./img/channel/thumbnail.svg" id="thumbnail5" onclick="">
+                        </div>
+                        <div class ="xsmall-desc">
+                            <div id="title">Lorem ipsum dolor sit amet, consecte...</div>
+                            <div id="userID">Marcus Levin</div>
+                            <div>
+                            <span id="userview">329K views </span>
+                            <span id="user&">. </span>
+                            <span id="usertime">1 month ago</span>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
                 <!-- 그 밖의 영상들-->
             </article>
         </section>
