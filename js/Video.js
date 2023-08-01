@@ -26,8 +26,18 @@ function formatNumber(num) {
       // 그 외의 경우는 그대로 반환
       return num.toString();
     }
-  }
+}
 
+function daysPassedSinceDate(dateString) {
+    const date = new Date(dateString); // 입력받은 날짜 문자열을 Date 객체로 변환
+    const currentDate = new Date(); // 현재 날짜를 구함
+  
+    // 입력된 날짜와 현재 날짜의 타임스탬프 차이 계산
+    const timeDifferenceInMilliseconds = currentDate - date;
+    const daysPassed = timeDifferenceInMilliseconds / (1000 * 60 * 60 * 24);
+  
+    return Math.floor(daysPassed); // 소수점 이하는 버림하여 정수값으로 반환
+}    
 
 //URL들
 videoUrl = "http://oreumi.appspot.com/video/getVideoInfo?video_id="
@@ -43,20 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
         async function videoData(data) {
             try {                
                 const response = await fetch(data);  // videoUrl 값으로 응답내용 호출
-                const data_video = await response.json();       // json 형태로 변경
-
-                function daysPassedSinceDate(dateString) {
-                    const date = new Date(dateString); // 입력받은 날짜 문자열을 Date 객체로 변환
-                    const currentDate = new Date(); // 현재 날짜를 구함
-                  
-                    // 입력된 날짜와 현재 날짜의 타임스탬프 차이 계산
-                    const timeDifferenceInMilliseconds = currentDate - date;
-                    const daysPassed = timeDifferenceInMilliseconds / (1000 * 60 * 60 * 24);
-                  
-                    return Math.floor(daysPassed); // 소수점 이하는 버림하여 정수값으로 반환
-                }                
+                const data_video = await response.json();       // json 형태로 변경              
                 const daysPassed = daysPassedSinceDate(data_video.upload_date); 
-
 
                 // section 부분 자바스크립트
                 document.getElementById("main-video").innerHTML = `
@@ -66,22 +64,22 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="video-info-desc">
                         <div class="info-text">${formatNumber(data_video.views)} • ${daysPassed}일전</div>
                         <div class="info-buttons">
-                            <div class="up">up</div>
-                            <div class="down">down</div>
-                            <div class="share">share</div>
-                            <div class="save">save</div>
-                            <div class="etc">...</div>
+                            <button><img src="./img/video/info-like.svg" alt=""><span></span></button>
+                            <button><img src="./img/video/DisLiked.svg" alt=""><span></span></button>  
+                            <button><img src="./img/video/share.svg" alt=""></button>
+                            <button><img src="./img/video/more.svg" alt=""></button>    
                         </div>
                     </div>
                 </section>
                 `;
                 document.querySelector(".user_name").textContent = data_video.video_channel
                 document.querySelector(".desc").textContent = data_video.video_detail                                
+                return data_video;
             } catch (error) {
                 console.error('API 호출에 실패했습니다:', error);
             }
         }                
-        videoData(videoUrl+queryParams.id)
+        const videoPromise = videoData(videoUrl+queryParams.id)
 
         // 채널 정보가 필요한 부분
         async function channelData(data) {
@@ -103,8 +101,81 @@ document.addEventListener("DOMContentLoaded", function () {
         channelData(channelUrl+queryParams.channel)
 
 
-        //비디오 목록이 필요한 부분        
-        
+        //비디오 목록이 필요한 부분
+        async function otherListData(url, data_video) {
+            const videoTag = data_video.video_tag;
+            let targetThumbnailList = [];
+            let targetTitleList = [];
+            let targetVideoIdList = [];
+            let targetChannelList = [];
+            let targetViewAndDateList = [];
+            let targetVideoLinkList = [];
+            let response;
+            let otherListJson;
+            let cnt = 0;
+
+            async function requestOtherListApi() {
+                response = await fetch(url);
+                otherListJson = await response.json();
+            }
+
+            async function getOtherListInfo() {
+                for (const item of otherListJson) {
+                    if (item.video_tag.includes(videoTag[0]) || item.video_tag.includes(videoTag[0])) {
+                        cnt++;
+                        targetTitleList.push(item.video_title);
+                        targetVideoIdList.push(item.video_id);
+                        targetChannelList.push(item.video_channel);
+                        targetViewAndDateList.push(item.views + " Views . " + daysPassedSinceDate(item.upload_date) + "days ago");
+
+                        // 썸네일 & 비디오 링크 가져오기
+                        const response = await fetch(videoUrl + item.video_id);
+                        const videoInfoData = await response.json();
+                        targetThumbnailList.push(videoInfoData.image_link);
+                        targetVideoLinkList.push(videoInfoData.video_link);
+                    }
+                }
+            }
+
+            function rendering() {
+                const otherList = document.getElementsByClassName('other-video')[0];
+                for (let i = 0; i < cnt; i++) {
+                otherList.innerHTML += `
+                    <a href="${targetVideoLinkList[i]}">
+                        <div class="other-video-thumbnail">
+                            <span class="thumbnail-img">
+                                <img src="${targetThumbnailList[i]}" />
+                            </span>
+                        </div>
+                        <div class="other-video-text">
+                            <span class="thumnail-text">
+                                <span id="thumnail-title">${targetTitleList[i]}</span>
+                                <span id="thumnail-channel">${targetChannelList[i]}</span>
+                                <span id="thumnail-views">${targetViewAndDateList[i]}</span>
+                            </span>
+                        </div>
+                    </a>
+                `;
+                }
+            }
+
+            try {
+                await requestOtherListApi();
+                await getOtherListInfo();
+                rendering();
+            } catch (error) {
+                console.error('video List API 호출에 실패했습니다.');
+            }
+        }
+
+        Promise.all([videoPromise])
+        .then((results) => {
+            const data_video = results[0];
+            otherListData(videoListUrl, data_video);
+        })
+        .catch((error) => {
+            console.error("Error occurred:", error);
+        });
         
     } else {
         console.log("No query parameters found.");
@@ -129,7 +200,7 @@ function addSubscribe() {
             `;
             
             // 사이드바에서 삭제
-            const subscribers = document.querySelectorAll('#show-more-sub .sidebar-text');
+            const subscribers = document.querySelectorAll('#show-more-sub a');
             const idx = subscribers.length-1;
             const target = (subscribers[idx]);
 
@@ -180,7 +251,7 @@ function addReply() {
     `
     <div class="comments">
         <div class="comments-pic">
-            <img src="./img/video/User-Avatar (2).svg" alt="User Avatar" />
+            <img src="./img/avatar/User-Avatar.svg" alt="User Avatar" />
         </div>
         <div class="comments-info">
             <div class="comments-id">
@@ -188,10 +259,12 @@ function addReply() {
             </div>
             <div class="comments-text">${replyText}</div>
             <div class="comments-btn">
-                <button>
-                <img src="./img/video/like.svg" alt="" /><span>0</span>
+                <button class="likeBtn" onclick="likeAndDislikeBtnClick(event)" >
+                    <img src="./img/video/like.svg" alt="" /><span>0</span>
                 </button>
-                <button><img src="./img/video/DisLiked.svg" alt="" /></button>
+                <button class="dislikeBtn" onclick="likeAndDislikeBtnClick(event)">
+                    <img src="./img/video/DisLiked.svg" alt="" /><span>0</span>
+                </button>
                 <button><img src="./img/video/reply.svg" alt="" /></button>
             </div>
         </div>
@@ -204,3 +277,48 @@ commentInput.addEventListener('keypress', function(event) {
         addReply();
     }
 });
+
+const commentBtns = document.getElementsByClassName('comments-btn')[0]; 
+function likeAndDislikeBtnClick(event) {
+    let buttonElem = 0;
+    let imgElem = 0;
+    let spanElem = 0;
+
+    if (event.target.nodeName.toLowerCase() === "span") {
+        buttonElem = event.target.parentElement;
+        imgElem = buttonElem.querySelector('img');
+        spanElem = event.target;
+    } else if (event.target.nodeName.toLowerCase() === "img") {
+        buttonElem = event.target.parentElement;
+        imgElem = event.target;
+        spanElem = buttonElem.querySelector('span');
+    }
+    else {
+        buttonElem = event.target;
+        imgElem = event.target.querySelector('img');
+        spanElem = event.target.querySelector('span');
+    } 
+
+    let cnt = parseInt(spanElem.innerText);
+
+    // 이미 좋아요를 한 상태라면
+    if(buttonElem.getAttribute('data-is-activated') === 'true') {
+        spanElem.innerHTML = cnt-1;
+        buttonElem.removeAttribute('data-is-activated');
+        imgElem.removeAttribute('style');
+        if(buttonElem.className === 'likeBtn'){
+            imgElem.setAttribute("src", "./img/video/like.svg");
+        } else {
+            imgElem.setAttribute("src", "./img/video/Disliked.svg");
+        }
+    }
+    else {
+        spanElem.innerText = cnt+1;
+        buttonElem.setAttribute('data-is-activated', 'true')
+        if(buttonElem.className === 'likeBtn'){
+            imgElem.setAttribute("src", "./img/video/like-activated.svg");
+        } else {
+            imgElem.setAttribute("src", "./img/video/Disliked-activated.svg");
+        }
+    }
+};
