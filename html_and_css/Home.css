@@ -50,6 +50,7 @@ button{
 
 /* 메인의 네비 부분 상단 구분짓는 border 처리 */
 .video-container nav{
+    display: flex;
     border-top: 2px solid #303030;
     border-bottom: 2px solid #303030;
     padding-top: 10px;
