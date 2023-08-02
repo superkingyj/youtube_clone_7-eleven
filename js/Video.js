@@ -82,8 +82,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 </section>
                 `;
                 document.querySelector(".user_name").textContent = data_video.video_channel;
+                document.querySelector(".user_name").setAttribute("data-channel-name", data_video.video_channel);
                 document.querySelector(".desc").textContent = data_video.video_detail;
                 currChannel = data_video.video_channel;
+                currVidoeId = data_video.video_id;
                 return data_video;
             } catch (error) {
                 console.error('API 호출에 실패했습니다:', error);
@@ -103,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const response = await fetch(data,requestOptions);  // channelUrl값으로 응답내용 호출
                 const channelUrl = await response.json();       // json 형태로 변경
                 document.querySelector(".user-avatar img").src = channelUrl.channel_profile;
+                document.querySelector(".user-avatar img").setAttribute("data-channel-name", channelUrl.channel_name);
                 document.querySelector(".user_sub").textContent = formatNumber(channelUrl.subscribers) + " subscibers";
             } catch (error) {
                 console.error('API 호출에 실패했습니다:', error);
@@ -131,12 +134,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             async function getOtherListInfo() {
                 for (const item of otherListJson) {
-                    if (item.video_tag.includes(videoTag[0]) || item.video_tag.includes(videoTag[0])) {
+                    if ((item.video_tag.includes(videoTag[0]) || item.video_tag.includes(videoTag[0])) && item.video_id !== currVidoeId){
                         cnt++;
                         targetTitleList.push(item.video_title);
                         targetVideoIdList.push(item.video_id);
                         targetChannelList.push(item.video_channel);
-                        targetViewAndDateList.push(item.views + " Views . " + daysPassedSinceDate(item.upload_date) + "days ago");
+                        targetViewAndDateList.push(item.views + " Views . " + daysPassedSinceDate(item.upload_date) + "일전");
 
                         // 썸네일 & 비디오 링크 가져오기
                         const response = await fetch(videoUrl + item.video_id);
@@ -151,20 +154,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 const otherList = document.getElementsByClassName('other-video')[0];
                 for (let i = 0; i < cnt; i++) {
                 otherList.innerHTML += `
-                    <a href="${targetVideoLinkList[i]}">
-                        <div class="other-video-thumbnail">
-                            <span class="thumbnail-img">
-                                <img src="${targetThumbnailList[i]}" />
-                            </span>
-                        </div>
-                        <div class="other-video-text">
-                            <span class="thumnail-text">
-                                <span id="thumnail-title">${targetTitleList[i]}</span>
-                                <span id="thumnail-channel">${targetChannelList[i]}</span>
-                                <span id="thumnail-views">${targetViewAndDateList[i]}</span>
-                            </span>
-                        </div>
-                    </a>
+                <a href="#">
+                    <div class="other-video-thumbnail" onclick="redirectToOtherVideo(event)">
+                        <span class="thumbnail-img">
+                            <img src="${targetThumbnailList[i]}" data-video-id="${targetVideoIdList[i]}" data-channel-name="${targetChannelList[i]}"/>
+                        </span>
+                    </div>
+                    <div class="other-video-text">
+                        <span class="thumnail-text">
+                            <span id="thumnail-title" data-video-id="${targetVideoIdList[i]}" data-channel-name="${targetChannelList[i]}" onclick="redirectToOtherVideo(event)">${targetTitleList[i]}</span>
+                            <span id="thumnail-channel" data-channel-name="${targetChannelList[i]}" onclick="redirectToChannel(event)">${targetChannelList[i]}</span>
+                            <span id="thumnail-views">${targetViewAndDateList[i]}</span>
+                        </span>
+                    </div>
+                </a>
                 `;
                 }
             }
@@ -335,7 +338,15 @@ function likeAndDislikeBtnClick(event) {
     }
 };
 
-function moveToChannel(event){
+// 채널 화면으로 이동
+function redirectToChannel(event){
     console.log("이벤트 발생");
-    window.location.href = `../html_and_css/Channel.html?channel=${currChannel}`;
+    window.location.href = `../html_and_css/Channel.html?channel=${event.target.getAttribute("data-channel-name")}`;
+}
+
+// 다른 비디오 화면으로 이동
+function redirectToOtherVideo(event){
+    const targetVideoId = event.target.getAttribute('data-video-id');
+    const targetChannelName = event.target.getAttribute('data-channel-name');
+    window.location.href = `../html_and_css/Video.html?id=${targetVideoId}&channel=${targetChannelName}`;
 }
