@@ -99,7 +99,21 @@ async function channelData(data) {
     }
 }
 
+//홈 video
 
+//숫자를 천,백만 단위에 K,M으로 변경
+function formatNumber(num) {
+    if (num >= 1000000) {
+      // 백만 단위 이상일 경우 "M"으로 표현
+      return (num / 1000000).toFixed(1) + "M";
+    } else if (num >= 1000) {
+      // 천 단위 이상일 경우 "K"로 표현
+      return (num / 1000).toFixed(1) + "K";
+    } else {
+      // 그 외의 경우는 그대로 반환
+      return num.toString();
+    }
+}
 function appendItemsToMain(data) {
 
     function daysPassedSinceDate(dateString) {
@@ -145,7 +159,7 @@ function appendItemsToMain(data) {
         <div>\n
             <p class="video-${data.video_id}">${data.video_title}</p>\n
             <p class="channel-${data.video_id}">${data.video_channel}</p>\n
-            <p class="video-${data.video_id}">${data.views}views ● ${daysPassed}일전</p>        
+            <p class="video-${data.video_id}">${formatNumber(data.views)} views • ${daysPassed}일전</p>        
         </div>\n
     </div>`;// videoData
     mainContainer.appendChild(span);    
@@ -169,7 +183,7 @@ fetchData();
 
 //search 검색창
 const mainContainer = document.getElementById("mainContainer");
-const searchInput = document.querySelector("#search");
+const searchInput = document.querySelector("#searchInput");
 const searchBtn = document.querySelector(".searchbox a:first-child");
 const searchResultContainer = document.getElementById("searchResultContainer");
 let currentSearchTerm = "";
@@ -202,11 +216,12 @@ searchBtn.addEventListener("click", function (event) {
 });
 
 // Enter 키 입력 이벤트 핸들러
-searchInput.addEventListener("keyup", function (event) {
-  if (event.key === "Enter") {
-    searchChannel();
-  }
-});
+
+async function homeEnterkey(event) {
+    if (event.keyCode === 13) {
+        await searchChannel(event.target);
+    }
+}
 
 // fetchData 함수에서 addFormSubmitListeners를 호출하는 코드를 추가
 async function fetchData() {

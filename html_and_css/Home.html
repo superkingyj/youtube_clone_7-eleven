@@ -5,10 +5,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="Reset.css" />
-  <link rel="stylesheet" href="Home.css" />
   <link rel="stylesheet" href="Header.css" />
   <link rel="stylesheet" href="Sidebar.css" />
   <link rel="stylesheet" href="../common/common.css" />
+  <link rel="stylesheet" href="Home.css" />
   <title>Home</title>
 </head>
 
@@ -23,7 +23,7 @@
       </div>
       <div class="top-middle-icons top">
         <div class="searchbox top">
-          <input type="text" id="search" placeholder="Search" />
+          <input type="search" id="searchInput" placeholder="Search" onkeydown="homeEnterkey(event)" />
           <a href="#" onclick="searchChannel()"><img src="./img/header/search.svg" class="search-icon" /></a>
         </div>
           <a href="#"><img src="./img/header/mic.svg" class="mic-icon" /></a>

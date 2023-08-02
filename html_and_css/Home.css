@@ -1,8 +1,9 @@
-
+body{
+    background-color: black;
+}
 section{
     background-color: black;
     background-size: cover;
-    height: 10000vh;   /* 최대 확대, 최소 축소 시 배경 검정색 유지 */
 }
 nav{
     background: var(--background-color, #212121);
