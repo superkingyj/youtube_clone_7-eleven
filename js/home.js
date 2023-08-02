@@ -36,7 +36,9 @@ async function videoData(data) {
             return data_video;
         });
         const videoDataArray = await Promise.all(fetchPromises);
-        videoDataArray.forEach((videoData) => {
+        videoDataArray.forEach(async (videoData) => {
+            const profileImage = await channelData(videoData.video_channel); //chanmmel profile이미지 가져오기
+            videoData.profile_image = profileImage.channel_profile; 
             appendItemsToMain(videoData);
         });
         //로딩 이미지 제거
@@ -59,7 +61,7 @@ async function fetchChannelData(searchValue) {
             throw new Error('API 호출에 실패했습니다');
         }
         const channelList_data = await response.json(); 
-
+        
         videoData(channelList_data);
         console.log(channelList_data);
 
@@ -72,28 +74,23 @@ async function fetchChannelData(searchValue) {
     }
 }
 
-// channelinfo를 가져오는 API
+// channelinfo에서 channel profile 가져오기 위한  API
 const channelurl = "http://oreumi.appspot.com/channel/getChannelInfo?video_channel=";
 
 async function channelData(data) {
     try {
-        for (const channelItem of data) {
-            const response = await fetch(channelurl + channelItem.channel_desc, {
+            const response = await fetch(channelurl + data, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(channelItem) 
+                body: {'video_channel':data} 
             });
             if (!response.ok) {
                 throw new Error('API 호출에 실패했습니다');
               }
             const channelInfoData = await response.json();
-
-            channelInfo(channelInfoData);
-            console.log(channelInfoData);
-        }
-        return data;
+            return channelInfoData;
     } catch (error) {
         console.error('API 호출에 실패했습니다:', error);
     }
@@ -114,6 +111,7 @@ function formatNumber(num) {
       return num.toString();
     }
 }
+//maincontainer
 function appendItemsToMain(data) {
 
     function daysPassedSinceDate(dateString) {
@@ -155,7 +153,7 @@ function appendItemsToMain(data) {
     </form>\n
     <img src=${data.image_link} class="video-${data.video_id}">\n
     <div class='profile-and-desc'>\n
-        <img class="channel-${data.video_id}" src="" >\n
+        <img class="channel-${data.video_id}" src="${data.profile_image}" >\n
         <div>\n
             <p class="video-${data.video_id}">${data.video_title}</p>\n
             <p class="channel-${data.video_id}">${data.video_channel}</p>\n
