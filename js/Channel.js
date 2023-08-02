@@ -225,7 +225,65 @@ function filterVideos() {
       }
     }
   }
+  function handleSearch(event) {
+    if (event.key === 'Enter') {
+      filterVideos();
+    }
+  }
 
   document.getElementById('searchIcon').addEventListener('click', function() {
     filterVideos();
   });
+  document.getElementById('search-in-channel').addEventListener('keyup', handleSearch);
+
+  //현재 날짜 정보를 가져와서 표시
+  const searchDayElement = document.getElementById("search-day");
+  const currentDate = new Date();
+
+  const day = String(currentDate.getDate()).padStart(2, '0');
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+  const year = String(currentDate.getFullYear()).substr(-2);
+
+  searchDayElement.textContent = `Search On ${year}.${month}.${day}`;
+
+
+  //인기 영상 가져오기 위한 함수(조회수 기준으로 정렬)
+  postData(getChannelVideo + querys.channel).then((data) => {
+    const promises = data.map((item) => {
+        return getData(getVideoInfo + item.video_id).then((data) => {
+            daysPassed = daysPassedSinceDate(data.upload_date);
+            const div_video = document.createElement("div");
+            div_video.className = "xsmall-video";
+            div_video.innerHTML = `
+            <form id="video-Form-${data.video_id}" action="video.html" method="GET">
+                <input type="hidden" name="id" value="${data.video_id}">
+                <input type="hidden" name="channel" value="${data.video_channel}">
+            </form>
+            <form id="channel-Form-${data.video_id}" action="channel.html" method="GET">
+                <input type="hidden" name="id" value="${data.video_id}">
+                <input type="hidden" name="channel" value="${data.video_channel}">
+            </form>
+            <div class="xsmall-thumbnail"><img id="${data.video_id}" src="${data.image_link}"></div>
+            <div class="xsmall-desc">
+                <div id="title">${data.video_title}</div>                    
+                <div id="userview">${formatNumber(data.views)} ● ${daysPassed}일전</div>
+            </div>
+            `;
+            return { data, div_video };
+        }); 
+    });
+    return Promise.all(promises).then((videoDataList) => {
+        // 조회수를 기준으로 정렬
+        videoDataList.sort((a, b) => b.data.views - a.data.views);
+        
+        for (let i = 0; i < 5 && i < videoDataList.length; i++) {
+            document.querySelector(".pop-video-card").appendChild(videoDataList[i].div_video);
+        }
+        document.querySelectorAll(".xsmall-video").forEach((element) => {           
+            element.addEventListener("click", function (event) {
+                console.log(event.target)                      
+                document.getElementById("video-Form-" + event.target.id).submit();
+            });
+        });
+    });
+});

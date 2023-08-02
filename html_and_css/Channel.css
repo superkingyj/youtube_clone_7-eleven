@@ -25,6 +25,9 @@ article{
     margin-right:65px;
 }
 
+.channel-main{
+    overflow: hidden;
+}
 /* 원래 버튼태그의 CCS 요소 삭제 */
 button {
     /* appearance: none; */
@@ -149,11 +152,12 @@ button :hover{
     background-color: grey;
 }
 
-.video-card{
+.video-card, .pop-video-card{
     display: flex;
     padding: 24px 0px;
     align-items: flex-start;
 }
+
 
 
 .xsmall-video{
