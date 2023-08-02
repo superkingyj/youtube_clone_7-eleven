@@ -13,51 +13,29 @@
   <body>
     <!--상단부분-->
     <header>
-      <div class="top">
-        <div class="top-left-icons">
-          <img src="./img/header/hamburger.svg"/>
-          <a href="home.html"><img src="./img/header/Youtube-Logo.svg" class="youtube_logo" onclick="redirectToHome()"/></a>
+        <div class="top">
+          <div class="top-left-icons top">
+            <a href="#"><img src="./img/header/hamburger.svg" /></a>
+            <a href="home.html"><img src="./img/header/Youtube-Logo.svg" class="youtube_logo"
+                onclick="redirectToHome()" /></a>
+          </div>
+          <div class="top-middle-icons top">
+            <div class="searchbox top">
+              <input type="text" id="search" placeholder="Search" />
+              <a href="#" onclick="searchChannel()"><img src="./img/header/search.svg" class="search-icon" /></a>
+            </div>
+              <a href="#"><img src="./img/header/mic.svg" class="mic-icon" /></a>
+              <!-- 검색 결과 출력을 위한 컨테이너 -->
+              <div class="search-result" id="searchResultContainer"></div>
+            </div>
+    
+          <div class="top-right-icons top">
+            <a href="#"><img src="./img/header/create.svg" alt="profile_icon" class="header-icon" /></a>
+            <a href="#"><img src="./img/header/apps.svg" alt="profile_icon" class="header-icon" /></a>
+            <a href="#"><img src="./img/header/notifications.svg" alt="profile_icon" class="header-icon" /></a>
+            <a href="#"><img src="./img/header/profile-pic.svg" alt="profile_icon" class="user-icon" /></a>
+          </div>
         </div>
-        <div class="searchbox">
-          <input type="text" id="search" placeholder="Search" />
-          <button onclick="" class="search-btn">
-            <img src="./img/header/search.svg" alt="search_icon" class="header-icon" />
-          </button>
-          <button onclick="">
-            <img src="./img/header/Icon.svg" alt="mic_icon" class="header-icon" />
-          </button>
-        </div>
-        <div class="top-right-icons">
-          <span
-            ><button onclick="">
-              <img
-                src="./img/header/create.svg"
-                alt="video_icon"
-                class="header-icon"
-              /></button
-          ></span>
-          <span
-            ><button onclick="">
-              <img src="./img/header/apps.svg" alt="more_icon" class="header-icon" /></button
-          ></span>
-          <span
-            ><button onclick="">
-              <img
-                src="./img/header/notifications.svg"
-                alt="alarm_icon"
-                class="header-icon"
-              /></button
-          ></span>
-          <span
-            ><button onclick="">
-              <img
-                src="./img/header/Profile-pic.svg"
-                alt="profile_icon"
-                class="header-icon"
-              /></button
-          ></span>
-        </div>
-      </div>
     </header>
     <section class="body">
       <!-- 왼쪽 사이드바-->
@@ -70,53 +48,21 @@
           </div>
           <div class="side2">
             <span id = "show-more">
-            <span class="sidebar-text"
-              ><a href="#"><img src="./img/sidebar/library.svg" /></a
-            ></span>
-            <span class="sidebar-text"
-              ><a href="#"><img src="./img/sidebar/history.svg" /></a
-            ></span>
-            <span class="sidebar-text"
-              ><a href="#"><img src="./img/sidebar/yourVideos.svg" /></a
-            ></span>
-            <span class="sidebar-text"
-              ><a href="#"><img src="./img/sidebar/watchLater.svg" /></a
-            ></span>
-            <span class="sidebar-text"
-              ><a href="#"><img src="./img/sidebar/liked.svg" /></a
-            ></span>
+            <span class="sidebar-text"><a href="#"><img src="./img/sidebar/library.svg" /></a></span>
+            <span class="sidebar-text"><a href="#"><img src="./img/sidebar/history.svg" /></a></span>
+            <span class="sidebar-text"><a href="#"><img src="./img/sidebar/yourVideos.svg" /></a></span>
+            <span class="sidebar-text"><a href="#"><img src="./img/sidebar/watchLater.svg" /></a></span>
+            <span class="sidebar-text"><a href="#"><img src="./img/sidebar/liked.svg" /></a></span>
             </span>
-            <span class="sidebar-text" onclick="toggleSide2()"><a href="#"><img src="./img/sidebar/more.svg"  /></a
-            ></span>
+            <span class="sidebar-text" onclick="toggleSide2()"><a href="#"><img src="./img/sidebar/more.svg"/></a></span>
           </div>
           <div class="side3">
-            <span class="sidebar-text"
-              ><a href="#"
-                ><img src="./img/sidebar/subscription-title.svg" alt="" /></a
-            ></span>
+            <span class="sidebar-text"><a href="#"><img src="./img/sidebar/subscription-title.svg" alt="" /></a></span>
             <div class="subscription-user-img">
               <span id = show-more-sub>
-              <span class="sidebar-text"
-                ><a href="#"><img src="./img/sidebar/avatar1.svg" alt="" /></a
-              ></span>
-              <span class="sidebar-text"
-                ><a href="#"><img src="./img/sidebar/avatar2.svg" alt="" /></a
-              ></span>
-              <span class="sidebar-text"
-                ><a href="#"><img src="./img/sidebar/avatar3.svg" alt="" /></a
-              ></span>
-              <span class="sidebar-text"
-                ><a href="#"><img src="./img/sidebar/avatar4.svg" alt="" /></a
-              ></span>
-              <span class="sidebar-text"
-                ><a href="#"><img src="./img/sidebar/avatar5.svg" alt="" /></a
-              ></span>
-              <span class="sidebar-text"
-                ><a href="#"><img src="./img/sidebar/avatar6.svg" alt="" /></a
-              ></span>
-              <span class="sidebar-text"
-                ><a href="#"><img src="./img/sidebar/avatar7.svg" alt="" /></a
-              ></span>
+                <a href="#"><span class="sidebar-text"><img src="./img/avatar/User-Avatar1.svg" alt="" />James Gouse</span></a>
+                <a href="#"><span class="sidebar-text"><img src="./img/avatar/User-Avatar2.svg" alt="" />Alan Cooper</span></a>
+                <a href="#"><span class="sidebar-text"><img src="./img/avatar/User-Avatar3.svg" alt="" />Marcus Levin</span></a>
               </span>
               <span class="sidebar-text" onclick="toggleSide3()"
                 ><a href="#"><img src="./img/sidebar/more.svg" alt="" /></a
@@ -151,7 +97,7 @@
               <div class="user">
                 <div class="user-avatar">
                   <img
-                    src="./img/video/User-Avatar2.svg"
+                    src="./img/avatar/User-Avatar2.svg"
                     alt="User Avatar"
                   />
                 </div>
@@ -161,13 +107,9 @@
                 </div>
               </div>
               <div class="subscribers">
-                <img
-                  src="./img/video/Subscribes-Btn.svg"
-                  alt="Subscribe"
-                />
+                <img src="./img/video/Subscribes-Btn.svg" alt="Subscribe"/>
               </div>
             </div>
-
             <div class="video-desc">
               <div class="desc">이러저러해서 저러저저 합니다.</div>
                 <!-- Video.css 클래스 변경 해야함 -->
@@ -185,33 +127,30 @@
             <div class="comment">
               <div class="comment-pic">
                 <img
-                  src="./img/video/User-Avatar (2).svg"
+                  src="./img/avatar/User-Avatar.svg"
                   alt="User Avatar"
                 />
               </div>
-              <input
-                class="comment-area"
-                type="text"
-                placeholder="Add a comment..."
-              />
+              <input class="comment-area" type="text" placeholder="Add a comment..."/>
             </div>
           </div>
 
           <div class="comments">
             <div class="comments-pic">
-              <img
-                src="./img/video/User-Avatar.svg"
-                alt="User Avatar"
-              />
+              <img src="./img/avatar/User-Avatar1.svg" alt="User Avatar"/>
             </div>
             <div class="comments-info">
               <div class="comments-id">James Gouse <span> 8 hours ago</span></div>
               <div class="comments-text">떡볶이 좋아요</div>
               <div class="comments-btn">
-                <button><img src="./img/video/like.svg" alt=""><span>3</span></button>
-                <button><img src="./img/video/DisLiked.svg" alt=""></button>
-                <button><img src="./img/video/reply.svg" alt=""></button>
-              </div>
+                <button class="likeBtn" onclick="likeAndDislikeBtnClick(event)">
+                    <img src="./img/video/like.svg" alt="" /><span>0</span>
+                </button>
+                <button class="dislikeBtn" onclick="likeAndDislikeBtnClick(event)">
+                    <img src="./img/video/DisLiked.svg" alt="" /><span>0</span>
+                </button>
+                <button><img src="./img/video/reply.svg" alt="" /></button>
+            </div>
             </div>
           </div>
         </section>
@@ -231,13 +170,14 @@
         <div class="other-videos">
           <div class="other-video">
             <div class="other-video-thumbnail">
-              <img
-                src="./img/body/secondary/Images.png"
-                alt="Video Thumbnail"
-              />
+              <span class = "thumbnail-img"><!-- 썸네일 들어갈 부분 --></span>
             </div>
             <div class="other-video-text">
-              <img src="./img/body/secondary/Video-Text.png" alt="Video Text" />
+              <span class = "thumnail-text">
+                <span id = "thumnail-title"><!-- 동영상 제목--></span>
+                <span id = "thumnail-channel"><!-- 채널 이름--></span>   
+                <span id = "thumnail-views"><!-- 조회수 및 업로드 날짜--></span>             
+              </span>
             </div>
           </div>
         </div>
