@@ -16,7 +16,7 @@ async function fetchData() {
 //mainContainer에 영상들을 불러오는 함수
 async function videoData(data) {
     try {
-        //로딩 이미지
+        // 로딩 이미지 생성 및 스타일 설정
         const loadingImage = document.createElement("img");
         loadingImage.src = "./img/sidebar/spin.gif"; 
         loadingImage.style.background = `url("./img/sidebar/spin.gif") no-repeat center`;
@@ -25,23 +25,31 @@ async function videoData(data) {
         loadingImage.style.height = "100px"; 
         loadingImage.style.margin = "20px auto"; 
 
+        // 메인 컨테이너 요소 가져오기
         const mainContainer = document.getElementById("mainContainer"); 
 
+        // 로딩 이미지를 메인 컨테이너에 추가
         mainContainer.appendChild(loadingImage);
 
+        // data 배열의 각 비디오 정보를 가져오기 위해 비동기 프로미스 배열 생성
         const fetchPromises = data.map(async (video_src) => {
             let video_desc = video_src.video_id.toString(); 
             const response = await fetch(videoUrl + video_desc);
             const data_video = await response.json();
             return data_video;
         });
+
+        // 모든 비디오 데이터를 한꺼번에 가져오기 위해 프로미스들을 병렬로 처리
         const videoDataArray = await Promise.all(fetchPromises);
+
+        // 각 비디오 데이터에 대해 프로필 이미지를 가져오고 메인 컨테이너에 데이터를 추가하는 작업 수행
         videoDataArray.forEach(async (videoData) => {
-            const profileImage = await channelData(videoData.video_channel); //chanmmel profile이미지 가져오기
+            const profileImage = await channelData(videoData.video_channel); // 채널 프로필 이미지 가져오기
             videoData.profile_image = profileImage.channel_profile; 
             appendItemsToMain(videoData);
         });
-        //로딩 이미지 제거
+
+        // 데이터 로딩이 완료되었으므로 로딩 이미지를 숨깁니다.
         loadingImage.style.display = "none";
     } catch (error) {
         console.error('API 호출에 실패했습니다:', error);
@@ -54,6 +62,7 @@ const channelList = 'http://oreumi.appspot.com/channel/getChannelVideo?video_cha
 async function fetchChannelData(searchValue) {
     try {
         const data = {"video_channel": searchValue}
+        // API에 POST 요청을 보내서 채널 비디오 리스트 데이터를 가져옴
         const response = await fetch(channelList,{method: 'POST', headers: {
             'Content-Type': 'application/json'},body: JSON.stringify(data)});
             
@@ -74,9 +83,9 @@ async function fetchChannelData(searchValue) {
     }
 }
 
-// channelinfo에서 channel profile 가져오기 위한  API
+// channelinfo에서 channel profile 가져오기 위한 API URL
 const channelurl = "http://oreumi.appspot.com/channel/getChannelInfo?video_channel=";
-
+// channelinfo에서 비디오 채널 데이터를 가져오는 비동기 함수
 async function channelData(data) {
     try {
             const response = await fetch(channelurl + data, {
