@@ -1,3 +1,6 @@
+// 현재 페이지의 채널 명을 저장하기 위한 공유 변수
+let currChannel = "";
+
 // URL에서 쿼리값을 추출하는 함수
 function getQueryParams() {
     var params = {};
@@ -64,16 +67,23 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="video-info-desc">
                         <div class="info-text">${formatNumber(data_video.views)} • ${daysPassed}일전</div>
                         <div class="info-buttons">
-                            <button><img src="./img/video/info-like.svg" alt=""><span></span></button>
-                            <button><img src="./img/video/DisLiked.svg" alt=""><span></span></button>  
-                            <button><img src="./img/video/share.svg" alt=""></button>
+                            <button class="likeBtn" onclick="likeAndDislikeBtnClick(event)">
+                                <img src="./img/video/like.svg" alt=""><span>0</span>
+                            </button>
+                            <button class="dilikeBtn" onclick="likeAndDislikeBtnClick(event)">
+                                <img src="./img/video/DisLiked.svg" alt=""><span>0</span>
+                            </button>  
+                            <button>
+                                <img src="./img/video/share.svg" alt=""><span>SHARE</span>
+                            </button>
                             <button><img src="./img/video/more.svg" alt=""></button>    
                         </div>
                     </div>
                 </section>
                 `;
-                document.querySelector(".user_name").textContent = data_video.video_channel
-                document.querySelector(".desc").textContent = data_video.video_detail                                
+                document.querySelector(".user_name").textContent = data_video.video_channel;
+                document.querySelector(".desc").textContent = data_video.video_detail;
+                currChannel = data_video.video_channel;
                 return data_video;
             } catch (error) {
                 console.error('API 호출에 실패했습니다:', error);
@@ -217,7 +227,7 @@ function addSubscribe() {
         subscibers.insertAdjacentHTML(
         'beforeend',
         `
-        <a href="#">
+        <a href="./channel.html?channel=${userName}">
             <span class="sidebar-text">
                 <img src="${userImageSrc}" alt="" />${userName}
             </span>
@@ -249,24 +259,26 @@ function addReply() {
     comments.insertAdjacentHTML(
     'beforeend',
     `
-    <div class="comments">
+    <div class="comment">
         <div class="comments-pic">
-            <img src="./img/avatar/User-Avatar.svg" alt="User Avatar" />
+        <img src="./img/avatar/User-Avatar.svg" alt="User Avatar" />
         </div>
         <div class="comments-info">
-            <div class="comments-id">
-                7-eleven-team <span> 8 hours ago</span>
-            </div>
-            <div class="comments-text">${replyText}</div>
-            <div class="comments-btn">
-                <button class="likeBtn" onclick="likeAndDislikeBtnClick(event)" >
-                    <img src="./img/video/like.svg" alt="" /><span>0</span>
-                </button>
-                <button class="dislikeBtn" onclick="likeAndDislikeBtnClick(event)">
-                    <img src="./img/video/DisLiked.svg" alt="" /><span>0</span>
-                </button>
-                <button><img src="./img/video/reply.svg" alt="" /></button>
-            </div>
+        <div class="comments-id">
+            7-eleven-team <span> just before </span>
+        </div>
+        <div class="comments-text">
+            ${replyText}
+        </div>
+        <div class="comments-btn">
+            <button class="likeBtn" onclick="likeAndDislikeBtnClick(event)" >
+            <img src="./img/video/like.svg" alt="" /><span>0</span>
+            </button>
+            <button class="dislikeBtn" onclick="likeAndDislikeBtnClick(event)">
+            <img src="./img/video/DisLiked.svg" alt="" /><span>0</span>
+            </button>
+            <button><img src="./img/video/reply.svg" alt="" /></button>
+        </div>
         </div>
     </div>
     `);
@@ -322,3 +334,8 @@ function likeAndDislikeBtnClick(event) {
         }
     }
 };
+
+function moveToChannel(event){
+    console.log("이벤트 발생");
+    window.location.href = `../html_and_css/Channel.html?channel=${currChannel}`;
+}
