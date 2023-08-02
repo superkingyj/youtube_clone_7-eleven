@@ -7,6 +7,7 @@ header{
     background: var(--background-color, #212121);
     padding-left: 20px;
     padding-right: 20px;
+    z-index: 1;
 }
 
 .top {
