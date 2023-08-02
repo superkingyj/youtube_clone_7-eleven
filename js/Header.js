@@ -1,14 +1,18 @@
 const toggleButton = document.querySelector('.top-left-icons img');
 const toggleContent = document.querySelector('.sidebar-body');
-// const toggleContent = document.querySelector('#search');
+const sections = document.querySelector('section');
 
 toggleButton.addEventListener('click', () => {
-// 태그를 숨기거나 나타내는 토글 기능을 구현
-if (toggleContent.style.display === 'none') {
-    toggleContent.style.display = 'block'; // 나타냄
-} else {
+  // 태그를 숨기거나 나타내는 토글 기능을 구현
+  if (toggleContent.style.display === 'none') {
+    toggleContent.style.display = 'block'; // 나타냄    
+    sections.style.paddingLeft = "240px";
+    
+  }
+  else {
     toggleContent.style.display = 'none'; // 숨김
-}
+    sections.style.paddingLeft = "0px";    
+  }
 });
 
 
