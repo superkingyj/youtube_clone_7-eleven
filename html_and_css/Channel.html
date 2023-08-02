@@ -106,10 +106,12 @@
                 <div class = "channel-title">                    
                     <div class="profileInfo">
                         <img src="./img/avatar/User-Avatar.svg" id="profileIcon2">
-                        <div style = "margin-left:15px;">                      
+                        <div class = "channel-name" style = "margin-left:15px;">                      
                         </div>                        
-                    </div>                    
-                    <img src="./img/channel/Subscribes-Btn.svg" id="subscribesIcon" onclick="" >
+                    </div>
+                    <div class="subscribers">
+                      <img src="./img/channel/Subscribes-Btn.svg" id="subscribesIcon" alt="Subscribe"/>
+                    </div>
                 </div>
                 <div class ="channel-toolbar">
                     <div class = "toolbars">
@@ -122,9 +124,10 @@
                     </div>
                     <div class ="toolbar-search">
                         <button><img src="./img/channel/search.svg" id="searchIcon" onclick="toggleSearchBar()"></button>
-                        <span id="searchBar" class="hidden"><input type="text" placeholder="Search" /></span>
+                        <span id="searchBar" class="hidden"><input type="text" id="search-in-channel" placeholder="Search"/></span>
                     </div>
                     <button><img src="./img/channel/Btn.svg" id="ArrowIcon" onclick=""></button>
+                    <div class="channel-search-result" id="searchResultContainer-channel"></div>
                 </div>
             </article>
             <article class = "small-video">
