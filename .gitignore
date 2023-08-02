@@ -1,4 +1,10 @@
-*.js
+
 html_and_css/Header.css
 html_and_css/Home.css
+html_and_css/Home.html
+html_and_css/Video.html
 html_and_css/Sidebar.css
+js/Header.js
+js/Video.js
+js/home.js
+js/Sidebar.js
