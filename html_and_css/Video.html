@@ -25,7 +25,12 @@
         </div>
         <div class="top-middle-icons top">
           <div class="searchbox top">
-            <input type="text" id="search" placeholder="Search" />
+            <input
+              type="search"
+              id="searchInput"
+              placeholder="Search"
+              onkeydown="homeEnterkey(event)"
+            />
             <a href="#" onclick="searchChannel()"
               ><img src="./img/header/search.svg" class="search-icon"
             /></a>
