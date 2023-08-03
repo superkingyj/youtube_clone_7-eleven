@@ -10,6 +10,7 @@ nav{
     height: 56px;
     flex-shrink: 0;
     overflow: auto;
+    width: 100%;
 }
 main {
     margin: 1%;
