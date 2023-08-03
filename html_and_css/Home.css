@@ -4,12 +4,16 @@ body{
 section{
     background-color: black;
     background-size: cover;
+    width: auto;
 }
 nav{
     background: var(--background-color, #212121);
     height: 56px;
     flex-shrink: 0;
     overflow: auto;
+    width: auto;
+    padding-left: 20px;
+    display: flex;
 }
 main {
     margin: 1%;
@@ -32,7 +36,7 @@ button{
 
 }
 
-#filtering-buttons {
+.filtering-buttons {
     overflow: auto;
     white-space: nowrap;
 }
@@ -54,6 +58,7 @@ button{
     border-top: 2px solid #303030;
     border-bottom: 2px solid #303030;
     padding-top: 10px;
+    width: auto;
 }
 
 /* section 안의 태그들을 위아래가 아닌 좌우로 정렬하게 함 */
