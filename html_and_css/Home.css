@@ -11,9 +11,13 @@ nav{
     height: 56px;
     flex-shrink: 0;
     overflow: auto;
+    /* css2 */
     width: auto;
     padding-left: 20px;
     display: flex;
+     /* main
+    width: 100%;
+    */
 }
 main {
     margin: 1%;

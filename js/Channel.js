@@ -87,7 +87,7 @@ if(querys.id){
         <video width="640" height"320" src="${data.video_link}" controls></video>
         `;
         document.querySelector(".video-desc .title").textContent = data.video_title;
-        document.querySelector(".video-desc .time").textContent = formatNumber(data.views) + " ● " + daysPassedSinceDate(data.upload_date) + "일전";
+        document.querySelector(".video-desc .time").textContent = formatNumber(data.views) + " . " + daysPassedSinceDate(data.upload_date) + "일전";
         document.querySelector(".video-desc .description").textContent = data.video_detail;
     });
 }
@@ -98,7 +98,7 @@ else{
         <video width="640" height"320" src="${data.video_link}" controls></video>
         `;
         document.querySelector(".video-desc .title").textContent = data.video_title;
-        document.querySelector(".video-desc .time").textContent = formatNumber(data.views) + " ● " + daysPassedSinceDate(data.upload_date) + "일전";
+        document.querySelector(".video-desc .time").textContent = formatNumber(data.views) + " . " + daysPassedSinceDate(data.upload_date) + "일전";
         document.querySelector(".video-desc .description").textContent = data.video_detail;
     });
 }
@@ -111,6 +111,33 @@ postData(getChannelInfo + querys.channel).then((data) => {
         <p>${data.channel_name}</p>
         <p id="userview">${formatNumber(data.subscribers)} subscribers</p>
     `;
+
+    function sub_list_load(){
+        const list_userName = data.channel_name;
+        const list_userImageSrc = data.channel_profile;    
+    
+        // 사이드바에 추가할 HTML 변수 지정
+        var subHtml = `<a href="./channel.html?channel=${list_userName}">
+        <span class="sidebar-text">
+            <img src="${list_userImageSrc}" alt="" />${list_userName}
+        </span>
+        </a>`  ;
+
+        // 문자열 정규화 (공백 제거)
+        const normalize = (str) => str.replace(/\s+/g, '');                    
+        // local스토리지 내용 받아오기
+        var sub_list = JSON.parse(localStorage.getItem('sub')); 
+        const normalizedArray = sub_list.map(normalize);
+                          
+        if (normalizedArray.includes(normalize(subHtml))){
+            console.log(subHtml);   
+            // SUBSCRIBES 회색으로 변경하고 사용자 정의 속성 (구독했음을 표시하는 속성) 추가
+            subscribeButton.setAttribute('data-is-subscribed', 'true');
+            subscribeButton.querySelector('img').style.filter = "grayscale(100%)"; 
+        }                    
+    }
+    
+    sub_list_load();
 });
 
 // class="video-card" 부분 영상과 desc
@@ -133,7 +160,7 @@ postData(getChannelVideo + querys.channel).then((data) => {
             <div class="xsmall-thumbnail"><img id="${data.video_id}" src="${data.image_link}"></div>
             <div class="xsmall-desc">
                 <div id="title">${data.video_title}</div>                    
-                <div id="userview">${formatNumber(data.views)} ● ${daysPassed}일전</div>
+                <div id="userview">${formatNumber(data.views)} . ${daysPassed}일전</div>
             </div>
             `;
             if (play_cnt < 5) {
@@ -173,16 +200,56 @@ function addSubscribe() {
             <img
                 src="${buttonImgSrc}"
                 alt="Subscribe"
+                id = "subscribesIcon"
             />
             `;
             
-            // 사이드바에서 삭제
-            const subscribers = document.querySelectorAll('#show-more-sub a');
-            const idx = subscribers.length-1;
-            const target = (subscribers[idx]);
+            // 현재 채널 정보
+            const userImageSrc = document.querySelector('.profileInfo img').getAttribute('src');
+            const userName = document.querySelector('.profileInfo div p').textContent;       
 
-            console.log(target);
-            target.remove();
+            
+            //로컬스토리지에서 삭제하려는 변수 지정
+            var subHtml = `<a href="./channel.html?channel=${userName}">
+            <span class="sidebar-text">
+                <img src="${userImageSrc}" alt="" />${userName}
+            </span>
+            </a>`
+
+            
+
+            //로컬스토리지에 변수 삭제
+
+            var sub_list = JSON.parse(localStorage.getItem('sub'));            
+            // 문자열 정규화 (공백 제거)
+            const normalize = (str) => str.replace(/\s+/g, '');
+            const filteredSub_list = sub_list.filter((list) => normalize(list) !== normalize(subHtml));            
+            localStorage.setItem('sub',JSON.stringify(filteredSub_list));
+
+
+
+
+            // 사이드바에서 삭제
+            // 구독된 목록의 a 의 span 태그들
+            const subscribers = document.querySelectorAll('#show-more-sub a span');
+            
+            // 그중에서 textContent(채널이름)들을 배열로 변환
+            var subscibers_list = [];
+            for(const usr_name of subscribers){
+                subscibers_list.push(usr_name.textContent);
+            }
+            
+            // 몇번째 목록인지 확인후 인덱스값 저장
+            const subscibers_nom = subscibers_list.map(normalize);            
+            if (subscibers_nom.includes(normalize(userName))){
+                const idx = subscibers_nom.indexOf(normalize(userName));
+                const target = (document.querySelectorAll('#show-more-sub a')[idx]);            
+                target.remove();
+            }
+            else{
+                console.log("이상한데");
+            }
+
     } else {
         // 현재 채널 정보
         const userImageSrc = document.querySelector('.profileInfo img').getAttribute('src');
@@ -191,15 +258,37 @@ function addSubscribe() {
         // 사이드바에 추가
         const subscibers = document.getElementById('show-more-sub');
 
-        subscibers.insertAdjacentHTML(
-        'beforeend',
-        `
-        <a href="#">
-            <span class="sidebar-text">
-                <img src="${userImageSrc}" alt="" /> ${userName}
-            </span>
-        </a>`
-        );
+
+
+
+        
+        // 사이드바에 추가할 HTML 변수 지정
+        var subHtml = `<a href="./channel.html?channel=${userName}">
+        <span class="sidebar-text">
+            <img src="${userImageSrc}" alt="" />${userName}
+        </span>
+        </a>`        
+        
+
+                
+        // 로컬 스토리지에 변수 저장        
+        var sub_list = JSON.parse(localStorage.getItem('sub'));         
+        if(sub_list === null || sub_list === undefined || Array.isArray(sub_list) && sub_list.length === 0){
+            localStorage.setItem('sub',JSON.stringify([subHtml]));
+        }
+        else{            
+            sub_list.push(subHtml);
+            localStorage.setItem('sub',JSON.stringify(sub_list));
+        }        
+
+
+
+        //사이드바에 HTML 변수 추가
+        subscibers.insertAdjacentHTML('beforeend',subHtml);
+
+
+
+
         
         // SUBSCRIBES 회색으로 변경하고 사용자 정의 속성 (구독했음을 표시하는 속성) 추가
         subscribeButton.setAttribute('data-is-subscribed', 'true');
@@ -266,7 +355,7 @@ function filterVideos() {
             <div class="xsmall-thumbnail"><img id="${data.video_id}" src="${data.image_link}"></div>
             <div class="xsmall-desc">
                 <div id="title">${data.video_title}</div>                    
-                <div id="userview">${formatNumber(data.views)} ● ${daysPassed}일전</div>
+                <div id="userview">${formatNumber(data.views)} . ${daysPassed}일전</div>
             </div>
             `;
             return { data, div_video };
