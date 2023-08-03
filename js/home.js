@@ -9,6 +9,7 @@ async function fetchData() {
         const response = await fetch(VideoList); //fetch함수로 API URL에 응답내용을 response 변수에 담는다
         const VideoList_data = await response.json(); //response 에 담긴 내용을 json형태로 VideoList_data에 담는다
         videoData(VideoList_data);
+        console.log(VideoList_data);
     } catch (error) {
         console.error('API 호출에 실패했습니다:', error);
     }
@@ -166,7 +167,7 @@ function appendItemsToMain(data) {
         <div>\n
             <p class="video-${data.video_id}">${data.video_title}</p>\n
             <p class="channel-${data.video_id}">${data.video_channel}</p>\n
-            <p class="video-${data.video_id}">${formatNumber(data.views)} views • ${daysPassed}일전</p>        
+            <p class="video-${data.video_id}">${formatNumber(data.views)} views · ${daysPassed}일전</p>        
         </div>\n
     </div>`;// videoData
     mainContainer.appendChild(span);    
@@ -186,59 +187,64 @@ function appendItemsToMain(data) {
 }
 
 fetchData();
+//검색창
+const searchBtn = document.querySelector("div.searchbox > a");
+const searchTextbox = document.querySelector("#searchInput"); // 검색 입력란 요소
 
+async function search(searchText) {
+    try {
+        const response = await fetch(VideoList); // 영상 목록 데이터 가져오기
+        const VideoList_data = await response.json(); // JSON 형태로 변환
 
-//search 검색창
-const mainContainer = document.getElementById("mainContainer");
-const searchInput = document.querySelector("#searchInput");
-const searchBtn = document.querySelector(".searchbox a:first-child");
-const searchResultContainer = document.getElementById("searchResultContainer");
-let currentSearchTerm = "";
+        // 검색 텍스트를 소문자로 변환하여 대소문자 구분 없이 검색
+        const searchTextLower = searchText.toLowerCase();
 
-// 검색 기능 구현 함수
-async function searchChannel() {
-  const searchValue = searchInput.value.trim();
-  if (searchValue === "") {
-    alert("검색어를 입력해주세요.");
-    return;
-  }
+        const mainContainer = document.getElementById("mainContainer"); 
+        mainContainer.innerHTML = "";
+        // 검색 조건에 맞는 영상들만 필터링
+        const findVideoList = VideoList_data.filter((data) => {
+            const title = data.video_title.toLowerCase();
+            const channelName = data.video_channel.toLowerCase();
+            return title.includes(searchTextLower) || channelName.includes(searchTextLower);
+        });
+        
+        if (findVideoList.length === 0) {
+            // 검색 결과가 없는 경우 알림을 띄움
+            alert("검색 결과가 없습니다.");
+            return;
+          }
 
- // 이전 검색 결과를 지우고 새로운 검색 결과를 표시하기 위해 기존 내용 삭제
-  if (currentSearchTerm !== searchValue) {
-    mainContainer.innerHTML = "";
-    searchResultContainer.innerHTML = "";
-  }
-  // 검색 결과 가져오기
-  const channelListData = await fetchChannelData(searchValue);
+        const fetchPromises = findVideoList.map(async (videoData) => {
+            const video_desc = videoData.video_id.toString(); 
+            const response = await fetch(videoUrl + video_desc);
+            const data_video = await response.json();
+            return data_video;
+        });
 
-  // 검색 결과를 화면에 표시
-  displaySearchResults(searchValue, channelListData);
-  currentSearchTerm = searchValue;
+        // 모든 비디오 데이터를 한꺼번에 가져오기 위해 프로미스들을 병렬로 처리
+        const videoDataArray = await Promise.all(fetchPromises);
+
+        // 검색 결과를 메인 컨테이너에 추가
+        videoDataArray.forEach(async (videoData) => {
+            const profileImage = await channelData(videoData.video_channel); // 채널 프로필 이미지 가져오기
+            videoData.profile_image = profileImage.channel_profile; 
+            appendItemsToMain(videoData);
+        });
+
+    } catch (error) {
+        console.error('API 호출에 실패했습니다:', error);
+    }
 }
-
 // 검색 버튼 클릭 이벤트 핸들러
 searchBtn.addEventListener("click", function (event) {
-  event.preventDefault();
-  searchChannel();
+    event.preventDefault();
+    const searchText = searchTextbox.value; // 검색어를 얻어옴
+    search(searchText); // 검색 함수 호출
 });
 
 // Enter 키 입력 이벤트 핸들러
-
 async function homeEnterkey(event) {
     if (event.keyCode === 13) {
-        await searchChannel(event.target);
-    }
-}
-
-// fetchData 함수에서 addFormSubmitListeners를 호출하는 코드를 추가
-async function fetchData() {
-    try {
-        const response = await fetch(VideoList);
-        const VideoList_data = await response.json();
-
-        videoData(VideoList_data);
-        // 기존 videoData 호출 부분 삭제
-    } catch (error) {
-        console.error('API 호출에 실패했습니다:', error);
+        await search(searchTextbox.value);
     }
 }
