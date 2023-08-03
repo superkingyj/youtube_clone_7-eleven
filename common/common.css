@@ -3,7 +3,7 @@ body{
     font-family: Arial, sans-serif;
     color:white;
     line-height: 1.6;
-    background-color: #212121;
+    background-color: black;
     margin: 0px;
 }
 /* 헤더와 사이드는 고정 된 상태라 나머지 Main 부분을 띄워서 겹치지 않게 조정 해당부분 수정 필요 */
