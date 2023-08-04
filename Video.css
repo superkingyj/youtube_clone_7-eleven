@@ -71,6 +71,11 @@ nav{
     }
 }  */
 
+.body > section {
+    padding-left: 2%;
+    padding-top: 2%;
+}
+
 
 /* 메인동영상 */
 .main{
@@ -229,7 +234,7 @@ nav{
 /*  html short오타 수정 */
 .sort-by{
     display: flex;
-    padding-top: 25px;
+    /* padding-top: 25px; */
     padding-bottom: 25px;
 }
 .comment_cnt{
@@ -364,6 +369,10 @@ nav{
     margin-left : 20px;
 }
 
+.other-list {
+    padding-top: 2%;
+}
+
 .other-list a{
     display: flex;
     text-decoration: none;
@@ -395,7 +404,7 @@ nav{
 .item1,
 .item2{
     display: inline-block;
-    padding: 8px 8px 8px 0px;
+    padding: 0px 8px 0px 0px;
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
