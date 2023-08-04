@@ -130,7 +130,6 @@ function appendItemsToMain(data) {
     function daysPassedSinceDate(dateString) {
         const date = new Date(dateString); // 입력받은 날짜 문자열을 Date 객체로 변환
         const currentDate = new Date(); // 현재 날짜를 구함
-
         // 입력된 날짜와 현재 날짜의 타임스탬프 차이 계산
         const timeDifferenceInMilliseconds = currentDate - date;
         const daysPassed = timeDifferenceInMilliseconds / (1000 * 60 * 60 * 24);
@@ -189,9 +188,7 @@ function appendItemsToMain(data) {
     });
 }
 
-fetchData();
 //검색창
-const searchBtn = document.querySelector("div.searchbox > a");
 const searchTextbox = document.querySelector("#searchInput"); // 검색 입력란 요소
 
 async function search(searchText) {
@@ -239,11 +236,10 @@ async function search(searchText) {
     }
 }
 // 검색 버튼 클릭 이벤트 핸들러
-searchBtn.addEventListener("click", function (event) {
-    event.preventDefault();
+function searchResult() {
     const searchText = searchTextbox.value; // 검색어를 얻어옴
     search(searchText); // 검색 함수 호출
-});
+};
 
 // Enter 키 입력 이벤트 핸들러
 async function homeEnterkey(event) {
@@ -251,3 +247,18 @@ async function homeEnterkey(event) {
         await search(searchTextbox.value);
     }
 }
+
+
+//검색어 불러오기
+
+const searchText = localStorage.getItem("searchText"); // localStorage에서 검색어 가져오기
+if (searchText) {
+    searchTextbox.value=searchText;
+    search(searchText); // 검색 함수 호출
+    localStorage.removeItem("searchText"); // 검색어가 있으면 검색 결과를 보여주기 위해 searchResult() 함수 호출
+    }
+    else{
+        fetchData();
+    }
+
+
