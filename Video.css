@@ -402,7 +402,9 @@ nav{
 /* <!-- 0727 사항 : item1,item2 -> item 으로 통일--> */
 /* <!-- 0727 : img-> button 수정--> */
 .item1,
-.item2{
+.item2,
+.item3,
+.item4{
     display: inline-block;
     padding: 0px 8px 0px 0px;
     flex-direction: column;
@@ -410,9 +412,19 @@ nav{
     gap: 10px;
 
 }
- 
+.item1 button:hover,
+.item2 button:hover,
+.item3 button:hover,
+.item4 button:hover{
+    background-color: grey;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    
+}
 .item1 button,
-.item2 button {
+.item2 button,
+.item3 button,
+.item4 button
+{
     color : white;
     border-radius: 24px;
     border: 0.3px solid var(--gray-color, #AAA);

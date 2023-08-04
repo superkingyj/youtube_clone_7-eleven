@@ -90,6 +90,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.querySelector(".user_name").textContent = data_video.video_channel;
                 document.querySelector(".user_name").setAttribute("data-channel-name", data_video.video_channel);
                 document.querySelector(".desc").textContent = data_video.video_detail;
+                //우측 사이드 태그 추가 부분
+                document.querySelector(".item2 button").textContent = data_video.video_channel;
+                const tagTmp = data_video.video_tag;
+                document.querySelector(".item3 button").textContent = tagTmp[0];
+                document.querySelector(".item4 button").textContent = tagTmp[1];
+
                 currChannel = data_video.video_channel;
                 currVideoId = data_video.video_id;
                 return data_video;
@@ -98,7 +104,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
         const videoPromise = videoData(videoUrl + queryParams.id)
-
         // 채널 정보가 필요한 부분
         async function channelData(data) {
             try {
@@ -166,24 +171,65 @@ document.addEventListener("DOMContentLoaded", function () {
                 otherListJson = await response.json();
             }
 
+            async function getAllListInfo() {
+                let imageCounter = 0;
+                const promises = [];
+
+                for (const item of otherListJson) {
+                    if (imageCounter >= 10) {
+                        break;
+                    }
+            
+                    cnt++;
+                    targetTitleList.push(item.video_title);
+                    targetVideoIdList.push(item.video_id);
+                    targetChannelList.push(item.video_channel);
+                    targetViewAndDateList.push(
+                        item.views + " Views . " + daysPassedSinceDate(item.upload_date) + "days ago"
+                    );
+            
+                    const videoPromise = fetch(videoUrl + item.video_id).then(response => response.json());
+                    promises.push(videoPromise);
+            
+                    imageCounter++;
+                }
+                const videoInfoDataList = await Promise.all(promises);
+                videoInfoDataList.forEach((videoInfoData, index) => {
+                    targetThumbnailList.push(videoInfoData.image_link);
+                    targetVideoLinkList.push(videoInfoData.video_link);
+                });
+            }
             async function getOtherListInfo() {
+                const promises = [];
+            
                 for (const item of otherListJson) {
                     if ((item.video_tag.includes(videoTag[0]) || item.video_tag.includes(videoTag[0])) && item.video_id !== currVideoId) {
                         cnt++;
                         targetTitleList.push(item.video_title);
                         targetVideoIdList.push(item.video_id);
                         targetChannelList.push(item.video_channel);
-                        targetViewAndDateList.push(item.views + " Views . " + daysPassedSinceDate(item.upload_date) + "일전");
-
-                        // 썸네일 & 비디오 링크 가져오기
-                        const response = await fetch(videoUrl + item.video_id);
-                        const videoInfoData = await response.json();
-                        targetThumbnailList.push(videoInfoData.image_link);
-                        targetVideoLinkList.push(videoInfoData.video_link);
+                        targetViewAndDateList.push(item.views + " Views . " + daysPassedSinceDate(item.upload_date) + "days ago");
+            
+                        const videoPromise = fetch(videoUrl + item.video_id).then(response => response.json());
+                        promises.push(videoPromise);
                     }
                 }
+            
+                const videoInfoDataList = await Promise.all(promises);
+                videoInfoDataList.forEach((videoInfoData, index) => {
+                    targetThumbnailList.push(videoInfoData.image_link);
+                    targetVideoLinkList.push(videoInfoData.video_link);
+                });
             }
+            function removeAllElements() {
+            const otherList = document.getElementsByClassName('other-video')[0];
 
+            const elementsToRemove = Array.from(otherList.children);
+
+            elementsToRemove.forEach((element) => {
+                otherList.removeChild(element);
+            });
+            }
             function rendering() {
                 const otherList = document.getElementsByClassName('other-video')[0];
                 for (let i = 0; i < cnt; i++) {
@@ -205,14 +251,28 @@ document.addEventListener("DOMContentLoaded", function () {
                 `;
                 }
             }
+            await requestOtherListApi();
+            await getAllListInfo();
+            rendering();
 
+            document.getElementById('tag-all').addEventListener('click', async () => {
+            try {
+                await requestOtherListApi();
+                await getAllListInfo();
+                rendering();
+            } catch (error) {
+                console.error('API 호출에 실패했습니다:', error);
+            }
+            });
+            document.getElementById('tag-name').addEventListener('click', async () => {
             try {
                 await requestOtherListApi();
                 await getOtherListInfo();
                 rendering();
             } catch (error) {
-                console.error('video List API 호출에 실패했습니다.');
+                console.error('API 호출에 실패했습니다:', error);
             }
+            });
         }
 
         // 로컬 스토리지에 저장되어 있던 댓글 불러오기
