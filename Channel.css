@@ -24,10 +24,12 @@ body > :not(header) {
 }
 .channel-title{
     display: flex;
-    padding: 16px 65px 4px 65px;
+    padding: 3% 5% 3% 5%;
     align-items: flex-start;
+    justify-content: space-between;
     gap: 699px;
 }
+
 .channel-title, .channel-toolbar{
     background-color: #212121;
 }
@@ -67,12 +69,17 @@ button {
     /* appearance: none; */
     /* 추가적인 스타일 규칙을 적용할 수 있습니다 */
     background-color: #212121;
+    width: 20%;
+    height: 2%;
     border: 0px;
 }
 
 .channel-toolbar{
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 .channel-toolbar button :hover{
     background-color: gray;
 }
@@ -141,9 +148,12 @@ button {
     margin-left:10px;
 }
 
+/* TODO */
 .toolbars{
-    margin-left:65px;
+    display: flex;
+    /* margin-left: */
 }
+
 #searchBar input{
     width: 202px;
     height: 47px;
