@@ -25,6 +25,9 @@ body > :not(header) {
     align-items: flex-start;
     gap: 699px;
 }
+.channel-title, .channel-toolbar{
+    background-color: #212121;
+}
 .profileInfo{
     display: flex;
     align-items: center;
@@ -163,12 +166,17 @@ button {
     padding-top: 8px;
     align-items: flex-start;
 }
+
+#play-list-nav button{
+    background-color: black;
+}
 #search-day{
     padding: 9px 8px 8px 0px;
     align-items: flex-start;
     gap: 10px;
     margin-right : 16px;
 }
+
 #title{
     color: var(--white-color, #FFF);
     font-family: Roboto;
