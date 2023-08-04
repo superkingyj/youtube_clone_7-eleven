@@ -1,7 +1,7 @@
-const toggleContent = document.querySelector('.home-body .sidebar-body');
+const toggleContent = document.querySelector('.sidebar-body');
 const sections = document.querySelector('section');
 
-function hamburger() {
+async function hamburger() {
   // 사이드바의 토글 기능을 구현합니다.
   if (toggleContent.style.display === 'none') {
     toggleContent.style.display = 'block'; // 사이드바를 나타냅니다.
@@ -30,9 +30,9 @@ function redirectToHome() {
 
 
 //검색창 버튼
-const searchTextbox = document.querySelector("#searchInput"); 
+const searchTextvalue = document.querySelector("#searchInput"); 
 function searchHome() {
-  const searchText = searchTextbox.value.trim(); // 검색어를 얻어옴 (양쪽 공백 제거)
+  const searchText = searchTextvalue.value.trim(); // 검색어를 얻어옴 (양쪽 공백 제거)
   if (searchText !== "") {
     localStorage.setItem("searchText", searchText); // 검색어를 localStorage에 저장
     window.location.href = "./index.html"; // home.html로 이동
@@ -42,7 +42,7 @@ function searchHome() {
 //검색창 엔터키 눌렀을때
 async function homeEnterkey(event) {
   if (event.keyCode === 13) {
-    const searchText = searchTextbox.value.trim(); // 검색어를 얻어옴 (양쪽 공백 제거)
+    const searchText = searchTextvalue.value.trim(); // 검색어를 얻어옴 (양쪽 공백 제거)
     if (searchText !== "") {
       localStorage.setItem("searchText", searchText);
 
@@ -51,4 +51,5 @@ async function homeEnterkey(event) {
     }
   }
 }
+
 
