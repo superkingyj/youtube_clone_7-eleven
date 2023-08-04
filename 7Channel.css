@@ -105,6 +105,8 @@ article{
     display: flex;
     overflow: hidden;
     flex-direction: column;
+    /* justify-content: center; 주축(수평 방향)을 기준으로 가운데 정렬합니다. */
+    /* align-items: center; 교차축(수직 방향)을 기준으로 가운데 정렬합니다. */
 }
 /* 원래 버튼태그의 CCS 요소 삭제 */
 button {
@@ -117,6 +119,7 @@ button {
 .channel-toolbar{
     display: flex;
     background-color: #845889;
+    justify-content: center;
 }
 .channel-toolbar button :hover{
     background-color: gray;
@@ -207,7 +210,8 @@ button {
     height: 100%;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    /* align-items: flex-start;     */
+    
 }
 .play-list{
     width: 100%;
@@ -216,7 +220,8 @@ button {
     margin: 0px 65px;
     /* flex-direction: column; */
     /* align-items: flex-start; */
-    /* justify-content: space-between; */
+    /* justify-content: space-between; */        
+    align-items: flex-start;
 }
 #play-list-nav{
     display: flex;
@@ -246,7 +251,9 @@ button :hover{
     display: flex;
     margin: 24px 5px;
     align-items: flex-start;
-    flex-direction: column;    
+    flex-direction: column;           
+    width: 214px;
+    padding-right: 0px;    
 }
 
 
@@ -312,9 +319,6 @@ button :hover{
     width: 100%;
     display: flex;
 }
-.video-card div img{
-    /* width: 100%; */
-}
 
 
 
@@ -371,25 +375,17 @@ header{
 }
 
 .searchbox {   
-    background: white;
-    padding: 0;    
-}
-#search{
-    background: #F2CB64;
-    margin: 1px;
-    border: 0px;
-    
-    height: 38px;
+    margin-bottom: 7px;    
+    padding: 0;  
 }
 
 .searchbox .search-icon{
-    display: flex;    
+    display: flex;
+    width: 60px;
     height: 40px;
-    
     justify-content: center;
-    align-items: center;
-    background: #58271B;
-    
+    align-items: center;    
+    border: none;
 }
 .mic-icon{
     margin-left: 4px;
@@ -414,6 +410,18 @@ header{
     width: 50px;
     height: 40px;
 }
+#searchInput{
+    width: 426px;
+    height: 40px;    
+    color: white;
+    border: 0;
+    outline: 0;
+    padding: 0;
+    background: #F2CB64;
+}
+
+
+
 
 
 
