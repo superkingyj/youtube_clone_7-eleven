@@ -49,9 +49,9 @@ function daysPassedSinceDate(dateString) {
 }
 
 //URL들
-videoUrl = "http://oreumi.appspot.com/video/getVideoInfo?video_id="
-channelUrl = "http://oreumi.appspot.com/channel/getChannelInfo?video_channel="
-videoListUrl = "http://oreumi.appspot.com/video/getVideoList"
+videoUrl = "https://oreumi.appspot.com/video/getVideoInfo?video_id="
+channelUrl = "https://oreumi.appspot.com/channel/getChannelInfo?video_channel="
+videoListUrl = "https://oreumi.appspot.com/video/getVideoList"
 
 // 기본 HTML틀 생성이 완료 된후 영상 불러오기
 document.addEventListener("DOMContentLoaded", function () {
@@ -536,12 +536,12 @@ function likeAndDislikeBtnClick(event) {
 // 채널 화면으로 이동
 function redirectToChannel(event) {
     console.log("이벤트 발생");
-    window.location.href = `../html_and_css/Channel.html?channel=${event.target.getAttribute("data-channel-name")}`;
+    window.location.href = `./Channel.html?channel=${event.target.getAttribute("data-channel-name")}`;
 }
 
 // 다른 비디오 화면으로 이동
 function redirectToOtherVideo(event) {
     const targetVideoId = event.target.getAttribute('data-video-id');
     const targetChannelName = event.target.getAttribute('data-channel-name');
-    window.location.href = `../html_and_css/Video.html?id=${targetVideoId}&channel=${targetChannelName}`;
+    window.location.href = `./Video.html?id=${targetVideoId}&channel=${targetChannelName}`;
 }
