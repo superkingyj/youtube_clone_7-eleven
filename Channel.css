@@ -11,9 +11,12 @@ body > :not(header) {
 }
 .channel-cover{
     display: flex;
-    height: 192px;
+    height: 25%;
     justify-content: flex-start;
     flex-shrink: 0;
+}
+.channel-cover > img{
+    width: 1000vw;
 }
 #background{
     display: flex;
@@ -24,6 +27,9 @@ body > :not(header) {
     padding: 16px 65px 4px 65px;
     align-items: flex-start;
     gap: 699px;
+}
+.channel-title, .channel-toolbar{
+    background-color: #212121;
 }
 .profileInfo{
     display: flex;
@@ -163,12 +169,17 @@ button {
     padding-top: 8px;
     align-items: flex-start;
 }
+
+#play-list-nav button{
+    background-color: black;
+}
 #search-day{
     padding: 9px 8px 8px 0px;
     align-items: flex-start;
     gap: 10px;
     margin-right : 16px;
 }
+
 #title{
     color: var(--white-color, #FFF);
     font-family: Roboto;
