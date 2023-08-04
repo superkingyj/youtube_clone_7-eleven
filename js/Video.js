@@ -49,9 +49,9 @@ function daysPassedSinceDate(dateString) {
 }
 
 //URL들
-videoUrl = "http://oreumi.appspot.com/video/getVideoInfo?video_id="
-channelUrl = "http://oreumi.appspot.com/channel/getChannelInfo?video_channel="
-videoListUrl = "http://oreumi.appspot.com/video/getVideoList"
+videoUrl = "https://oreumi.appspot.com/video/getVideoInfo?video_id="
+channelUrl = "https://oreumi.appspot.com/channel/getChannelInfo?video_channel="
+videoListUrl = "https://oreumi.appspot.com/video/getVideoList"
 
 // 기본 HTML틀 생성이 완료 된후 영상 불러오기
 document.addEventListener("DOMContentLoaded", function () {

@@ -1,8 +1,8 @@
 //URL들
-getVideoInfo = "http://oreumi.appspot.com/video/getVideoInfo?video_id="
-getVideoList = "http://oreumi.appspot.com/video/getVideoList"
-getChannelInfo = "http://oreumi.appspot.com/channel/getChannelInfo?video_channel="
-getChannelVideo = "http://oreumi.appspot.com/channel/getChannelVideo?video_channel="
+getVideoInfo = "https://oreumi.appspot.com/video/getVideoInfo?video_id="
+getVideoList = "https://oreumi.appspot.com/video/getVideoList"
+getChannelInfo = "https://oreumi.appspot.com/channel/getChannelInfo?video_channel="
+getChannelVideo = "https://oreumi.appspot.com/channel/getChannelVideo?video_channel="
 
 //몇일 전인지 구현하는 함수
 function daysPassedSinceDate(dateString) {
@@ -80,9 +80,9 @@ async function postData(channelUrl) {
 querys = getQueryParams()
 
 // class="small-video" 내용들(영상,DESC)
-if(querys.id){
+if (querys.id) {
     getData(getVideoInfo + querys.id).then((data) => {
-    
+
         document.querySelector(".youtube-player").innerHTML = `
         <video width="640" height"320" src="${data.video_link}" controls></video>
         `;
@@ -91,9 +91,9 @@ if(querys.id){
         document.querySelector(".video-desc .description").textContent = data.video_detail;
     });
 }
-else{
+else {
     getData(getVideoInfo + "0").then((data) => {
-    
+
         document.querySelector(".youtube-player").innerHTML = `
         <video width="640" height"320" src="${data.video_link}" controls></video>
         `;
@@ -112,10 +112,10 @@ postData(getChannelInfo + querys.channel).then((data) => {
         <p id="userview">${formatNumber(data.subscribers)} subscribers</p>
     `;
 
-    function sub_list_load(){
+    function sub_list_load() {
         const list_userName = data.channel_name;
-        const list_userImageSrc = data.channel_profile;    
-    
+        const list_userImageSrc = data.channel_profile;
+
         // 사이드바에 추가할 HTML 변수 지정
         var subHtml = `<a href="./channel.html?channel=${list_userName}">
         <span class="sidebar-text">
@@ -124,19 +124,19 @@ postData(getChannelInfo + querys.channel).then((data) => {
         </a>`  ;
 
         // 문자열 정규화 (공백 제거)
-        const normalize = (str) => str.replace(/\s+/g, '');                    
+        const normalize = (str) => str.replace(/\s+/g, '');
         // local스토리지 내용 받아오기
-        var sub_list = JSON.parse(localStorage.getItem('sub')); 
+        var sub_list = JSON.parse(localStorage.getItem('sub'));
         const normalizedArray = sub_list.map(normalize);
-                          
-        if (normalizedArray.includes(normalize(subHtml))){
-            console.log(subHtml);   
+
+        if (normalizedArray.includes(normalize(subHtml))) {
+            console.log(subHtml);
             // SUBSCRIBES 회색으로 변경하고 사용자 정의 속성 (구독했음을 표시하는 속성) 추가
             subscribeButton.setAttribute('data-is-subscribed', 'true');
-            subscribeButton.querySelector('img').style.filter = "grayscale(100%)"; 
-        }                    
+            subscribeButton.querySelector('img').style.filter = "grayscale(100%)";
+        }
     }
-    
+
     sub_list_load();
 });
 
@@ -167,14 +167,14 @@ postData(getChannelVideo + querys.channel).then((data) => {
                 document.querySelector(".video-card").appendChild(div_video);
             }
             play_cnt = play_cnt + 1;
-        }); 
-    });        
-    
+        });
+    });
+
     return Promise.all(promises);
-}).then((data) => {    
-    document.querySelectorAll(".xsmall-video").forEach((element) => {           
+}).then((data) => {
+    document.querySelectorAll(".xsmall-video").forEach((element) => {
         element.addEventListener("click", function (event) {
-            console.log(event.target)                      
+            console.log(event.target)
             document.getElementById("video-Form-" + event.target.id).submit();
         });
     });
@@ -192,104 +192,104 @@ const subscribeButton = document.getElementsByClassName('subscribers')[0];
 function addSubscribe() {
     // 이미 구독한 상태라면 구독 취소
     if (subscribeButton.getAttribute('data-is-subscribed') === 'true') {
-            // 버튼 다시 빨갛게 변경
-            subscribeButton.removeAttribute('data-is-subscribed');
-            const buttonImgSrc = subscribeButton.querySelector('img').getAttribute('src');
-            subscribeButton.querySelector('img').remove();
-            subscribeButton.innerHTML = `
+        // 버튼 다시 빨갛게 변경
+        subscribeButton.removeAttribute('data-is-subscribed');
+        const buttonImgSrc = subscribeButton.querySelector('img').getAttribute('src');
+        subscribeButton.querySelector('img').remove();
+        subscribeButton.innerHTML = `
             <img
                 src="${buttonImgSrc}"
                 alt="Subscribe"
                 id = "subscribesIcon"
             />
             `;
-            
-            // 현재 채널 정보
-            const userImageSrc = document.querySelector('.profileInfo img').getAttribute('src');
-            const userName = document.querySelector('.profileInfo div p').textContent;       
 
-            
-            //로컬스토리지에서 삭제하려는 변수 지정
-            var subHtml = `<a href="./channel.html?channel=${userName}">
+        // 현재 채널 정보
+        const userImageSrc = document.querySelector('.profileInfo img').getAttribute('src');
+        const userName = document.querySelector('.profileInfo div p').textContent;
+
+
+        //로컬스토리지에서 삭제하려는 변수 지정
+        var subHtml = `<a href="./channel.html?channel=${userName}">
             <span class="sidebar-text">
                 <img src="${userImageSrc}" alt="" />${userName}
             </span>
             </a>`
 
-            
-
-            //로컬스토리지에 변수 삭제
-
-            var sub_list = JSON.parse(localStorage.getItem('sub'));            
-            // 문자열 정규화 (공백 제거)
-            const normalize = (str) => str.replace(/\s+/g, '');
-            const filteredSub_list = sub_list.filter((list) => normalize(list) !== normalize(subHtml));            
-            localStorage.setItem('sub',JSON.stringify(filteredSub_list));
 
 
+        //로컬스토리지에 변수 삭제
+
+        var sub_list = JSON.parse(localStorage.getItem('sub'));
+        // 문자열 정규화 (공백 제거)
+        const normalize = (str) => str.replace(/\s+/g, '');
+        const filteredSub_list = sub_list.filter((list) => normalize(list) !== normalize(subHtml));
+        localStorage.setItem('sub', JSON.stringify(filteredSub_list));
 
 
-            // 사이드바에서 삭제
-            // 구독된 목록의 a 의 span 태그들
-            const subscribers = document.querySelectorAll('#show-more-sub a span');
-            
-            // 그중에서 textContent(채널이름)들을 배열로 변환
-            var subscibers_list = [];
-            for(const usr_name of subscribers){
-                subscibers_list.push(usr_name.textContent);
-            }
-            
-            // 몇번째 목록인지 확인후 인덱스값 저장
-            const subscibers_nom = subscibers_list.map(normalize);            
-            if (subscibers_nom.includes(normalize(userName))){
-                const idx = subscibers_nom.indexOf(normalize(userName));
-                const target = (document.querySelectorAll('#show-more-sub a')[idx]);            
-                target.remove();
-            }
-            else{
-                console.log("이상한데");
-            }
+
+
+        // 사이드바에서 삭제
+        // 구독된 목록의 a 의 span 태그들
+        const subscribers = document.querySelectorAll('#show-more-sub a span');
+
+        // 그중에서 textContent(채널이름)들을 배열로 변환
+        var subscibers_list = [];
+        for (const usr_name of subscribers) {
+            subscibers_list.push(usr_name.textContent);
+        }
+
+        // 몇번째 목록인지 확인후 인덱스값 저장
+        const subscibers_nom = subscibers_list.map(normalize);
+        if (subscibers_nom.includes(normalize(userName))) {
+            const idx = subscibers_nom.indexOf(normalize(userName));
+            const target = (document.querySelectorAll('#show-more-sub a')[idx]);
+            target.remove();
+        }
+        else {
+            console.log("이상한데");
+        }
 
     } else {
         // 현재 채널 정보
         const userImageSrc = document.querySelector('.profileInfo img').getAttribute('src');
-        const userName = document.querySelector('.profileInfo div p').textContent; 
-    
+        const userName = document.querySelector('.profileInfo div p').textContent;
+
         // 사이드바에 추가
         const subscibers = document.getElementById('show-more-sub');
 
 
 
 
-        
+
         // 사이드바에 추가할 HTML 변수 지정
         var subHtml = `<a href="./channel.html?channel=${userName}">
         <span class="sidebar-text">
             <img src="${userImageSrc}" alt="" />${userName}
         </span>
-        </a>`        
-        
+        </a>`
 
-                
+
+
         // 로컬 스토리지에 변수 저장        
-        var sub_list = JSON.parse(localStorage.getItem('sub'));         
-        if(sub_list === null || sub_list === undefined || Array.isArray(sub_list) && sub_list.length === 0){
-            localStorage.setItem('sub',JSON.stringify([subHtml]));
+        var sub_list = JSON.parse(localStorage.getItem('sub'));
+        if (sub_list === null || sub_list === undefined || Array.isArray(sub_list) && sub_list.length === 0) {
+            localStorage.setItem('sub', JSON.stringify([subHtml]));
         }
-        else{            
+        else {
             sub_list.push(subHtml);
-            localStorage.setItem('sub',JSON.stringify(sub_list));
-        }        
+            localStorage.setItem('sub', JSON.stringify(sub_list));
+        }
 
 
 
         //사이드바에 HTML 변수 추가
-        subscibers.insertAdjacentHTML('beforeend',subHtml);
+        subscibers.insertAdjacentHTML('beforeend', subHtml);
 
 
 
 
-        
+
         // SUBSCRIBES 회색으로 변경하고 사용자 정의 속성 (구독했음을 표시하는 속성) 추가
         subscribeButton.setAttribute('data-is-subscribed', 'true');
         subscribeButton.querySelector('img').style.filter = "grayscale(100%)";
@@ -304,40 +304,40 @@ subscribeButton.addEventListener("click", function (event) {
 function filterVideos() {
     var searchKeyword = document.getElementById('search-in-channel').value.toLowerCase();
     var videoCards = document.querySelectorAll('.video-card .xsmall-video');
-  
+
     for (var i = 0; i < videoCards.length; i++) {
-      var title = videoCards[i].querySelector('.xsmall-desc #title').textContent.toLowerCase();
-      if (title.includes(searchKeyword)) {
-        videoCards[i].style.display = 'block';
-      } else {
-        videoCards[i].style.display = 'none';
-      }
+        var title = videoCards[i].querySelector('.xsmall-desc #title').textContent.toLowerCase();
+        if (title.includes(searchKeyword)) {
+            videoCards[i].style.display = 'block';
+        } else {
+            videoCards[i].style.display = 'none';
+        }
     }
-  }
-  function handleSearch(event) {
+}
+function handleSearch(event) {
     if (event.key === 'Enter') {
-      filterVideos();
+        filterVideos();
     }
-  }
+}
 
-  document.getElementById('searchIcon').addEventListener('click', function() {
+document.getElementById('searchIcon').addEventListener('click', function () {
     filterVideos();
-  });
-  document.getElementById('search-in-channel').addEventListener('keyup', handleSearch);
+});
+document.getElementById('search-in-channel').addEventListener('keyup', handleSearch);
 
-  //현재 날짜 정보를 가져와서 표시
-  const searchDayElement = document.getElementById("search-day");
-  const currentDate = new Date();
+//현재 날짜 정보를 가져와서 표시
+const searchDayElement = document.getElementById("search-day");
+const currentDate = new Date();
 
-  const day = String(currentDate.getDate()).padStart(2, '0');
-  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-  const year = String(currentDate.getFullYear()).substr(-2);
+const day = String(currentDate.getDate()).padStart(2, '0');
+const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+const year = String(currentDate.getFullYear()).substr(-2);
 
-  searchDayElement.textContent = `Search On ${year}.${month}.${day}`;
+searchDayElement.textContent = `Search On ${year}.${month}.${day}`;
 
 
-  //인기 영상 가져오기 위한 함수(조회수 기준으로 정렬)
-  postData(getChannelVideo + querys.channel).then((data) => {
+//인기 영상 가져오기 위한 함수(조회수 기준으로 정렬)
+postData(getChannelVideo + querys.channel).then((data) => {
     const promises = data.map((item) => {
         return getData(getVideoInfo + item.video_id).then((data) => {
             daysPassed = daysPassedSinceDate(data.upload_date);
@@ -359,18 +359,18 @@ function filterVideos() {
             </div>
             `;
             return { data, div_video };
-        }); 
+        });
     });
     return Promise.all(promises).then((videoDataList) => {
         // 조회수를 기준으로 정렬
         videoDataList.sort((a, b) => b.data.views - a.data.views);
-        
+
         for (let i = 0; i < 5 && i < videoDataList.length; i++) {
             document.querySelector(".pop-video-card").appendChild(videoDataList[i].div_video);
         }
-        document.querySelectorAll(".xsmall-video").forEach((element) => {           
+        document.querySelectorAll(".xsmall-video").forEach((element) => {
             element.addEventListener("click", function (event) {
-                console.log(event.target)                      
+                console.log(event.target)
                 document.getElementById("video-Form-" + event.target.id).submit();
             });
         });

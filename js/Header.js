@@ -7,11 +7,11 @@ toggleButton.addEventListener('click', () => {
   if (toggleContent.style.display === 'none') {
     toggleContent.style.display = 'block'; // 나타냄    
     sections.style.paddingLeft = "240px";
-    
+
   }
   else {
     toggleContent.style.display = 'none'; // 숨김
-    sections.style.paddingLeft = "0px";    
+    sections.style.paddingLeft = "0px";
   }
 });
 
@@ -29,5 +29,5 @@ toggleButton.addEventListener('click', () => {
 
 //로고 및 aside home 버튼 클릭시 홈화면 이동
 function redirectToHome() {
-  window.location.href = 'Home.html';
+  window.location.href = 'index.html';
 }
