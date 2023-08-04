@@ -536,12 +536,12 @@ function likeAndDislikeBtnClick(event) {
 // 채널 화면으로 이동
 function redirectToChannel(event) {
     console.log("이벤트 발생");
-    window.location.href = `../html_and_css/Channel.html?channel=${event.target.getAttribute("data-channel-name")}`;
+    window.location.href = `./Channel.html?channel=${event.target.getAttribute("data-channel-name")}`;
 }
 
 // 다른 비디오 화면으로 이동
 function redirectToOtherVideo(event) {
     const targetVideoId = event.target.getAttribute('data-video-id');
     const targetChannelName = event.target.getAttribute('data-channel-name');
-    window.location.href = `../html_and_css/Video.html?id=${targetVideoId}&channel=${targetChannelName}`;
+    window.location.href = `./Video.html?id=${targetVideoId}&channel=${targetChannelName}`;
 }
