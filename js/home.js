@@ -156,11 +156,11 @@ function appendItemsToMain(data) {
     const span = document.createElement("span"); // 영상들을 어떤 태그에 담을지 선택
 
     span.innerHTML = `    
-    <form id="video-Form-${data.video_id}" action="video.html" method="GET">\n
+    <form id="video-Form-${data.video_id}" action="Video.html" method="GET">\n
         <input type="hidden" name="id" value="${data.video_id}">\n
         <input type="hidden" name="channel" value="${data.video_channel}">\n                         
     </form>\n
-    <form id="channel-Form-${data.video_id}" action="channel.html" method="GET">\n
+    <form id="channel-Form-${data.video_id}" action="Channel.html" method="GET">\n
         <input type="hidden" name="id" value="${data.video_id}">\n 
         <input type="hidden" name="channel" value="${data.video_channel}">\n                        
     </form>\n
