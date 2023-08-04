@@ -47,6 +47,18 @@ header{
     outline: 0;
     padding: 0;
 }
+/* 검색창 기본 x 표시 제거*/
+input::-ms-clear,
+input::-ms-reveal{
+	display:none;width:0;height:0;
+}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration{
+	display:none;
+}
+
 .searchbox .search-icon{
     display: flex;
     width: 60px;

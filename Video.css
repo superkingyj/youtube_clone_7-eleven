@@ -14,7 +14,10 @@ button {
     background-color: transparent;
 }
 
-
+.main-section{
+    margin-left:24px;
+    margin-top:24px;
+}
 /* 네비게이션 */
 nav{    
     background: var(--background-color, #212121);
