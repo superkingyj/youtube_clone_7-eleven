@@ -117,7 +117,7 @@ postData(getChannelInfo + querys.channel).then((data) => {
         const list_userImageSrc = data.channel_profile;
 
         // 사이드바에 추가할 HTML 변수 지정
-        var subHtml = `<a href="./channel.html?channel=${list_userName}">
+        var subHtml = `<a href="./Channel.html?channel=${list_userName}">
         <span class="sidebar-text">
             <img src="${list_userImageSrc}" alt="" />${list_userName}
         </span>
@@ -149,11 +149,11 @@ postData(getChannelVideo + querys.channel).then((data) => {
             const div_video = document.createElement("div");
             div_video.className = "xsmall-video";
             div_video.innerHTML = `
-            <form id="video-Form-${data.video_id}" action="video.html" method="GET">
+            <form id="video-Form-${data.video_id}" action="Video.html" method="GET">
                 <input type="hidden" name="id" value="${data.video_id}">
                 <input type="hidden" name="channel" value="${data.video_channel}">
             </form>
-            <form id="channel-Form-${data.video_id}" action="channel.html" method="GET">
+            <form id="channel-Form-${data.video_id}" action="Channel.html" method="GET">
                 <input type="hidden" name="id" value="${data.video_id}">
                 <input type="hidden" name="channel" value="${data.video_channel}">
             </form>
@@ -210,7 +210,7 @@ function addSubscribe() {
 
 
         //로컬스토리지에서 삭제하려는 변수 지정
-        var subHtml = `<a href="./channel.html?channel=${userName}">
+        var subHtml = `<a href="./Channel.html?channel=${userName}">
             <span class="sidebar-text">
                 <img src="${userImageSrc}" alt="" />${userName}
             </span>
@@ -263,7 +263,7 @@ function addSubscribe() {
 
 
         // 사이드바에 추가할 HTML 변수 지정
-        var subHtml = `<a href="./channel.html?channel=${userName}">
+        var subHtml = `<a href="./Channel.html?channel=${userName}">
         <span class="sidebar-text">
             <img src="${userImageSrc}" alt="" />${userName}
         </span>
@@ -344,11 +344,11 @@ postData(getChannelVideo + querys.channel).then((data) => {
             const div_video = document.createElement("div");
             div_video.className = "xsmall-video";
             div_video.innerHTML = `
-            <form id="video-Form-${data.video_id}" action="video.html" method="GET">
+            <form id="video-Form-${data.video_id}" action="Video.html" method="GET">
                 <input type="hidden" name="id" value="${data.video_id}">
                 <input type="hidden" name="channel" value="${data.video_channel}">
             </form>
-            <form id="channel-Form-${data.video_id}" action="channel.html" method="GET">
+            <form id="channel-Form-${data.video_id}" action="Channel.html" method="GET">
                 <input type="hidden" name="id" value="${data.video_id}">
                 <input type="hidden" name="channel" value="${data.video_channel}">
             </form>
