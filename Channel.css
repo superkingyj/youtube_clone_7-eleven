@@ -11,9 +11,12 @@ body > :not(header) {
 }
 .channel-cover{
     display: flex;
-    height: 192px;
+    height: 25%;
     justify-content: flex-start;
     flex-shrink: 0;
+}
+.channel-cover > img{
+    width: 1000vw;
 }
 #background{
     display: flex;

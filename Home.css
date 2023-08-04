@@ -6,6 +6,9 @@ section{
     background-size: cover;
     width: auto;
 }
+.video-container{
+    width: 100%;
+}
 nav{
     background: var(--background-color, #212121);
     height: 56px;
@@ -55,7 +58,6 @@ button{
 }
 
 
-
 /* 메인의 네비 부분 상단 구분짓는 border 처리 */
 .video-container nav{
     display: flex;
@@ -63,6 +65,11 @@ button{
     border-bottom: 2px solid #303030;
     padding-top: 10px;
     width: auto;
+}
+
+.filtering-buttons button:nth-child(1){
+    background-color: white;
+    color : black;
 }
 
 /* section 안의 태그들을 위아래가 아닌 좌우로 정렬하게 함 */
