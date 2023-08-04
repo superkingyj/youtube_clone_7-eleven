@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // section 부분 자바스크립트
                 document.getElementById("main-video").innerHTML = `
-                <video class="video" src="${data_video.video_link}" controls></video>
+                <video class="video" src="${data_video.video_link}" controls autoplay muted></video>
                 <section class="video-info">                    
                     <div class="video-title">${data_video.video_title}</div>
                     <div class="video-info-desc">
