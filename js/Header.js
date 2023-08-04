@@ -1,20 +1,16 @@
-const toggleButton = document.querySelector('.top-left-icons img');
-const toggleContent = document.querySelector('.sidebar-body');
+const toggleContent = document.querySelector('.home-body .sidebar-body');
 const sections = document.querySelector('section');
 
-toggleButton.addEventListener('click', () => {
-  // 태그를 숨기거나 나타내는 토글 기능을 구현
+function hamburger() {
+  // 사이드바의 토글 기능을 구현합니다.
   if (toggleContent.style.display === 'none') {
-    toggleContent.style.display = 'block'; // 나타냄    
-    sections.style.paddingLeft = "240px";
-
+    toggleContent.style.display = 'block'; // 사이드바를 나타냅니다.
+    sections.style.paddingLeft = "240px"; // 메인 컨텐츠의 왼쪽 여백을 조정하여 사이드바가 보이도록 합니다.
+  } else {
+    toggleContent.style.display = 'none'; // 사이드바를 숨깁니다.
+    sections.style.paddingLeft = "0px"; // 메인 컨텐츠의 왼쪽 여백을 초기화합니다.
   }
-  else {
-    toggleContent.style.display = 'none'; // 숨김
-    sections.style.paddingLeft = "0px";
-  }
-});
-
+}
 
 // toggleButton.addEventListener('click', () => { //해당 코드가 작동하기 위해선
 //     // 태그를 숨기거나 나타내는 토글 기능을 구현

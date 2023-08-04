@@ -17,7 +17,7 @@
   <header>
     <div class="top">
       <div class="top-left-icons top">
-        <a href="#"><img src="./img/header/hamburger.svg" /></a>
+        <a href="#" onclick="hamburger()"><img src="./img/header/hamburger.svg"/></a>
         <a href="index.html"><img src="./img/header/Youtube-Logo.svg" class="youtube_logo"
             onclick="redirectToHome()" /></a>
       </div>
@@ -91,20 +91,21 @@
       <nav>
         <div class="filtering-buttons">
           <!-- 수정 -->
-          <button onclick="">전체</button>
-          <button onclick="">게임</button>
-          <button onclick="">음악</button>
-          <button onclick="">믹스</button>
-          <button onclick="">뉴스</button>
-          <button onclick="">실시간</button>
-          <button onclick="">뷰티 팁</button>
-          <button onclick="">액션 어드벤처 게임</button>
-          <button onclick="">축구</button>
-          <button onclick="">요리</button>
-          <button onclick="">만화영화</button>
-          <button onclick="">최근에 업로드된 동영상</button>
-          <button onclick="">새로운 맞춤 동영상</button>
-          <span class="nav-btn"><a href="#"><img src="./img/home/nav.svg" /></a></span>
+          <button class="slideIcon" id="left"onclick="slideLeft()" type="button"><</button>
+          <button class="filteringItems" onclick="">전체</button>
+          <button class="filteringItems" onclick="">게임</button>
+          <button class="filteringItems" onclick="">음악</button>
+          <button class="filteringItems" onclick="">믹스</button>
+          <button class="filteringItems" onclick="">뉴스</button>
+          <button class="filteringItems" onclick="">실시간</button>
+          <button class="filteringItems" onclick="">뷰티 팁</button>
+          <button class="filteringItems" onclick="">액션 어드벤처 게임</button>
+          <button class="filteringItems" onclick="">축구</button>
+          <button class="filteringItems" onclick="">요리</button>
+          <button class="filteringItems" onclick="">만화영화</button>
+          <button class="filteringItems" onclick="">최근에 업로드된 동영상</button>
+          <button class="filteringItems" onclick="">새로운 맞춤 동영상</button>
+          <button class="slideIcon" id="right" onclick="slideRight()" type="button">></button>
         </div>
       </nav>
       <!--동영상 목록 구역-->

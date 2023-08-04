@@ -9,30 +9,36 @@ section{
 .video-container{
     width: 100%;
 }
-nav{
-    background: var(--background-color, #212121);
-    height: 56px;
-    flex-shrink: 0;
-    overflow: auto;
-    /* css2 */
-    width: auto;
-    padding-left: 20px;
-    display: flex;
-     /* main
-    width: 100%;
-    */
-}
+
 main {
     margin: 1%;
     display: flex;
     flex-wrap: wrap;
 }
-
-button{
+/* 전체 버튼 */
+.filtering-buttons {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+}
+nav{
+    background: var(--background-color, #212121);
+    height: 56px;
+    flex-shrink: 0;
+    overflow: hidden;
+    width: auto;
+    padding-left: 20px;
+    display: flex;
+}
+/* 슬라이드 아이콘 <, > 스타일 */
+.slideIcon{
+    font-size: 23px;
+    font-weight: bold;
+    border: none;
     color : white;
     border-radius: 24px;
-    border: 0.3px solid var(--gray-color, #AAA);
-    background: var(--border-color, hsl(0, 0%, 19%));
+    border: 0.3px solid #212121;
+    background: #212121;
 
     display: inline-flex;
     padding: 12px 16px;
@@ -40,12 +46,34 @@ button{
     align-items: flex-start;
     text-align: center;
     gap: 15px;
-
 }
 
-.filtering-buttons {
-    overflow: auto;
-    white-space: nowrap;
+
+/* 필터링 버튼 */
+.filteringItems{
+    font-size: 15px;
+    color : white;
+    border-radius: 15px;
+    border: 0.3px solid var(--gray-color, #AAA);
+    background: #303030;
+
+    display: inline-flex;
+    padding: 10px 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: center;
+    gap: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.filteringItems:hover {
+    background-color: white;
+    color:black /* 버튼에 마우스를 올렸을 때 배경색 변경 */
+  }
+
+  .filtering-buttons button:nth-child(2){
+    background-color: white;
+    color : black;
 }
 
 .video {
@@ -67,10 +95,7 @@ button{
     width: auto;
 }
 
-.filtering-buttons button:nth-child(1){
-    background-color: white;
-    color : black;
-}
+
 
 /* section 안의 태그들을 위아래가 아닌 좌우로 정렬하게 함 */
 .home-body{
