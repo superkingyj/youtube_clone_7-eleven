@@ -1,0 +1,547 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Channel */
+body {
+    background-color: #B286C3;    
+}
+
+article{
+    width: 1200px;
+}
+.channel-title{
+    display: flex;
+    justify-content: space-between;
+    background-color: #845889;
+    padding: 16px 65px 4px 65px;
+}
+
+.profileInfo{
+    display: flex;
+    margin-left:20px;
+    
+}
+.profileInfo img{
+    width:80px;
+    height:80px;
+    border-radius: 50%;
+}
+
+#subscribesIcon{
+    margin-right:65px;
+}
+
+.channel-main{
+    width: 100%;
+    height: auto;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+}
+/* 원래 버튼태그의 CCS 요소 삭제 */
+button {
+    /* appearance: none; */
+    /* 추가적인 스타일 규칙을 적용할 수 있습니다 */
+    background-color: #845889;
+    border: 0px;
+}
+
+.channel-toolbar{
+    display: flex;
+    background-color: #845889;
+}
+.channel-toolbar button :hover{
+    background-color: gray;
+}
+/* small-video 부분 */
+.small-video {  
+    display: inline-flex;
+    margin: 24px 287px 24px 65px;
+    padding-bottom: 24px;
+    align-items: flex-start;
+    border-bottom: solid 1px #303030;
+}
+  
+.youtube-player {
+    display: flex;
+    padding-right: 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+.video-desc {
+    display: flex;
+    padding-bottom: 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 24px;
+}
+.title{
+    color: #3A1116;
+    font-variant-numeric: stacked-fractions;
+    font-feature-settings: 'hlig' on, 'dlig' on;
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.14px;
+    margin-bottom: 20px;
+}  
+.time{
+    color: #3A1116;
+    font-family: Roboto;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom:19px;
+}
+.description{
+    color: #3A1116;
+    font-variant-numeric: stacked-fractions;
+    font-feature-settings: 'hlig' on, 'dlig' on;
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.14px;
+    width: 400px;
+    flex-shrink: 0;
+}
+/* search bar 기능*/
+.hidden {
+    display: none;
+}
+
+.toolbar-search{
+    display: inline-flex;
+}
+
+#searchBar input{
+    width: 202px;
+    height: 47px;
+    flex-shrink: 0;
+    background: #B286C3; 
+    color: #fff;
+}
+
+/* video card 부분 */
+.category{
+    padding-left: 65px;
+}
+
+.play-lists{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.play-list{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    margin: 0px 65px;
+    /* flex-direction: column; */
+    /* align-items: flex-start; */
+    /* justify-content: space-between; */
+}
+#play-list-nav{
+    display: flex;
+    padding-top: 8px;
+    align-items: flex-start;
+}
+#search-day{
+    display: flex;
+    padding: 9px 8px 8px 0px;
+    align-items: flex-start;
+    gap: 10px;
+}
+#title{    
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+button :hover{
+    background-color: grey;
+}
+
+.video-card, .pop-video-card{
+    /* width: 100%; */
+    height: auto;
+    display: flex;
+    margin: 24px 5px;
+    align-items: flex-start;
+    flex-direction: column;    
+}
+
+
+
+.xsmall-video{
+    display: flex;
+    width: 214px;
+    padding-right: 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right : 5px;
+}
+.xsmall-thumbnail{
+    display: flex;
+    width: 100%;
+    height: 118px;
+}
+.xsmall-thumbnail img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+.xsmall-desc{
+    display: flex;
+    width: 186px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.xsmall-views{
+    display: flex;
+    width: 186px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+#title{
+    display: flex;
+    padding: 8px 0px;
+    align-items: flex-start;
+    gap: 10px;
+}
+#userID, #userview, #usertime{    
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.channel-name p{
+    color: white;
+}
+
+.channel-cover{    
+    display: flex;
+}
+.channel-cover img{
+    width: 100%;
+}
+.video-card div{
+    width: 100%;
+    display: flex;
+}
+.video-card div img{
+    /* width: 100%; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Header */
+
+header{
+    position: fixed; /* 요소를 고정시킴 */
+    top: 0; /* 화면 상단에 고정 */
+    width: 100%;
+    height: 56px;
+    flex-shrink: 0;
+    background: #B286C3;
+    padding-left: 20px;
+    padding-right: 20px;
+    z-index: 1;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    padding: 2px;
+    
+}
+.top-left-icons .hamburger{
+    position: absolute;
+    left: 12.5%;
+    right: 12.5%;
+    top: 20.83%;
+    bottom: 25%;
+}
+.top-left-icons .youtube_logo{
+    width: 90px;
+    height: 20px;
+    margin-left: 22px;
+}
+
+.searchbox {   
+    background: white;
+    padding: 0;    
+}
+#search{
+    background: #F2CB64;
+    margin: 1px;
+    border: 0px;
+    
+    height: 38px;
+}
+
+.searchbox .search-icon{
+    display: flex;    
+    height: 40px;
+    
+    justify-content: center;
+    align-items: center;
+    background: #58271B;
+    
+}
+.mic-icon{
+    margin-left: 4px;
+    width: 40px;
+    height: 50px;
+    align-items: center;
+}
+.top-right-icons {
+    align-items: center;
+}
+
+.top-right-icons span {
+    margin-left: 10px;
+}
+
+.top-right-icons .user-icon{
+    width: 60px;
+    height: 50px;
+    margin-right: 30px;
+}
+.header-icon{
+    width: 50px;
+    height: 40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* sidebar */
+
+/* list 태그 span 변경으로 인한 list css 삭제 */
+
+/* width 240px로 변경
+유튜브 페이지 참조 */
+
+.sidebar-body{
+    background-color: #B286C3;  
+    position: fixed; /* 요소를 고정시킴 */
+    left: 0; /* 화면 상단에 고정 */    
+    width: 240px;
+    height: 100vh;
+    /*최대 확대 최소 축소 시 배경색 유지  */
+    overflow: hidden;/* 세로 스크롤바 숨기기 */
+    z-index: 1;
+}
+
+
+/* .sidebar-body 태그 스크롤바 전체 스타일 */
+.sidebar-body:hover {
+    overflow: scroll;/* 세로 스크롤바 보이기 */
+}
+
+.sidebar-body::-webkit-scrollbar {
+    width: 6px; /* 스크롤바 너비 */
+    height: 6px;    
+}
+  
+/* .sidebar-body 태그 스크롤바 트랙 스타일 (배경) */
+.sidebar-body::-webkit-scrollbar-track {
+    background-color: #212121; /* 스크롤바 트랙 색상 */
+}
+  
+  /* .sidebar-body 태그 스크롤바 쓰는 부분 (버튼) 스타일 */
+.sidebar-body::-webkit-scrollbar-thumb {
+    background-color: #888; /* 스크롤바 버튼 색상 */
+    border-radius: 3px; /* 스크롤바 버튼 모서리 둥글게 */
+}
+/* 사이드바의 이미지들 hover시 색상 변경 */
+.sidebar-body div span a img:hover {
+    background-color: #303030;    
+}
+
+#show-more-sub a:hover{
+    background-color: #303030;    
+}
+
+#show-more-sub{
+    display: flex;    
+    flex-direction: column;     
+    align-items: center;    
+    justify-content: flex-start;
+}
+.sidebar-text {    
+    font-family: 'Roboto';
+}
+
+#show-more-sub a{
+    width: 224px;
+    height: 40px;
+    display: flex; /* 링크 안의 내용들을 가운데로 정렬하기 위해 추가 */
+    align-items: center; /* 링크 안의 내용들을 수직 가운데 정렬하기 위해 추가 */     
+    padding-left: 55px;
+    color: white;
+    text-decoration: none;    
+    justify-content: space-between;    
+}
+
+#show-more-sub a img{
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;    
+    margin-right: 20px;
+}
+
+.subscription-user-img{
+    width: 224px;
+}
+
+.side1, .side2, .side3{
+    border-bottom: solid 1px #3A1116;
+    margin-right: 25px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* common */
+
+/*common (background-color)*/
+body{
+    font-family: "Roboto";
+    color:#3A1116;
+    line-height: 1.6;
+    background-color: #B6BFE2;
+    margin: 0px;
+}
+/* 헤더와 사이드는 고정 된 상태라 나머지 Main 부분을 띄워서 겹치지 않게 조정 해당부분 수정 필요 */
+body > :not(header) {
+    padding-top: 55px;   
+    padding-left: 240px;
+}

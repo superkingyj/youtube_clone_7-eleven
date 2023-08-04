@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Channel</title>
+  <link rel="stylesheet" type="text/css" href="7Channel.css">
+</head>
+
+<body>
+  <header>
+    <div class="top">
+      <div class="top-left-icons top">
+        <a href="#"><img src="./img/7eleven/header/ham.svg" /></a>
+        <a href="index.html"><img src="./img/7eleven/header/Logo.svg" class="youtube_logo"
+            onclick="redirectToHome()" /></a>
+      </div>
+      <div class="top-middle-icons top">
+        <div class="searchbox top">
+          <input type="text" id="search" placeholder="Search" />
+          <a href="#" onclick="searchChannel()"><img src="./img/7eleven/header/SearchBox-Button.svg"
+              class="search-icon" /></a>
+        </div>
+        <a href="#"><img src="./img/7eleven/header/Icon.svg" class="mic-icon" /></a>
+        <!-- 검색 결과 출력을 위한 컨테이너 -->
+        <div class="search-result" id="searchResultContainer"></div>
+      </div>
+
+      <div class="top-right-icons top">
+        <a href="#"><img src="./img/7eleven/header/create.svg" alt="profile_icon" class="header-icon" /></a>
+        <a href="#"><img src="./img/7eleven/header/apps.svg" alt="profile_icon" class="header-icon" /></a>
+        <a href="#"><img src="./img/7eleven/header/notifications.svg" alt="profile_icon" class="header-icon" /></a>
+        <a href="#"><img src="./img/7eleven/header/Profile.svg" alt="profile_icon" class="user-icon" /></a>
+      </div>
+    </div>
+  </header>
+  <!-- 하단 부분-->
+  <section>
+    <!-- 왼쪽 사이드바-->
+    <aside>
+      <div class="sidebar-body">
+        <div class="side1">
+          <span class="sidebar-text"><a href="#"><img src="./img/7eleven/sidebar/Menu.svg"
+                onclick="redirectToHome()" /></a></span>
+          <span class="sidebar-text"><a href="#"><img src="./img/7eleven/sidebar/Menu-1.svg" /></a></span>
+          <span class="sidebar-text"><a href="#"><img src="./img/7eleven/sidebar/Menu-2.svg" /></a></span>
+        </div>
+        <div class="side2">
+          <span id="show-more">
+            <span class="sidebar-text"><a href="#"><img src="./img/7eleven/sidebar/Menu-3.svg" /></a></span>
+            <span class="sidebar-text"><a href="#"><img src="./img/7eleven/sidebar/Menu-4.svg" /></a></span>
+            <span class="sidebar-text"><a href="#"><img src="./img/7eleven/sidebar/Menu-5.svg" /></a></span>
+            <span class="sidebar-text"><a href="#"><img src="./img/7eleven/sidebar/Menu-6.svg" /></a></span>
+            <span class="sidebar-text"><a href="#"><img src="./img/7eleven/sidebar/Menu-7.svg" /></a></span>
+          </span>
+          <span class="sidebar-text" onclick="toggleSide2()"><a href="#"><img
+                src="./img/7eleven/sidebar/Menu-8.svg" /></a></span>
+        </div>
+        <div class="side3">
+          <span class="sidebar-text"><a href="#"><img src="./img/7eleven/sidebar/Menu-Title.svg" alt="" /></a></span>
+          <div class="subscription-user-img">
+            <span id=show-more-sub>
+              <a href="#"><span class="sidebar-text"><img
+                    src="./img/7eleven/sidebar/2D062AD6-44D7-435C-ADD6-71105929858D_1_105_c.jpeg"
+                    alt="" />박보영</span></a>
+              <a href="#"><span class="sidebar-text"><img src="./img/7eleven/sidebar/5a7d9c4eaca35727.jpeg"
+                    alt="" />신승호</span></a>
+              <a href="#"><span class="sidebar-text"><img src="./img/7eleven/sidebar/glaemfek.jpg" alt="" />장원영</span></a>
+              <a href="#"><span class="sidebar-text"><img src="./img/7eleven/sidebar/jung.svg"
+                    alt="" />정우성</span></a>
+              <a href="./7Channel.html"><span class="sidebar-text"><img src="./img/7eleven/sidebar/image.png"
+                    alt="" />권정열</span></a>
+            </span>
+            <span class="sidebar-text" onclick="toggleSide3()"><a href="#"><img src="./img/7eleven/sidebar/Menu-8.svg"
+                  alt="" /></a></span>
+          </div>
+        </div>
+        <div class="side4">
+          <span class="sidebar-text"><a href="#"><img src="./img/7eleven/sidebar/Menu-Title-1.svg" alt=""></a></span>
+          <span class="sidebar-text"><a href="#"><img src="./img/7eleven/sidebar/Menu-17.svg" /></a></span>
+          <span class="sidebar-text"><a href="#"><img src="./img/7eleven/sidebar/Menu-18.svg" /></a></span>
+          <span class="sidebar-text"><a href="#"><img src="./img/7eleven/sidebar/Menu-19.svg" /></a></span>
+          <!-- <span class="sidebar-text"><a href="#"><img src="./img/7eleven/sidebar/Menu-20.svg" /></a></span > -->
+        </div>
+        <div class="side5">
+          <span class="sidebar-text"><a href="#"><img src="./img/7eleven/sidebar/Menu-18.svg" /></a></span>
+          <span class="sidebar-text"><a href="#"><img src="./img/7eleven/sidebar/Menu-19.svg" /></a></span>
+          <span class="sidebar-text"><a href="#"><img src="./img/7eleven/sidebar/Menu-20.svg" /></a></span>
+        </div>
+      </div>
+    </aside>
+    <section class=channel-main>
+      <!--채널 메인 화면-->
+      <article class="channel-main">
+        <div class="channel-cover">
+          <img src="./img/7eleven/Channel-Cover.svg" id="background">
+        </div>
+        <div class="channel-title">
+          <div class="profileInfo">
+            <img src="./img/7eleven/KakaoTalk_20230724_200543593.jpg" id="profileIcon2">
+            <div class="channel-name" style="margin-left:15px;">
+              <p style="color: white; font-weight: 400; font-size: 24px;">7-eleven-team</p>
+              <p style="color: #AAAAAA; font-weight: 400; font-size: 14px;">150M subscribers</p>
+            </div>
+          </div>
+          <div class="subscribers">
+            <img src="./img/channel/Subscribes-Btn.svg" id="subscribesIcon" alt="Subscribe" />
+          </div>
+        </div>
+        <div class="channel-toolbar">
+          <div class="toolbars">
+            <button onclick><img src="./img/7eleven/Menu.svg"></button>
+            <button onclick><img src="./img/7eleven/Menu-1.svg"></button>
+            <button onclick><img src="./img/7eleven/Menu-2.svg"></button>
+            <button onclick><img src="./img/7eleven/Menu-3.svg"></button>
+            <button onclick><img src="./img/7eleven/Menu-4.svg"></button>
+            <button onclick><img src="./img/7eleven/Menu-5.svg"></button>
+          </div>
+          <div class="toolbar-search">
+            <button><img src="./img/7eleven/Icon.svg" id="searchIcon" onclick="toggleSearchBar()"></button>
+            <span id="searchBar" class="hidden"><input type="text" id="search-in-channel" placeholder="Search" /></span>
+          </div>
+          <button><img src="./img/7eleven/Btn.svg" id="ArrowIcon" onclick=""></button>
+          <div class="channel-search-result" id="searchResultContainer-channel"></div>
+        </div>
+      </article>
+      <article class="small-video">
+        <div class="youtube-player">
+          <!--동영상 썸네일-->
+          <video width="640" height="320" src="./img/7eleven/KakaoTalk_20230731_221618216-_2__3.mp4" controls></video>
+        </div>
+        <div class="video-desc">
+          <div class="title" style="font-size: 14px;">
+            <!--제목-->
+            #WE ARE THE 7eleven TEAM!!
+          </div>
+          <div class="time" style="font-size: 13px;">
+            <!--시간 정보-->
+            576,969 views . 3 weeks ago
+          </div>
+          <div class="description">
+            <!--설명-->
+            조장: 김유진<br><br>
+            조원: 문길호 / 안소윤 / 이정민 / 박인수<br><br>
+            개발 소감: <br>
+            유진 - "어린애들 데리고 하느라 힘들었어요"<br>
+            길호 - "형 누나들이 너무 잘해서 편했어요"<br>
+            정민 - "다들 이상한거같아요"<br>
+            소윤 - "다들 이러시는 이유가 있으실거 아니에요"<br>
+          </div>
+        </div>
+        <!--영상 정보-->
+      </article>
+      <article class="play-lists"> <!-- 전체 아래쪽 부분-->
+        <div class="category">
+          <img src="./img/7eleven/Title.svg">
+          <img src="./img/7eleven/Play-Btn.svg" onclick="">
+        </div>
+        
+        <div class="play-list"> <!-- 한줄의 영상 목록 부분-->                    
+          <div class="video-card">
+            <div class="xsmall-thumbnail"><img src="./img/7eleven/image 1.svg"></div>
+            <div class="xsmall-desc">
+              <div id="title">코딩? 누나만 따라와~</div>
+              <div id="userview">4M views . just before</div>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="xsmall-thumbnail"><img src="./img/7eleven/Images-1.svg"></div>
+            <div class="xsmall-desc">
+              <div id="title">뭘봐? 잘생긴 사람 처음봐?</div>
+              <div id="userview">10M views . just before</div>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="xsmall-thumbnail"><img src="./img/7eleven/Images-5.svg"></div>
+            <div class="xsmall-desc">
+              <div id="title">라면 먹고 갈래?</div>
+              <div id="userview">15M views . just before</div>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="xsmall-thumbnail"><img src="./img/7eleven/Images-6.svg"></div>
+            <div class="xsmall-desc">
+              <div id="title">마! 니 삼대 몇치나?</div>
+              <div id="userview">4M views . just before</div>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="xsmall-thumbnail"><img src="./img/7eleven/image.png"></div>
+            <div class="xsmall-desc">
+              <div id="title">문진스-Super Shy 영상보고 리액션 하기!!</div>
+              <div id="userview">2K views . just before</div>
+            </div>
+          </div>
+        </div>
+        <div class="play-list"> <!-- 한줄의 영상 목록 부분-->
+          <div id="play-list-nav"> <!--play all button 있는 부분-->
+            <span id="search-day">인기 동영상</span>
+            <img src="./img/7eleven/Play-Btn.svg" onclick="">
+          </div>
+          <div class="pop-video-card">
+          </div>
+        </div>
+        <!-- 그 밖의 추가 영상 줄-->
+      </article>
+    </section>
+  </section>
+</body>
+<script src="./js/7Channel.js"></script>
+
+</html>
