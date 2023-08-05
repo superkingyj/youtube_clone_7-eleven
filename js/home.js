@@ -135,7 +135,9 @@ function appendItemsToMain(data) {
         const daysPassed = timeDifferenceInMilliseconds / (1000 * 60 * 60 * 24);
 
         return Math.floor(daysPassed); // 소수점 이하는 버림하여 정수값으로 반환
-    } async function channelData(data) {
+    }
+
+    async function channelData(data) {
         try {
             const requestOptions = {
                 method: 'POST',
@@ -163,9 +165,12 @@ function appendItemsToMain(data) {
         <input type="hidden" name="id" value="${data.video_id}">\n 
         <input type="hidden" name="channel" value="${data.video_channel}">\n                        
     </form>\n
-    <img src=${data.image_link} class="video-${data.video_id}">\n
+    <div onmouseover="playVideo(event)" onmouseout="stopVideo(event)">
+        <img class="thumbnail" src=${data.image_link} class="video-${data.video_id}">\n
+        <video src=${data.video_link} preload="metadata" style="display:none" controls="true" autoplay muted></video>
+    </div>
     <div class='profile-and-desc'>\n
-        <img class="channel-${data.video_id}" src="${data.profile_image}" >\n
+        <img class="channel-${data.video_id}" src="${data.profile_image}">\n
         <div>\n
             <p class="video-${data.video_id}">${data.video_title}</p>\n
             <p class="channel-${data.video_id}">${data.video_channel}</p>\n
@@ -253,13 +258,13 @@ async function homeEnterkey(event) {
 
 const searchText = localStorage.getItem("searchText"); // localStorage에서 검색어 가져오기
 if (searchText) {
-    searchTextbox.value=searchText;
+    searchTextbox.value = searchText;
     search(searchText); // 검색 함수 호출
     localStorage.removeItem("searchText"); // 검색어가 있으면 검색 결과를 보여주기 위해 searchResult() 함수 호출
-    }
-    else{
-        fetchData();
-    }
+}
+else {
+    fetchData();
+}
 
 //음성 인식 검색 기능
 const searchConsole1 = document.getElementsByClassName("mic-icon");
@@ -268,10 +273,10 @@ function availabilityFunc() {
 
     recognition = new webkitSpeechRecognition() || new SpeechRecognition();
     recognition.lang = "ko"; // 음성인식에 사용되고 반환될 언어
-    recognition.maxAlternatives = 5; 
+    recognition.maxAlternatives = 5;
 
     if (!recognition) {
-    alert("현재 브라우저는 사용이 불가능합니다.");
+        alert("현재 브라우저는 사용이 불가능합니다.");
     }
 }
 //음성녹음을 실행하는 함수
@@ -280,21 +285,47 @@ function startRecord() {
 
     // 마이크 클릭 시 음성인식 시작
     recognition.addEventListener("speechstart", () => {
-    console.log("인식");
+        console.log("인식");
     });
 
     //음성인식이 끝까지 이루어지면 중단
     recognition.addEventListener("speechend", () => {
-    console.log("인식2");
+        console.log("인식2");
     });
 
     //음성인식 결과를 반환
     recognition.addEventListener("result", (e) => {
-    const transcript = e.results[0][0].transcript;
-    search(transcript);
+        const transcript = e.results[0][0].transcript;
+        search(transcript);
     });
 
     recognition.start();
 }
 searchConsole1[0].addEventListener("click", startRecord);
 window.addEventListener("load", availabilityFunc);
+
+// 비디오 재생 이벤트
+function playVideo(event) {
+    setTimeout(() => {
+        const videoElement = event.target.parentElement.querySelector('video');
+        const thumbnailImg = event.target.parentElement.querySelector('img');
+        console.log(videoElement);
+        console.log(thumbnailImg);
+        thumbnailImg.style.display = "none";
+        videoElement.style.display = "block";
+        videoElement.play();
+    }, 300);
+}
+
+function stopVideo(event) {
+    setTimeout(() => {
+        const videoElement = event.target.parentElement.querySelector('video');
+        const thumbnailImg = event.target.parentElement.querySelector('img');
+        console.log(videoElement);
+        console.log(thumbnailImg);
+        videoElement.style.display = "none";
+        thumbnailImg.style.display = "block";
+        videoElement.pause();
+        videoElement.currentTime = 0;
+    }, 300); // 0.3초 딜레이 추가 (300ms)
+}
