@@ -200,7 +200,24 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             async function getOtherListInfo() {
                 for (const item of otherListJson) {
-                    if ((item.video_tag.includes(videoTag[0]) || item.video_tag.includes(videoTag[0])) && item.video_id !== currVideoId) {
+                    if (item.video_channel == currChannel) {
+                        cnt++;
+                        targetTitleList.push(item.video_title);
+                        targetVideoIdList.push(item.video_id);
+                        targetChannelList.push(item.video_channel);
+                        targetViewAndDateList.push(item.views + " Views . " + daysPassedSinceDate(item.upload_date) + "일전");
+
+                        // 썸네일 & 비디오 링크 가져오기
+                        const response = await fetch(videoUrl + item.video_id);
+                        const videoInfoData = await response.json();
+                        targetThumbnailList.push(videoInfoData.image_link);
+                        targetVideoLinkList.push(videoInfoData.video_link);
+                    }
+                }
+            }
+            async function getOtherTagInfo(x) {
+                for (const item of otherListJson) {
+                    if ((item.video_tag.includes(videoTag[x]) || item.video_tag.includes(videoTag[x])) && item.video_id !== currVideoId) {
                         cnt++;
                         targetTitleList.push(item.video_title);
                         targetVideoIdList.push(item.video_id);
@@ -243,19 +260,35 @@ document.addEventListener("DOMContentLoaded", function () {
             await getAllListInfo();
             rendering();
             document.getElementById('button1').addEventListener('click', async () => {
-                try {
-                    await getAllListInfo();
-                    rendering();
-                } catch (error) {
-                    console.error('Video List API call failed.');
-                }
-                });
+            try {
+                await getAllListInfo();
+                rendering();
+            } catch (error) {
+                console.error('API 호출에 실패했습니다:', error);
+            }
+            });
             document.getElementById('button2').addEventListener('click', async () => {
             try {
                 await getOtherListInfo();
                 rendering();
             } catch (error) {
-                console.error('Video List API call failed.');
+                console.error('API 호출에 실패했습니다:', error);
+            }
+            });
+            document.getElementById('button3').addEventListener('click', async () => {
+            try {
+                await getOtherTagInfo(0);
+                rendering();
+            } catch (error) {
+                console.error('API 호출에 실패했습니다:', error);
+            }
+            });
+            document.getElementById('button4').addEventListener('click', async () => {
+            try {
+                await getOtherTagInfo(1);
+                rendering();
+            } catch (error) {
+                console.error('API 호출에 실패했습니다:', error);
             }
             });
         }
