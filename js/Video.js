@@ -90,6 +90,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.querySelector(".user_name").textContent = data_video.video_channel;
                 document.querySelector(".user_name").setAttribute("data-channel-name", data_video.video_channel);
                 document.querySelector(".desc").textContent = data_video.video_detail;
+                document.querySelector("#button2").textContent = data_video.video_channel;
+                document.querySelector("#button3").textContent = data_video.video_tag[0];
+                //태그가 없는 경우 버튼 삭제
+                const buttonElement = document.querySelector(".item4 button");
+                if (data_video.video_tag[1]) {
+                  buttonElement.textContent = data_video.video_tag[1];
+                } else {
+                  buttonElement.style.display = "none";
+                }
+
                 currChannel = data_video.video_channel;
                 currVideoId = data_video.video_id;
                 return data_video;
@@ -165,7 +175,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 response = await fetch(url);
                 otherListJson = await response.json();
             }
-
+            async function getAllListInfo() {
+                let imageCounter = 0;
+            
+                for (const item of otherListJson) {
+                    if (imageCounter >= 10) {
+                        break;
+                    }
+            
+                    cnt++;
+                    targetTitleList.push(item.video_title);
+                    targetVideoIdList.push(item.video_id);
+                    targetChannelList.push(item.video_channel);
+                    targetViewAndDateList.push(
+                        item.views + " Views . " + daysPassedSinceDate(item.upload_date) + "days ago"
+                    );
+                    const response = await fetch(videoUrl + item.video_id);
+                    const videoInfoData = await response.json();
+                    targetThumbnailList.push(videoInfoData.image_link);
+                    targetVideoLinkList.push(videoInfoData.video_link);
+            
+                    imageCounter++; 
+                }
+            }
             async function getOtherListInfo() {
                 for (const item of otherListJson) {
                     if ((item.video_tag.includes(videoTag[0]) || item.video_tag.includes(videoTag[0])) && item.video_id !== currVideoId) {
@@ -183,10 +215,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 }
             }
-
+            let end = 0;
             function rendering() {
                 const otherList = document.getElementsByClassName('other-video')[0];
-                for (let i = 0; i < cnt; i++) {
+                otherList.innerHTML = "";
+                for (let i = end; i < cnt; i++) {
                     otherList.innerHTML += `
                 <a href="#">
                     <div class="other-video-thumbnail" onclick="redirectToOtherVideo(event)">
@@ -203,16 +236,28 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                 </a>
                 `;
+                end += 1;
                 }
             }
-
+            await requestOtherListApi();
+            await getAllListInfo();
+            rendering();
+            document.getElementById('button1').addEventListener('click', async () => {
+                try {
+                    await getAllListInfo();
+                    rendering();
+                } catch (error) {
+                    console.error('Video List API call failed.');
+                }
+                });
+            document.getElementById('button2').addEventListener('click', async () => {
             try {
-                await requestOtherListApi();
                 await getOtherListInfo();
                 rendering();
             } catch (error) {
-                console.error('video List API 호출에 실패했습니다.');
+                console.error('Video List API call failed.');
             }
+            });
         }
 
         // 로컬 스토리지에 저장되어 있던 댓글 불러오기
@@ -260,6 +305,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 });
+//우측 사이드 버튼 클릭 시 색상변경
+function changeBackground(clickedButton) {
+    const buttons = document.querySelectorAll('.button');
+    buttons.forEach(button => {
+        if (button.id === 'button' + clickedButton) {
+            button.style.backgroundColor = 'white';
+            button.style.color = "black";
+        } else {
+            button.style.backgroundColor = 'black';
+            button.style.color = "white";
+        }
+    });
+}
 
 const subscribeButton = document.getElementsByClassName('subscribers')[0];
 
