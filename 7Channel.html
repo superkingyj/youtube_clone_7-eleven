@@ -66,11 +66,11 @@
                     alt="" />박보영</span></a>
               <a href="#"><span class="sidebar-text"><img src="./img/7eleven/sidebar/5a7d9c4eaca35727.jpeg"
                     alt="" />신승호</span></a>
-              <a href="#"><span class="sidebar-text"><img src="./img/7eleven/sidebar/glaemfek.jpg" alt="" />장원영</span></a>
-              <a href="#"><span class="sidebar-text"><img src="./img/7eleven/sidebar/jung.svg"
-                    alt="" />정우성</span></a>
+              <a href="#"><span class="sidebar-text"><img src="./img/7eleven/sidebar/glaemfek.jpg"
+                    alt="" />장원영</span></a>
+              <a href="#"><span class="sidebar-text"><img src="./img/7eleven/sidebar/jung.svg" alt="" />정우성</span></a>
               <a href="./7Channel.html"><span class="sidebar-text"><img src="./img/7eleven/sidebar/image.png"
-                    alt="" />권정열</span></a>
+                    alt="" />차은우</span></a>
             </span>
             <span class="sidebar-text" onclick="toggleSide3()"><a href="#"><img src="./img/7eleven/sidebar/Menu-8.svg"
                   alt="" /></a></span>
@@ -96,18 +96,23 @@
         <div class="channel-cover">
           <img src="./img/7eleven/Channel-Cover.svg" id="background">
         </div>
-        <div class="channel-title">
-          <div class="profileInfo">
-            <img src="./img/7eleven/KakaoTalk_20230724_200543593.jpg" id="profileIcon2">
-            <div class="channel-name" style="margin-left:15px;">
-              <p style="color: white; font-weight: 400; font-size: 24px;">7-eleven-team</p>
-              <p style="color: #AAAAAA; font-weight: 400; font-size: 14px;">150M subscribers</p>
+        <div id="channel-title" style="background-color: rgb(132, 88, 137);">
+          <!-- <div></div> -->
+          <div class="channel-title">
+            <div class="profileInfo">
+              <img src="./img/7eleven/KakaoTalk_20230724_200543593.jpg" id="profileIcon2">
+              <div class="channel-name" style="margin-left:15px;">
+                <p style="color: white; font-weight: 400; font-size: 24px;">7-eleven-team</p>
+                <p style="color: #AAAAAA; font-weight: 400; font-size: 14px;">150M subscribers</p>
+              </div>
+            </div>
+            <div class="subscribers">
+              <img src="./img/channel/Subscribes-Btn.svg" id="subscribesIcon" alt="Subscribe" />
             </div>
           </div>
-          <div class="subscribers">
-            <img src="./img/channel/Subscribes-Btn.svg" id="subscribesIcon" alt="Subscribe" />
-          </div>
+          <!-- <div></div> -->
         </div>
+        
         <div class="channel-toolbar">
           <div class="toolbars">
             <button onclick><img src="./img/7eleven/Menu.svg"></button>
@@ -125,86 +130,91 @@
           <div class="channel-search-result" id="searchResultContainer-channel"></div>
         </div>
       </article>
-      <article class="small-video">
-        <div class="youtube-player">
-          <!--동영상 썸네일-->
-          <video width="640" height="320" src="./img/7eleven/KakaoTalk_20230731_221618216-_2__3.mp4" controls></video>
-        </div>
-        <div class="video-desc">
-          <div class="title" style="font-size: 14px;">
-            <!--제목-->
-            #WE ARE THE 7eleven TEAM!!
+      <div class="contents">
+        <article class="small-video">
+          <div class="youtube-player">
+            <!--동영상 썸네일-->
+            <!-- <video width="640" height="320" src="./img/7eleven/KakaoTalk_20230731_221618216-_2__3.mp4" controls></video> -->
+            <img width="424" height="238" src="./img/7eleven/Youtube player2.svg">
           </div>
-          <div class="time" style="font-size: 13px;">
-            <!--시간 정보-->
-            576,969 views . 3 weeks ago
-          </div>
-          <div class="description">
-            <!--설명-->
-            조장: 김유진<br><br>
-            조원: 문길호 / 안소윤 / 이정민 / 박인수<br><br>
-            개발 소감: <br>
-            유진 - "어린애들 데리고 하느라 힘들었어요"<br>
-            길호 - "형 누나들이 너무 잘해서 편했어요"<br>
-            정민 - "다들 이상한거같아요"<br>
-            소윤 - "다들 이러시는 이유가 있으실거 아니에요"<br>
-          </div>
-        </div>
-        <!--영상 정보-->
-      </article>
-      <article class="play-lists"> <!-- 전체 아래쪽 부분-->
-        <div class="category">
-          <img src="./img/7eleven/Title.svg">
-          <img src="./img/7eleven/Play-Btn.svg" onclick="">
-        </div>
-        
-        <div class="play-list"> <!-- 한줄의 영상 목록 부분-->                    
-          <div class="video-card">
-            <div class="xsmall-thumbnail"><img src="./img/7eleven/image 1.svg"></div>
-            <div class="xsmall-desc">
-              <div id="title">코딩? 누나만 따라와~</div>
-              <div id="userview">4M views . just before</div>
+          <div class="video-desc">
+            <div class="title" style="font-size: 14px;">
+              <!--제목-->
+              #WE ARE THE 7eleven TEAM!!
+            </div>
+            <div class="time" style="font-size: 13px;">
+              <!--시간 정보-->
+              576,969 views . 3 weeks ago
+            </div>
+            <div class="description" style="font-size: 13px; line-height: 1.2;">
+              <!--설명-->
+              조장: 김유진<br><br>
+              조원: 문길호 / 안소윤 / 이정민 / 박인수<br><br>
+              개발 소감: <br>
+              유진 - "어린애들 데리고 하느라 힘들었어요"<br>
+              길호 - "형 누나들이 너무 잘해서 편했어요"<br>
+              정민 - "다들 이상한거같아요"<br>
+              소윤 - "다들 이러시는 이유가 있으실거 아니에요"<br>
+              인수 - "문진스 팬입니다"
             </div>
           </div>
-          <div class="video-card">
-            <div class="xsmall-thumbnail"><img src="./img/7eleven/Images-1.svg"></div>
-            <div class="xsmall-desc">
-              <div id="title">뭘봐? 잘생긴 사람 처음봐?</div>
-              <div id="userview">10M views . just before</div>
-            </div>
-          </div>
-          <div class="video-card">
-            <div class="xsmall-thumbnail"><img src="./img/7eleven/Images-5.svg"></div>
-            <div class="xsmall-desc">
-              <div id="title">라면 먹고 갈래?</div>
-              <div id="userview">15M views . just before</div>
-            </div>
-          </div>
-          <div class="video-card">
-            <div class="xsmall-thumbnail"><img src="./img/7eleven/Images-6.svg"></div>
-            <div class="xsmall-desc">
-              <div id="title">마! 니 삼대 몇치나?</div>
-              <div id="userview">4M views . just before</div>
-            </div>
-          </div>
-          <div class="video-card">
-            <div class="xsmall-thumbnail"><img src="./img/7eleven/image.png"></div>
-            <div class="xsmall-desc">
-              <div id="title">문진스-Super Shy 영상보고 리액션 하기!!</div>
-              <div id="userview">2K views . just before</div>
-            </div>
-          </div>
-        </div>
-        <div class="play-list"> <!-- 한줄의 영상 목록 부분-->
-          <div id="play-list-nav"> <!--play all button 있는 부분-->
-            <span id="search-day">인기 동영상</span>
+          <!--영상 정보-->
+        </article>
+        <article class="play-lists"> <!-- 전체 아래쪽 부분-->
+          <div class="category">
+            <img src="./img/7eleven/Title.svg">
             <img src="./img/7eleven/Play-Btn.svg" onclick="">
           </div>
-          <div class="pop-video-card">
+
+          <div class="play-list"> <!-- 한줄의 영상 목록 부분-->
+            <div class="video-card">
+              <div class="xsmall-thumbnail"><img src="./img/7eleven/image 1.svg"></div>
+              <div class="xsmall-desc">
+                <div id="title">코딩? 누나만 따라와~</div>
+                <div id="userview">4M views . just before</div>
+              </div>
+            </div>
+            <div class="video-card">
+              <div class="xsmall-thumbnail"><img src="./img/7eleven/Images-1.svg"></div>
+              <div class="xsmall-desc">
+                <div id="title">뭘봐? 잘생긴 사람 처음봐?</div>
+                <div id="userview">10M views . just before</div>
+              </div>
+            </div>
+            <div class="video-card">
+              <div class="xsmall-thumbnail"><img src="./img/7eleven/Images-5.svg"></div>
+              <div class="xsmall-desc">
+                <div id="title">라면 먹고 갈래?</div>
+                <div id="userview">15M views . just before</div>
+              </div>
+            </div>
+            <div class="video-card">
+              <div class="xsmall-thumbnail"><img src="./img/7eleven/Images-6.svg"></div>
+              <div class="xsmall-desc">
+                <div id="title">마! 니 삼대 몇치나?</div>
+                <div id="userview">4M views . just before</div>
+              </div>
+            </div>
+            <div class="video-card">
+              <div class="xsmall-thumbnail"><img src="./img/7eleven/image.png"></div>
+              <div class="xsmall-desc">
+                <div id="title">문진스-Super Shy 영상보고 리액션 하기!!</div>
+                <div id="userview">2K views . just before</div>
+              </div>
+            </div>
           </div>
-        </div>
-        <!-- 그 밖의 추가 영상 줄-->
-      </article>
+          <div class="play-list"> <!-- 한줄의 영상 목록 부분-->
+            <div id="play-list-nav"> <!--play all button 있는 부분-->
+              <span id="search-day">인기 동영상</span>
+              <img src="./img/7eleven/Play-Btn.svg" onclick="">
+            </div>
+            <div class="pop-video-card">
+            </div>
+          </div>
+          <!-- 그 밖의 추가 영상 줄-->
+        </article>
+      </div>
+
     </section>
   </section>
 </body>
