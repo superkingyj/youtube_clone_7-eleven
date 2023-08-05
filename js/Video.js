@@ -90,11 +90,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.querySelector(".user_name").textContent = data_video.video_channel;
                 document.querySelector(".user_name").setAttribute("data-channel-name", data_video.video_channel);
                 document.querySelector(".desc").textContent = data_video.video_detail;
-                //우측 사이드 태그 추가 부분
-                document.querySelector(".item2 button").textContent = data_video.video_channel;
-                const tagTmp = data_video.video_tag;
-                document.querySelector(".item3 button").textContent = tagTmp[0];
-                document.querySelector(".item4 button").textContent = tagTmp[1];
+                document.querySelector("#button2").textContent = data_video.video_channel;
+                document.querySelector("#button3").textContent = data_video.video_tag[0];
+                //태그가 없는 경우 버튼 삭제
+                const buttonElement = document.querySelector(".item4 button");
+                if (data_video.video_tag[1]) {
+                  buttonElement.textContent = data_video.video_tag[1];
+                } else {
+                  buttonElement.style.display = "none";
+                }
 
                 currChannel = data_video.video_channel;
                 currVideoId = data_video.video_id;
@@ -104,6 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
         const videoPromise = videoData(videoUrl + queryParams.id)
+
         // 채널 정보가 필요한 부분
         async function channelData(data) {
             try {
@@ -170,11 +175,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 response = await fetch(url);
                 otherListJson = await response.json();
             }
-
             async function getAllListInfo() {
                 let imageCounter = 0;
-                const promises = [];
-
+            
                 for (const item of otherListJson) {
                     if (imageCounter >= 10) {
                         break;
@@ -187,52 +190,36 @@ document.addEventListener("DOMContentLoaded", function () {
                     targetViewAndDateList.push(
                         item.views + " Views . " + daysPassedSinceDate(item.upload_date) + "days ago"
                     );
-            
-                    const videoPromise = fetch(videoUrl + item.video_id).then(response => response.json());
-                    promises.push(videoPromise);
-            
-                    imageCounter++;
-                }
-                const videoInfoDataList = await Promise.all(promises);
-                videoInfoDataList.forEach((videoInfoData, index) => {
+                    const response = await fetch(videoUrl + item.video_id);
+                    const videoInfoData = await response.json();
                     targetThumbnailList.push(videoInfoData.image_link);
                     targetVideoLinkList.push(videoInfoData.video_link);
-                });
+            
+                    imageCounter++; 
+                }
             }
             async function getOtherListInfo() {
-                const promises = [];
-            
                 for (const item of otherListJson) {
                     if ((item.video_tag.includes(videoTag[0]) || item.video_tag.includes(videoTag[0])) && item.video_id !== currVideoId) {
                         cnt++;
                         targetTitleList.push(item.video_title);
                         targetVideoIdList.push(item.video_id);
                         targetChannelList.push(item.video_channel);
-                        targetViewAndDateList.push(item.views + " Views . " + daysPassedSinceDate(item.upload_date) + "days ago");
-            
-                        const videoPromise = fetch(videoUrl + item.video_id).then(response => response.json());
-                        promises.push(videoPromise);
+                        targetViewAndDateList.push(item.views + " Views . " + daysPassedSinceDate(item.upload_date) + "일전");
+
+                        // 썸네일 & 비디오 링크 가져오기
+                        const response = await fetch(videoUrl + item.video_id);
+                        const videoInfoData = await response.json();
+                        targetThumbnailList.push(videoInfoData.image_link);
+                        targetVideoLinkList.push(videoInfoData.video_link);
                     }
                 }
-            
-                const videoInfoDataList = await Promise.all(promises);
-                videoInfoDataList.forEach((videoInfoData, index) => {
-                    targetThumbnailList.push(videoInfoData.image_link);
-                    targetVideoLinkList.push(videoInfoData.video_link);
-                });
             }
-            function removeAllElements() {
-            const otherList = document.getElementsByClassName('other-video')[0];
-
-            const elementsToRemove = Array.from(otherList.children);
-
-            elementsToRemove.forEach((element) => {
-                otherList.removeChild(element);
-            });
-            }
+            let end = 0;
             function rendering() {
                 const otherList = document.getElementsByClassName('other-video')[0];
-                for (let i = 0; i < cnt; i++) {
+                otherList.innerHTML = "";
+                for (let i = end; i < cnt; i++) {
                     otherList.innerHTML += `
                 <a href="#">
                     <div class="other-video-thumbnail" onclick="redirectToOtherVideo(event)">
@@ -249,28 +236,26 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                 </a>
                 `;
+                end += 1;
                 }
             }
             await requestOtherListApi();
             await getAllListInfo();
             rendering();
-
-            document.getElementById('tag-all').addEventListener('click', async () => {
+            document.getElementById('button1').addEventListener('click', async () => {
+                try {
+                    await getAllListInfo();
+                    rendering();
+                } catch (error) {
+                    console.error('Video List API call failed.');
+                }
+                });
+            document.getElementById('button2').addEventListener('click', async () => {
             try {
-                await requestOtherListApi();
-                await getAllListInfo();
-                rendering();
-            } catch (error) {
-                console.error('API 호출에 실패했습니다:', error);
-            }
-            });
-            document.getElementById('tag-name').addEventListener('click', async () => {
-            try {
-                await requestOtherListApi();
                 await getOtherListInfo();
                 rendering();
             } catch (error) {
-                console.error('API 호출에 실패했습니다:', error);
+                console.error('Video List API call failed.');
             }
             });
         }
@@ -320,6 +305,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 });
+//우측 사이드 버튼 클릭 시 색상변경
+function changeBackground(clickedButton) {
+    const buttons = document.querySelectorAll('.button');
+    buttons.forEach(button => {
+        if (button.id === 'button' + clickedButton) {
+            button.style.backgroundColor = 'white';
+            button.style.color = "black";
+        } else {
+            button.style.backgroundColor = 'black';
+            button.style.color = "white";
+        }
+    });
+}
 
 const subscribeButton = document.getElementsByClassName('subscribers')[0];
 
