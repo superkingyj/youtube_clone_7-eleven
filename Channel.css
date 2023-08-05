@@ -24,10 +24,10 @@ body > :not(header) {
 }
 .channel-title{
     display: flex;
-    padding: 3% 5% 3% 5%;
+    padding: 2% 5% 2% 5%;
     align-items: flex-start;
-    justify-content: space-between;
-    gap: 699px;
+    justify-content: center;
+    gap: 35%;
 }
 
 .channel-title, .channel-toolbar{
@@ -36,8 +36,9 @@ body > :not(header) {
 .profileInfo{
     display: flex;
     align-items: center;
-
+    justify-content: center;
 }
+
 .profileInfo img{
     width:80px;
     height:80px;
@@ -47,7 +48,6 @@ body > :not(header) {
 /*구독 버튼*/
 .subscribers{
     width: 124px;
-    padding: 22px 4px;
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
@@ -56,10 +56,10 @@ body > :not(header) {
     font-size: 24px;
     margin-left:15px;
 }
-#subscribesIcon{
+/* #subscribesIcon{
     margin-right:45px;
     margin-top : 22px;
-}
+} */
 
 .channel-main{
     overflow: hidden;
@@ -75,18 +75,24 @@ button {
 }
 
 .channel-toolbar{
-    display: flex;
+    display: grid;
     align-items: center;
     justify-content: center;
+    /* padding-left: 17vw; */
 }
 
-.channel-toolbar button :hover{
-    background-color: gray;
+.toolbars button :hover{
+    /* background-color: gray; */
+    font-weight: bold;
 }
+
 /* small-video 부분 */
 .small-video {  
     display: flex;
-    padding: 24px 287px 24px 65px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3%;
+    /* padding: 24px 287px 24px 65px; */
   }
   
 .youtube-player {
@@ -104,12 +110,13 @@ button {
     align-items: flex-start;
     margin-left: 24px;
 }
+
 .title{
     color: var(--white-color, #FFF);
     font-variant-numeric: stacked-fractions;
     font-feature-settings: 'hlig' on, 'dlig' on;
     font-family: Roboto;
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -151,7 +158,21 @@ button {
 /* TODO */
 .toolbars{
     display: flex;
-    /* margin-left: */
+    width: 60%;
+}
+
+.toolbars button {
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    padding: 10px;
+    width: 100px;
+    height: 50px;
+}
+
+.toolbar-search button {
+    width: 50px;
+    padding-left: 0;
 }
 
 #searchBar input{
@@ -167,13 +188,17 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 }
+
 .play-list{
-    padding: 0px 65px;
+    /* padding: 0px 65px; */
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center ;
 }
+
 #play-list-nav{
     display: flex;
     padding-top: 8px;
