@@ -165,7 +165,7 @@ function appendItemsToMain(data) {
         <input type="hidden" name="id" value="${data.video_id}">\n 
         <input type="hidden" name="channel" value="${data.video_channel}">\n                        
     </form>\n
-    <div onmouseover="playVideo(event)" onmouseout="stopVideo(event)">
+    <div class='thumbnail-and-video' onmouseover="playVideo(event)" onmouseout="stopVideo(event)">
         <img class="thumbnail" src=${data.image_link} class="video-${data.video_id}">\n
         <video src=${data.video_link} preload="metadata" style="display:none" controls="true" autoplay muted></video>
     </div>
@@ -191,6 +191,11 @@ function appendItemsToMain(data) {
             document.getElementById("channel-Form-" + data.video_id).submit()
         });
     });
+    document.querySelectorAll('.thumbnail-and-video').forEach((element) => {
+        element.addEventListener("click", function () {
+            document.getElementById("video-Form-" + data.video_id).submit();
+        });
+    })
 }
 
 //검색창
