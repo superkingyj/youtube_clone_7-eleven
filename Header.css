@@ -15,7 +15,7 @@ header{
     align-items: center;
     justify-content: space-between;
     color: #fff;
-    padding: 2px;
+    /* padding: 2px; */
     
 }
 .top-left-icons .hamburger{
@@ -35,9 +35,10 @@ header{
     margin-bottom: 7px;
     background: #121212;
     border: 1px solid #303030;
+    padding-left:10px;
     border-radius: 2px;
-    padding: 0;
 }
+
 #searchInput{
     width: 426px;
     height: 40px;

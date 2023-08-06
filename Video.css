@@ -465,6 +465,13 @@ nav{
     height: 100%;
 }
 
+.thumbnail-img video{
+    width: 168px;
+    height: 94px;
+    padding-bottom: 0%;
+    overflow: hidden;
+}
+
 /*0727 html : text부분 3단계로 분리(제목, 채널명, 날짜/조회수)*/
 .other-video .other-video-text{
     display: flex;

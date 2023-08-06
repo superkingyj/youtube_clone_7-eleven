@@ -334,14 +334,43 @@ function stopVideo(event) {
 }
 
 // top-menu 슬라이드
-// let currentPosition = 0;
-// function slideTags() {
-//     const tags = document.querySelector('.top-menu-item ul');
+let currentPosition = 0;
+function slideLeft() {
+    const tags = document.querySelector('.top-menu-item ul');
+    currentPosition -= 200;
+    tags.style.transform = `translateX(${currentPosition}px)`;
+}
 
-//     currentPosition -= 200;
+// 필터 작동 함수
+let currentFilterIndex = 0;
+const filtersPerPage = 10;
 
-//     tags.style.transform = `translateX(${currentPosition}px)`;
-// }
+function showFilters() {
+    const filterButtons = document.querySelectorAll('.filteringItems');
+    filterButtons.forEach((button, index) => {
+        if (index >= currentFilterIndex && index < currentFilterIndex + filtersPerPage) {
+            button.classList.remove('hidden');
+            setTimeout(() => {
+                button.style.transform = 'translateX(0)';
+            }, index * 1);
+        } else {
+            button.classList.add('hidden');
+            button.style.transform = 'translateX(-30px)';
+        }
+    });
+}
+function showNextFilters() {
+    const totalFilters = document.querySelectorAll('.filteringItems').length;
+    if (currentFilterIndex + filtersPerPage < totalFilters) {
+        currentFilterIndex += filtersPerPage;
+        showFilters();
+    }
+}
 
-// const top_menu_button = document.querySelector('.top-menu-icon');
-// top_menu_button.addEventListener('click', slideTags);
+function showPreviousFilters() {
+    if (currentFilterIndex - filtersPerPage >= 0) {
+        currentFilterIndex -= filtersPerPage;
+        showFilters();
+    }
+}
+showFilters();

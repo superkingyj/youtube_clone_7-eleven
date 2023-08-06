@@ -58,14 +58,21 @@
     flex-direction: column;     
     align-items: center;    
     justify-content: flex-start;
+    height: auto;
 }
-.sidebar-text {    
+
+.sidebar-text {   
     font-family: 'Roboto';
+    font-size: 14.5px;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    /* font-weight: lighter; */
 }
 
 #show-more-sub a{
     width: 224px;
-    height: 40px;
+    height: 48.09px;
     display: flex; /* 링크 안의 내용들을 가운데로 정렬하기 위해 추가 */
     align-items: center; /* 링크 안의 내용들을 수직 가운데 정렬하기 위해 추가 */     
     padding-left: 55px;

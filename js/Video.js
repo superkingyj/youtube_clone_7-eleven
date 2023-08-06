@@ -95,9 +95,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 //태그가 없는 경우 버튼 삭제
                 const buttonElement = document.querySelector(".item4 button");
                 if (data_video.video_tag[1]) {
-                  buttonElement.textContent = data_video.video_tag[1];
+                    buttonElement.textContent = data_video.video_tag[1];
                 } else {
-                  buttonElement.style.display = "none";
+                    buttonElement.style.display = "none";
                 }
 
                 currChannel = data_video.video_channel;
@@ -177,12 +177,12 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             async function getAllListInfo() {
                 let imageCounter = 0;
-            
+
                 for (const item of otherListJson) {
                     if (imageCounter >= 10) {
                         break;
                     }
-            
+
                     cnt++;
                     targetTitleList.push(item.video_title);
                     targetVideoIdList.push(item.video_id);
@@ -194,8 +194,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     const videoInfoData = await response.json();
                     targetThumbnailList.push(videoInfoData.image_link);
                     targetVideoLinkList.push(videoInfoData.video_link);
-            
-                    imageCounter++; 
+
+                    imageCounter++;
                 }
             }
             async function getOtherListInfo() {
@@ -240,8 +240,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     otherList.innerHTML += `
                 <a href="#">
                     <div class="other-video-thumbnail" onclick="redirectToOtherVideo(event)">
-                        <span class="thumbnail-img">
+                        <span class="thumbnail-img" onmouseover="playVideo(event)" onmouseout="stopVideo(event)">
                             <img src="${targetThumbnailList[i]}" data-video-id="${targetVideoIdList[i]}" data-channel-name="${targetChannelList[i]}"/>
+                            <video src="${targetVideoLinkList[i]}" preload="metadata" style="display:none" controls="true" autoplay muted></video>
                         </span>
                     </div>
                     <div class="other-video-text">
@@ -253,43 +254,43 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                 </a>
                 `;
-                end += 1;
+                    end += 1;
                 }
             }
             await requestOtherListApi();
             await getAllListInfo();
             rendering();
             document.getElementById('button1').addEventListener('click', async () => {
-            try {
-                await getAllListInfo();
-                rendering();
-            } catch (error) {
-                console.error('API 호출에 실패했습니다:', error);
-            }
+                try {
+                    await getAllListInfo();
+                    rendering();
+                } catch (error) {
+                    console.error('API 호출에 실패했습니다:', error);
+                }
             });
             document.getElementById('button2').addEventListener('click', async () => {
-            try {
-                await getOtherListInfo();
-                rendering();
-            } catch (error) {
-                console.error('API 호출에 실패했습니다:', error);
-            }
+                try {
+                    await getOtherListInfo();
+                    rendering();
+                } catch (error) {
+                    console.error('API 호출에 실패했습니다:', error);
+                }
             });
             document.getElementById('button3').addEventListener('click', async () => {
-            try {
-                await getOtherTagInfo(0);
-                rendering();
-            } catch (error) {
-                console.error('API 호출에 실패했습니다:', error);
-            }
+                try {
+                    await getOtherTagInfo(0);
+                    rendering();
+                } catch (error) {
+                    console.error('API 호출에 실패했습니다:', error);
+                }
             });
             document.getElementById('button4').addEventListener('click', async () => {
-            try {
-                await getOtherTagInfo(1);
-                rendering();
-            } catch (error) {
-                console.error('API 호출에 실패했습니다:', error);
-            }
+                try {
+                    await getOtherTagInfo(1);
+                    rendering();
+                } catch (error) {
+                    console.error('API 호출에 실패했습니다:', error);
+                }
             });
         }
 
@@ -635,4 +636,30 @@ function redirectToOtherVideo(event) {
     const targetVideoId = event.target.getAttribute('data-video-id');
     const targetChannelName = event.target.getAttribute('data-channel-name');
     window.location.href = `./Video.html?id=${targetVideoId}&channel=${targetChannelName}`;
+}
+
+// 비디오 재생 이벤트
+function playVideo(event) {
+    console.log("마우스 호버함");
+    setTimeout(() => {
+        const videoElement = event.target.parentElement.querySelector('video');
+        const thumbnailImg = event.target.parentElement.querySelector('img');
+        console.log(videoElement);
+        console.log(thumbnailImg);
+        thumbnailImg.style.display = "none";
+        videoElement.style.display = "block";
+        videoElement.play();
+    }, 300);
+}
+
+function stopVideo(event) {
+    console.log("마우스 땜");
+    setTimeout(() => {
+        const videoElement = event.target.parentElement.querySelector('video');
+        const thumbnailImg = event.target.parentElement.querySelector('img');
+        videoElement.style.display = "none";
+        thumbnailImg.style.display = "block";
+        videoElement.pause();
+        videoElement.currentTime = 0;
+    }, 300); // 0.3초 딜레이 추가 (300ms)
 }
