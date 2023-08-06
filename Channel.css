@@ -101,9 +101,9 @@ button {
     color: #AAAAAA;
 }
 
-.toolbars button :hover{
+.toolbars button:hover{
     /* background-color: gray; */
-    font-weight: bold;
+    border-bottom: 2px solid #ffffff;
 }
 
 /* small-video 부분 */
@@ -308,7 +308,7 @@ button :hover{
 #userID, #userview, #usertime{
     color: var(--gray-color, #AAA);
     font-family: Roboto;
-    font-size: 12px;
+    font-size: 13px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
