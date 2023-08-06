@@ -10,32 +10,52 @@ section{
     width: 100%;
 }
 
-main {
-    display: flex;
-    flex-wrap: wrap;
-}
 /* 전체 버튼 */
 .filtering-buttons {
     overflow: hidden;
     white-space: nowrap;
     position: relative;
 }
+
+.sidebar-body.active{
+    width: 240px;
+    height: 100vh;
+    transform: translatex(-240px);
+    transition: transform 0.5s ease-in-out;
+}
+
 nav{
     background: var(--background-color, #212121);
     height: 56px;
     flex-shrink: 0;
     overflow: hidden;
-    width: auto;
-    padding-left: 20px;
     display: flex;
+    border-top: 0.5px solid #303030;
+    border-bottom: 2px solid #303030;
+    width: 100vw;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
+    transform: translatex(0px);
+    transition: transform 0.5s ease-in-out;
+    position: fixed;
+    z-index: 1;
 }
+
+nav.active {
+    width: 100vw;
+    height: 56px;
+    transform: translatex(-240px);
+    transition: transform 0.5s ease-in-out;
+}
+
 /* 슬라이드 아이콘 <, > 스타일 */
 .slideIcon{
     font-size: 23px;
     font-weight: bold;
     border: none;
     color : white;
-    border-radius: 24px;
+    border-radius: 240px;
     border: 0.3px solid #212121;
     background: #212121;
 
@@ -68,9 +88,13 @@ nav{
 .filteringItems:hover {
     background-color: white;
     color:black /* 버튼에 마우스를 올렸을 때 배경색 변경 */
-  }
+}
 
-  .filtering-buttons button:nth-child(2){
+.filtering-buttons{
+    align-items: center;
+}
+
+.filtering-buttons button:nth-child(2){
     background-color: white;
     color : black;
 }
@@ -84,18 +108,6 @@ nav{
 
 }
 
-
-/* 메인의 네비 부분 상단 구분짓는 border 처리 */
-.video-container nav{
-    display: flex;
-    border-top: 2px solid #303030;
-    border-bottom: 2px solid #303030;
-    padding-top: 10px;
-    width: auto;
-}
-
-
-
 /* section 안의 태그들을 위아래가 아닌 좌우로 정렬하게 함 */
 .home-body{
     display: flex;
@@ -103,16 +115,15 @@ nav{
 
 
 /* 비디오 span 태그들을 꼭 일렬로만이 아닌 해당 태그 공간이 차면 아래로 내려 갈수 있게 조절 */
-#mainContainer {   
+#mainContainer { 
+    position: fixed;  
     display: flex; 
     flex-wrap: wrap;
     margin-left: 30px;
     margin-right: 30px;  
-    margin-top: 15px; 
-    padding-top: 10px;        
+    margin-top: 65px; 
+    padding-top: 20px;  
 }
-  
-
 /* 비디오 컨텐츠들 CSS */
 
 #mainContainer span{    
