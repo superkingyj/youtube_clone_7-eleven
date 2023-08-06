@@ -75,10 +75,30 @@ button {
 }
 
 .channel-toolbar{
-    display: grid;
+    /* display: grid;
+    align-items: center;
+    justify-content: center; */
+    /* padding-left: 17vw; */
+    /* position: fixed; */
+    display: flex;
+    height: 3em;
+    padding-left: 20%;
+    padding-right: 20%;
+    background-color: #212121
+}
+
+.channel-toolbar button {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* padding-left: 17vw; */
+    padding: 5px;
+    font-size: 0.875em;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    color: #AAAAAA;
 }
 
 .toolbars button :hover{
@@ -155,10 +175,20 @@ button {
     margin-left:10px;
 }
 
+#search-in-channel{
+    border: 0;
+    outline: 0;
+    padding: 0;
+}
+
 /* TODO */
 .toolbars{
+    height: auto;
     display: flex;
-    width: 60%;
+    align-items: center;
+    /* justify-content: center; */
+    width: 100vw;
+    margin: 10px;
 }
 
 .toolbars button {
@@ -166,7 +196,7 @@ button {
     color: white;
     font-size: 14px;
     padding: 10px;
-    width: 100px;
+    width: 1a;
     height: 50px;
 }
 
@@ -176,6 +206,7 @@ button {
 }
 
 #searchBar input{
+    position: absolute;
     width: 202px;
     height: 47px;
     flex-shrink: 0;
