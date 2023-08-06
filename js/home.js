@@ -326,11 +326,22 @@ function stopVideo(event) {
     setTimeout(() => {
         const videoElement = event.target.parentElement.querySelector('video');
         const thumbnailImg = event.target.parentElement.querySelector('img');
-        console.log(videoElement);
-        console.log(thumbnailImg);
         videoElement.style.display = "none";
         thumbnailImg.style.display = "block";
         videoElement.pause();
         videoElement.currentTime = 0;
     }, 300); // 0.3초 딜레이 추가 (300ms)
 }
+
+// top-menu 슬라이드
+// let currentPosition = 0;
+// function slideTags() {
+//     const tags = document.querySelector('.top-menu-item ul');
+
+//     currentPosition -= 200;
+
+//     tags.style.transform = `translateX(${currentPosition}px)`;
+// }
+
+// const top_menu_button = document.querySelector('.top-menu-icon');
+// top_menu_button.addEventListener('click', slideTags);
