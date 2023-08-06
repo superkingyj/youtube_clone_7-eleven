@@ -157,7 +157,10 @@ postData(getChannelVideo + querys.channel).then((data) => {
                 <input type="hidden" name="id" value="${data.video_id}">
                 <input type="hidden" name="channel" value="${data.video_channel}">
             </form>
-            <div class="xsmall-thumbnail"><img id="${data.video_id}" src="${data.image_link}"></div>
+            <div class="xsmall-thumbnail" onmouseover="playVideo(event)" onmouseout="stopVideo(event)">
+                <img id="${data.video_id}" src="${data.image_link}">
+                <video src="${data.video_link}" preload="metadata" style="display:none" controls="true" autoplay muted></video>
+            </div>
             <div class="xsmall-desc">
                 <div id="title">${data.video_title}</div>                    
                 <div id="userview">${formatNumber(data.views)} . ${daysPassed}일전</div>
@@ -352,7 +355,10 @@ postData(getChannelVideo + querys.channel).then((data) => {
                 <input type="hidden" name="id" value="${data.video_id}">
                 <input type="hidden" name="channel" value="${data.video_channel}">
             </form>
-            <div class="xsmall-thumbnail"><img id="${data.video_id}" src="${data.image_link}"></div>
+            <div class="xsmall-thumbnail" onmouseover="playVideo(event)" onmouseout="stopVideo(event)">
+                <img id="${data.video_id}" src="${data.image_link}">
+                <video src="${data.video_link}" preload="metadata" style="display:none" controls="true" autoplay muted></video>
+            </div>
             <div class="xsmall-desc">
                 <div id="title">${data.video_title}</div>                    
                 <div id="userview">${formatNumber(data.views)} . ${daysPassed}일전</div>
@@ -376,3 +382,29 @@ postData(getChannelVideo + querys.channel).then((data) => {
         });
     });
 });
+
+// 비디오 재생 이벤트
+function playVideo(event) {
+    console.log("마우스 호버함");
+    setTimeout(() => {
+        const videoElement = event.target.parentElement.querySelector('video');
+        const thumbnailImg = event.target.parentElement.querySelector('img');
+        console.log(videoElement);
+        console.log(thumbnailImg);
+        thumbnailImg.style.display = "none";
+        videoElement.style.display = "block";
+        videoElement.play();
+    }, 300);
+}
+
+function stopVideo(event) {
+    console.log("마우스 땜");
+    setTimeout(() => {
+        const videoElement = event.target.parentElement.querySelector('video');
+        const thumbnailImg = event.target.parentElement.querySelector('img');
+        videoElement.style.display = "none";
+        thumbnailImg.style.display = "block";
+        videoElement.pause();
+        videoElement.currentTime = 0;
+    }, 300); // 0.3초 딜레이 추가 (300ms)
+}

@@ -265,7 +265,6 @@ button :hover{
 }
 
 
-
 .xsmall-video{
     display: flex;
     width: 214px;
@@ -274,6 +273,14 @@ button :hover{
     align-items: flex-start;
     margin-right : 5px;
 }
+
+.xsmall-thumbnail video{
+    width: 214px;
+    height: auto;
+    padding-bottom: 0%;
+    overflow: hidden;
+}
+
 .xsmall-thumbnail{
     display: flex;
     width: 100%;
