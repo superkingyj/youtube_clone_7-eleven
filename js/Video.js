@@ -238,22 +238,24 @@ document.addEventListener("DOMContentLoaded", function () {
                 otherList.innerHTML = "";
                 for (let i = end; i < cnt; i++) {
                     otherList.innerHTML += `
-                <a href="#">
-                    <div class="other-video-thumbnail" onclick="redirectToOtherVideo(event)">
-                        <span class="thumbnail-img" onmouseover="playVideo(event)" onmouseout="stopVideo(event)">
-                            <img src="${targetThumbnailList[i]}" data-video-id="${targetVideoIdList[i]}" data-channel-name="${targetChannelList[i]}"/>
-                            <video src="${targetVideoLinkList[i]}" preload="metadata" style="display:none" controls="true" autoplay muted></video>
-                        </span>
+                    <div>
+                        <a href="./Video.html?id=${targetVideoIdList[i]}&channel=${targetChannelList[i]}">
+                            <div class="other-video-thumbnail">
+                                <span class="thumbnail-img" onmouseover="playVideo(event)" onmouseout="stopVideo(event)">
+                                    <img src="${targetThumbnailList[i]}"/>
+                                    <video src="${targetVideoLinkList[i]}" preload="metadata" style="display:none" controls="true" autoplay muted></video>
+                                </span>
+                            </div>
+                        </a>
+                        <div class="other-video-text">
+                            <span class="thumnail-text">
+                                <span id="thumnail-title" data-video-id="${targetVideoIdList[i]}" data-channel-name="${targetChannelList[i]}" onclick="redirectToOtherVideo(event)">${targetTitleList[i]}</span>
+                                <span id="thumnail-channel" data-channel-name="${targetChannelList[i]}" onclick="redirectToChannel(event)">${targetChannelList[i]}</span>
+                                <span id="thumnail-views">${targetViewAndDateList[i]}</span>
+                            </span>
+                        </div>
                     </div>
-                    <div class="other-video-text">
-                        <span class="thumnail-text">
-                            <span id="thumnail-title" data-video-id="${targetVideoIdList[i]}" data-channel-name="${targetChannelList[i]}" onclick="redirectToOtherVideo(event)">${targetTitleList[i]}</span>
-                            <span id="thumnail-channel" data-channel-name="${targetChannelList[i]}" onclick="redirectToChannel(event)">${targetChannelList[i]}</span>
-                            <span id="thumnail-views">${targetViewAndDateList[i]}</span>
-                        </span>
-                    </div>
-                </a>
-                `;
+                    `;
                     end += 1;
                 }
             }
@@ -634,7 +636,10 @@ function redirectToChannel(event) {
 // 다른 비디오 화면으로 이동
 function redirectToOtherVideo(event) {
     const targetVideoId = event.target.getAttribute('data-video-id');
+    console.log(targetVideoId);
+    console.log(event.target);
     const targetChannelName = event.target.getAttribute('data-channel-name');
+    console.log(targetChannelName);
     window.location.href = `./Video.html?id=${targetVideoId}&channel=${targetChannelName}`;
 }
 
