@@ -162,7 +162,7 @@ postData(getChannelVideo + querys.channel).then((data) => {
                 <video src="${data.video_link}" preload="metadata" style="display:none" controls="true" autoplay muted></video>
             </div>
             <div class="xsmall-desc">
-                <div id="title">${data.video_title}</div>                    
+                <div id="title" data-video-id="${data.video_id}">${data.video_title}</div>                    
                 <div id="userview">${formatNumber(data.views)} . ${daysPassed}일전</div>
             </div>
             `;
@@ -179,6 +179,14 @@ postData(getChannelVideo + querys.channel).then((data) => {
         element.addEventListener("click", function (event) {
             console.log(event.target)
             document.getElementById("video-Form-" + event.target.id).submit();
+        });
+    });
+
+    document.querySelectorAll("#title").forEach((element) => {
+        console.log(element);
+        element.addEventListener("click", function (event) {
+            console.log(event.target)
+            document.getElementById("video-Form-" + event.target.getAttribute("data-video-id")).submit();
         });
     });
 })

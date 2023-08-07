@@ -312,6 +312,7 @@ button :hover{
     align-items: flex-start;
 }
 #title{
+    cursor: pointer;
     display: flex;
     padding: 8px 0px;
     align-items: flex-start;
