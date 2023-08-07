@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="Sidebar.css" />
   <link rel="stylesheet" href="./common/common.css" />
   <link rel="stylesheet" href="Home.css" />
+  <link rel="icon" href="./img/home/7-eleven-tab.png"/>
   <title>Home</title>
 </head>
 
@@ -89,9 +90,11 @@
     <section class="video-container">
       <!--전체,실시간 등 item 항목 바-->
       <nav>
+        <button class="slideIcon" id="left" onclick="showPreviousFilters()" type="button">
+          <img src="./img/home/slide-left.svg">
+        </button>
         <div class="filtering-buttons">
           <!-- 수정 -->
-          <button class="slideIcon" id="left"onclick="slideLeft()" type="button"><</button>
           <button class="filteringItems" onclick="">전체</button>
           <button class="filteringItems" onclick="">게임</button>
           <button class="filteringItems" onclick="">음악</button>
@@ -105,8 +108,10 @@
           <button class="filteringItems" onclick="">만화영화</button>
           <button class="filteringItems" onclick="">최근에 업로드된 동영상</button>
           <button class="filteringItems" onclick="">새로운 맞춤 동영상</button>
-          <button class="slideIcon" id="right" onclick="slideRight()" type="button">></button>
         </div>
+        <button class="slideIcon" id="right" onclick="showNextFilters()" type="button">
+          <img src="./img/home/slide-right.svg">
+        </button>
       </nav>
       <!--동영상 목록 구역-->
       <main id="mainContainer"></main>

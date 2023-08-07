@@ -1,14 +1,19 @@
 const toggleContent = document.querySelector('.sidebar-body');
 const sections = document.querySelector('section');
+const nav = document.querySelector('nav');
 
 async function hamburger() {
   // 사이드바의 토글 기능을 구현합니다.
-  if (toggleContent.style.display === 'none') {
-    toggleContent.style.display = 'block'; // 사이드바를 나타냅니다.
-    sections.style.paddingLeft = "240px"; // 메인 컨텐츠의 왼쪽 여백을 조정하여 사이드바가 보이도록 합니다.
+  if (toggleContent.classList.contains('active')) {
+    // toggleContent.style.display = 'block'; // 사이드바를 나타냅니다.
+    toggleContent.classList.toggle('active');
+    nav.classList.toggle('active');
+    // nav.style.paddingLeft = "240px"; // 메인 컨텐츠의 왼쪽 여백을 조정하여 사이드바가 보이도록 합니다.
   } else {
-    toggleContent.style.display = 'none'; // 사이드바를 숨깁니다.
-    sections.style.paddingLeft = "0px"; // 메인 컨텐츠의 왼쪽 여백을 초기화합니다.
+    // toggleContent.style.display = 'none'; // 사이드바를 숨깁니다.
+    toggleContent.classList.toggle('active');
+    nav.classList.toggle('active');
+    // nav.style.paddingLeft = "0px"; // 메인 컨텐츠의 왼쪽 여백을 초기화합니다.
   }
 }
 
@@ -34,7 +39,7 @@ function redirectTo7() {
 }
 
 //검색창 버튼
-const searchTextvalue = document.querySelector("#searchInput"); 
+const searchTextvalue = document.querySelector("#searchInput");
 function searchHome() {
   const searchText = searchTextvalue.value.trim(); // 검색어를 얻어옴 (양쪽 공백 제거)
   if (searchText !== "") {

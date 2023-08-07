@@ -147,7 +147,9 @@ function appendItemsToMain(data) {
         const daysPassed = timeDifferenceInMilliseconds / (1000 * 60 * 60 * 24);
 
         return Math.floor(daysPassed); // 소수점 이하는 버림하여 정수값으로 반환
-    } async function channelData(data) {
+    }
+
+    async function channelData(data) {
         try {
             const requestOptions = {
                 method: 'POST',
@@ -176,9 +178,12 @@ function appendItemsToMain(data) {
         <input type="hidden" name="id" value="${data.video_id}">\n 
         <input type="hidden" name="channel" value="${data.video_channel}">\n                        
     </form>\n
-    <img src=${data.image_link} class="video-${data.video_id}">\n
+    <div class='thumbnail-and-video' onmouseover="playVideo(event)" onmouseout="stopVideo(event)">
+        <img class="thumbnail" src=${data.image_link} class="video-${data.video_id}">\n
+        <video src=${data.video_link} preload="metadata" style="display:none" controls="true" autoplay muted></video>
+    </div>
     <div class='profile-and-desc'>\n
-        <img class="channel-${data.video_id}" src="${data.profile_image}" >\n
+        <img class="channel-${data.video_id}" src="${data.profile_image}">\n
         <div>\n
             <p class="video-${data.video_id}">${data.video_title}</p>\n
             <p class="channel-${data.video_id}">${data.video_channel}</p>\n
@@ -199,6 +204,11 @@ function appendItemsToMain(data) {
             document.getElementById("channel-Form-" + data.video_id).submit()
         });
     });
+    document.querySelectorAll('.thumbnail-and-video').forEach((element) => {
+        element.addEventListener("click", function () {
+            document.getElementById("video-Form-" + data.video_id).submit();
+        });
+    })
 }
 
 //검색창
@@ -267,13 +277,13 @@ async function homeEnterkey(event) {
 
 const searchText = localStorage.getItem("searchText"); // localStorage에서 검색어 가져오기
 if (searchText) {
-    searchTextbox.value=searchText;
+    searchTextbox.value = searchText;
     search(searchText); // 검색 함수 호출
     localStorage.removeItem("searchText"); // 검색어가 있으면 검색 결과를 보여주기 위해 searchResult() 함수 호출
-    }
-    else{
-        fetchData();
-    }
+}
+else {
+    fetchData();
+}
 
 //음성 인식 검색 기능
 let recognition;
@@ -307,3 +317,69 @@ function startRecord() {
 const searchConsole1 = document.getElementsByClassName("mic-icon");
 searchConsole1[0].addEventListener("click", startRecord);
 window.addEventListener("load", availabilityFunc);
+
+// 비디오 재생 이벤트
+function playVideo(event) {
+    setTimeout(() => {
+        const videoElement = event.target.parentElement.querySelector('video');
+        const thumbnailImg = event.target.parentElement.querySelector('img');
+        console.log(videoElement);
+        console.log(thumbnailImg);
+        thumbnailImg.style.display = "none";
+        videoElement.style.display = "block";
+        videoElement.play();
+    }, 300);
+}
+
+function stopVideo(event) {
+    setTimeout(() => {
+        const videoElement = event.target.parentElement.querySelector('video');
+        const thumbnailImg = event.target.parentElement.querySelector('img');
+        videoElement.style.display = "none";
+        thumbnailImg.style.display = "block";
+        videoElement.pause();
+        videoElement.currentTime = 0;
+    }, 300); // 0.3초 딜레이 추가 (300ms)
+}
+
+// top-menu 슬라이드
+let currentPosition = 0;
+function slideLeft() {
+    const tags = document.querySelector('.top-menu-item ul');
+    currentPosition -= 200;
+    tags.style.transform = `translateX(${currentPosition}px)`;
+}
+
+// 필터 작동 함수
+let currentFilterIndex = 0;
+const filtersPerPage = 10;
+
+function showFilters() {
+    const filterButtons = document.querySelectorAll('.filteringItems');
+    filterButtons.forEach((button, index) => {
+        if (index >= currentFilterIndex && index < currentFilterIndex + filtersPerPage) {
+            button.classList.remove('hidden');
+            setTimeout(() => {
+                button.style.transform = 'translateX(0)';
+            }, index * 1);
+        } else {
+            button.classList.add('hidden');
+            button.style.transform = 'translateX(-30px)';
+        }
+    });
+}
+function showNextFilters() {
+    const totalFilters = document.querySelectorAll('.filteringItems').length;
+    if (currentFilterIndex + filtersPerPage < totalFilters) {
+        currentFilterIndex += filtersPerPage;
+        showFilters();
+    }
+}
+
+function showPreviousFilters() {
+    if (currentFilterIndex - filtersPerPage >= 0) {
+        currentFilterIndex -= filtersPerPage;
+        showFilters();
+    }
+}
+showFilters();
