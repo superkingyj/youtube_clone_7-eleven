@@ -6,6 +6,7 @@ const videoUrl = "https://oreumi.appspot.com/video/getVideoInfo?video_id="
 // 정보를 가져오는 함수
 async function fetchData() {
     try {
+
         const response = await fetch(VideoList); //fetch함수로 API URL에 응답내용을 response 변수에 담는다
         const VideoList_data = await response.json(); //response 에 담긴 내용을 json형태로 VideoList_data에 담는다
         videoData(VideoList_data);
@@ -382,3 +383,87 @@ function showPreviousFilters() {
     }
 }
 showFilters();
+
+//필터링 버튼
+var VideoList_data =[];
+
+// fetchData 함수 안에서 영상 목록 데이터 가져오기
+async function fetchAndDisplayVideoList(endpoint) {
+    try {
+        const tagNav = document.getElementById("tagNav");
+        tagNav.innerHTML = ""; // 기존 버튼 초기화
+
+        const allButton = document.createElement("button");
+        allButton.innerText = "All";
+        allButton.id = "all";
+        allButton.className = "tagBtn selected";
+        allButton.addEventListener('click', onFilterButtonClick);
+        tagNav.appendChild(allButton);
+
+        VideoList_data = await fetchVideoList(endpoint);
+
+        const allTags = Array.from(new Set(VideoList_data.flatMap(video => video.video_tag)));
+        console.log(allTags); // 태그 리스트 출력
+
+        for (let i = 0; i < allTags.length; i++) {
+            const tagButton = document.createElement("button");
+            tagButton.innerText = allTags[i];
+            tagButton.id = allTags[i];
+            tagButton.className = "tagBtn";
+            tagButton.addEventListener('click', onFilterButtonClick);
+            tagNav.appendChild(tagButton);
+        }
+
+        displayFilteredVideos(VideoList_data);
+    } catch (error) {
+        console.error('비디오 목록 데이터를 가져오는 도중 오류 발생:', error);
+    }
+}
+
+async function filterVideos(tag) {
+    return VideoList_data.filter(video => video.video_tag.includes(tag));
+}
+
+async function displayFilteredVideos(videoList) {
+    const mainContainer = document.getElementById("mainContainer");
+    mainContainer.innerHTML = ""; // 기존 컨테이너 내용 초기화
+
+    for (const videoData of videoList) {
+        try {
+            const profileImage = await channelData(videoData.video_channel);
+            videoData.profile_image = profileImage.channel_profile;
+            appendItemsToMain(videoData);
+        } catch (error) {
+            console.error('채널 프로필 이미지 가져오기 실패:', error);
+        }
+    }
+}
+//navigator 버튼 이벤트 함수
+async function onFilterButtonClick(event) {
+    const tag = event.target.id;
+    const tagButtons = document.querySelectorAll('.tagBtn');
+    tagButtons.forEach(button => button.classList.remove('selected'));
+    event.target.classList.add('selected');
+
+    if (tag === "all") {
+        await displayFilteredVideos(VideoList_data);
+    } else {
+        const filteredVideos = await filterVideos(tag);
+        await displayFilteredVideos(filteredVideos);
+    }
+}
+// fetchVideoList 함수 수정
+async function fetchVideoList(endpoint) {
+    try {
+        const response = await fetch(endpoint);
+        const videoListData = await response.json();
+        return videoListData;
+    } catch (error) {
+        console.error('API 호출에 실패했습니다:', error);
+        return []; // 오류 발생 시 빈 배열 반환 또는 다른 처리
+    }
+}
+
+// 초기에 비디오 데이터를 가져오고 필터 버튼 생성 및 화면에 표시
+const VideoListEndpoint = 'https://oreumi.appspot.com/video/getVideoList';
+fetchAndDisplayVideoList(VideoListEndpoint);
