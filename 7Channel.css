@@ -509,6 +509,16 @@ header{
 }
 .sidebar-text {    
     font-family: 'Roboto';
+    color: rgb(58, 17, 22);
+    font-weight: bold;
+    /* display: inline; */
+}
+#show-more-sub a span{
+    display: inline
+}
+#show-more-sub a span img{
+    vertical-align: middle; /* 이미지를 텍스트와 수직 정렬합니다. (선택사항) */
+    margin-right: 20px; /* 이미지 오른쪽에 10px의 마진을 추가하여 텍스트와 간격을 띄웁니다. */
 }
 
 #show-more-sub a{
