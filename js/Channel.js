@@ -58,6 +58,21 @@ async function getData(videoUrl) {
     }
 }
 
+function formatTimePeriod(x) {
+    if (x < 7) {
+        return x + "일 전";
+    } else if (x >= 7 && x < 30) {
+        const weeks = Math.floor(x / 7);
+        return weeks + "주 전";
+    } else if (x >= 30 && x < 365) {
+        const months = Math.floor(x / 30);
+        return months + "달 전";
+    } else {
+        const years = Math.floor(x / 365);
+        return years + "년 전";
+    }
+}
+
 // POST API를 가져오는 함수(getChannelInfo,getChannelVideo)
 async function postData(channelUrl) {
     try {
@@ -81,24 +96,23 @@ querys = getQueryParams()
 
 // class="small-video" 내용들(영상,DESC)
 if (querys.id) {
-    getData(getVideoInfo + querys.id).then((data) => {
 
+    getData(getVideoInfo + querys.id).then((data) => {
         document.querySelector(".youtube-player").innerHTML = `
         <video width="640" height"320" src="${data.video_link}" controls></video>
         `;
         document.querySelector(".video-desc .title").textContent = data.video_title;
-        document.querySelector(".video-desc .time").textContent = formatNumber(data.views) + " . " + daysPassedSinceDate(data.upload_date) + "일전";
+        document.querySelector(".video-desc .time").textContent = formatNumber(data.views) + ` Views · ${formatTimePeriod(daysPassedSinceDate(data.upload_date))}`;
         document.querySelector(".video-desc .description").textContent = data.video_detail;
     });
 }
 else {
     getData(getVideoInfo + "0").then((data) => {
-
         document.querySelector(".youtube-player").innerHTML = `
         <video width="640" height"320" src="${data.video_link}" controls></video>
         `;
         document.querySelector(".video-desc .title").textContent = data.video_title;
-        document.querySelector(".video-desc .time").textContent = formatNumber(data.views) + " . " + daysPassedSinceDate(data.upload_date) + "일전";
+        document.querySelector(".video-desc .time").textContent = formatNumber(data.views) + ` Views · ${formatTimePeriod(daysPassedSinceDate(data.upload_date))}`;
         document.querySelector(".video-desc .description").textContent = data.video_detail;
     });
 }
@@ -145,7 +159,6 @@ postData(getChannelVideo + querys.channel).then((data) => {
     let play_cnt = 0;
     const promises = data.map((item) => {
         return getData(getVideoInfo + item.video_id).then((data) => {
-            daysPassed = daysPassedSinceDate(data.upload_date);
             const div_video = document.createElement("div");
             div_video.className = "xsmall-video";
             div_video.innerHTML = `
@@ -163,7 +176,7 @@ postData(getChannelVideo + querys.channel).then((data) => {
             </div>
             <div class="xsmall-desc">
                 <div id="title" data-video-id="${data.video_id}">${data.video_title}</div>                    
-                <div id="userview">${formatNumber(data.views)} . ${daysPassed}일전</div>
+                <div id="userview">${formatNumber(data.views)} Views · ${formatTimePeriod(daysPassedSinceDate(data.upload_date))}</div>
             </div>
             `;
             if (play_cnt < 5) {
@@ -351,7 +364,6 @@ searchDayElement.textContent = `Search On ${year}.${month}.${day}`;
 postData(getChannelVideo + querys.channel).then((data) => {
     const promises = data.map((item) => {
         return getData(getVideoInfo + item.video_id).then((data) => {
-            daysPassed = daysPassedSinceDate(data.upload_date);
             const div_video = document.createElement("div");
             div_video.className = "xsmall-video";
             div_video.innerHTML = `
@@ -369,7 +381,7 @@ postData(getChannelVideo + querys.channel).then((data) => {
             </div>
             <div class="xsmall-desc">
                 <div id="title">${data.video_title}</div>                    
-                <div id="userview">${formatNumber(data.views)} . ${daysPassed}일전</div>
+                <div id="userview">${formatNumber(data.views)} Views · ${formatTimePeriod(daysPassedSinceDate(data.upload_date))}</div>
             </div>
             `;
             return { data, div_video };

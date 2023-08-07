@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <section class="video-info">                    
                     <div class="video-title">${data_video.video_title}</div>
                     <div class="video-info-desc">
-                        <div class="info-text">${formatNumber(data_video.views)} · ${formatTimePeriod(daysPassed)}</div>
+                        <div class="info-text">${formatNumber(data_video.views)} Views · ${formatTimePeriod(daysPassed)}</div>
                         <div class="info-buttons">
                             <button class="likeBtn" onclick="likeAndDislikeBtnClick(event, 'video')">
                                 <img src="./img/video/like.svg" alt=""><span>0</span>

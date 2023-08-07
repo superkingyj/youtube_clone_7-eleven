@@ -187,7 +187,7 @@ function appendItemsToMain(data) {
         <div>\n
             <p class="video-${data.video_id}">${data.video_title}</p>\n
             <p class="channel-${data.video_id}">${data.video_channel}</p>\n
-            <p class="video-${data.video_id}"  >${formatNumber(data.views)} views · ${timevalue}</p> 
+            <p class="video-${data.video_id}"  >${formatNumber(data.views)} Views · ${timevalue}</p> 
         </div>\n
     </div>`;// videoData
     mainContainer.appendChild(span);
