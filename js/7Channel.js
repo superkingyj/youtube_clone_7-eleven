@@ -129,8 +129,7 @@ postData(getChannelInfo + querys.channel).then((data) => {
         var sub_list = JSON.parse(localStorage.getItem('sub')); 
         const normalizedArray = sub_list.map(normalize);
                           
-        if (normalizedArray.includes(normalize(subHtml))){
-            console.log(subHtml);   
+        if (normalizedArray.includes(normalize(subHtml))){            
             // SUBSCRIBES 회색으로 변경하고 사용자 정의 속성 (구독했음을 표시하는 속성) 추가
             subscribeButton.setAttribute('data-is-subscribed', 'true');
             subscribeButton.querySelector('img').style.filter = "grayscale(100%)"; 
@@ -173,8 +172,7 @@ postData(getChannelVideo + querys.channel).then((data) => {
     return Promise.all(promises);
 }).then((data) => {    
     document.querySelectorAll(".xsmall-video").forEach((element) => {           
-        element.addEventListener("click", function (event) {
-            console.log(event.target)                      
+        element.addEventListener("click", function (event) {            
             document.getElementById("video-Form-" + event.target.id).submit();
         });
     });
@@ -369,8 +367,7 @@ function filterVideos() {
             document.querySelector(".pop-video-card").appendChild(videoDataList[i].div_video);
         }
         document.querySelectorAll(".xsmall-video").forEach((element) => {           
-            element.addEventListener("click", function (event) {
-                console.log(event.target)                      
+            element.addEventListener("click", function (event) {                
                 document.getElementById("video-Form-" + event.target.id).submit();
             });
         });
@@ -491,7 +488,7 @@ var sub_list = JSON.parse(localStorage.getItem('sub'));
 const subscibers = document.getElementById('show-more-sub');
 //사이드바에 HTML 변수 추가
 
-console.log(sub_list)
+
 for (const list of sub_list){
     subscibers.insertAdjacentHTML('beforeend',list);
 }
