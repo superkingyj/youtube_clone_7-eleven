@@ -418,7 +418,8 @@ nav{
 .item1,
 .item2,
 .item3,
-.item4{
+.item4,
+.itme5{
     display: inline-block;
     padding: 0px 8px 0px 0px;
     flex-direction: column;
@@ -429,7 +430,8 @@ nav{
 .item1 button:hover,
 .item2 button:hover,
 .item3 button:hover,
-.item4 button:hover{
+.item4 button:hover,
+.item5 button:hover{
     background-color: grey;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     
@@ -448,7 +450,8 @@ nav{
 }
 .item2 button,
 .item3 button,
-.item4 button
+.item4 button,
+.item5 button
 {
     color : white;
     border-radius: 24px;

@@ -7,6 +7,21 @@ const dislikeDefDir = './img/video/Disliked';
 let currChannel = "";
 let currVideoId = -1;
 
+function formatTimePeriod(x) {
+    if (x < 7) {
+      return x + "일 전";
+    } else if (x >= 7 && x < 30) {
+      const weeks = Math.floor(x / 7);
+      return weeks + "주 전";
+    } else if (x >= 30 && x < 365) {
+      const months = Math.floor(x / 30);
+      return months + "달 전";
+    } else {
+      const years = Math.floor(x / 365);
+      return years + "년 전";
+    }
+}
+
 // URL에서 쿼리값을 추출하는 함수
 function getQueryParams() {
     var params = {};
@@ -53,13 +68,24 @@ videoUrl = "https://oreumi.appspot.com/video/getVideoInfo?video_id="
 channelUrl = "https://oreumi.appspot.com/channel/getChannelInfo?video_channel="
 videoListUrl = "https://oreumi.appspot.com/video/getVideoList"
 
+async function getData(videoUrl) {
+    try {
+        const response = await fetch(videoUrl);
+        const data_video = await response.json();
+
+        return data_video;
+    } catch (error) {
+        console.error('API 호출에 실패했습니다:', error);
+    }
+}
+
 // 기본 HTML틀 생성이 완료 된후 영상 불러오기
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {    
     var queryParams = getQueryParams();
     if (Object.keys(queryParams).length > 0) {
 
         //video 정보가 필요한 부분
-        async function videoData(data) {
+        async function videoData(data) {            
             try {
                 const response = await fetch(data);  // videoUrl 값으로 응답내용 호출
                 const data_video = await response.json();       // json 형태로 변경              
@@ -71,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <section class="video-info">                    
                     <div class="video-title">${data_video.video_title}</div>
                     <div class="video-info-desc">
-                        <div class="info-text">${formatNumber(data_video.views)} · ${daysPassed}일 전</div>
+                        <div class="info-text">${formatNumber(data_video.views)} · ${formatTimePeriod(daysPassed)}</div>
                         <div class="info-buttons">
                             <button class="likeBtn" onclick="likeAndDislikeBtnClick(event, 'video')">
                                 <img src="./img/video/like.svg" alt=""><span>0</span>
@@ -187,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     targetVideoIdList.push(item.video_id);
                     targetChannelList.push(item.video_channel);
                     targetViewAndDateList.push(
-                        item.views + " Views · " + daysPassedSinceDate(item.upload_date) + "일 전"
+                        formatNumber(item.views) + " Views · " + formatTimePeriod(daysPassedSinceDate(item.upload_date))
                     );
                     const response = await fetch(videoUrl + item.video_id);
                     const videoInfoData = await response.json();
@@ -204,8 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         targetTitleList.push(item.video_title);
                         targetVideoIdList.push(item.video_id);
                         targetChannelList.push(item.video_channel);
-                        targetViewAndDateList.push(item.views + " Views · " + daysPassedSinceDate(item.upload_date) + "일 전");
-
+                        targetViewAndDateList.push(formatNumber(item.views) + " Views · " + formatTimePeriod(daysPassedSinceDate(item.upload_date)));
                         // 썸네일 & 비디오 링크 가져오기
                         const response = await fetch(videoUrl + item.video_id);
                         const videoInfoData = await response.json();
@@ -221,7 +246,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         targetTitleList.push(item.video_title);
                         targetVideoIdList.push(item.video_id);
                         targetChannelList.push(item.video_channel);
-                        targetViewAndDateList.push(item.views + " Views · " + daysPassedSinceDate(item.upload_date) + "일 전");
+                        targetViewAndDateList.push(formatNumber(item.views) + " Views · " + formatTimePeriod(daysPassedSinceDate(item.upload_date)));
 
                         // 썸네일 & 비디오 링크 가져오기
                         const response = await fetch(videoUrl + item.video_id);
@@ -231,8 +256,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 }
             }
+
             let end = 0;
             function rendering() {
+                
                 const otherList = document.getElementsByClassName('other-video')[0];
                 otherList.innerHTML = "";
                 for (let i = end; i < cnt; i++) {
@@ -258,9 +285,49 @@ document.addEventListener("DOMContentLoaded", function () {
                     end += 1;
                 }
             }
+
+            
+            async function renderingAi(filter) {
+                
+                let end = 0;
+                let filteredVideoList = await filter;                                                                         
+                const otherList = document.getElementsByClassName('other-video')[0];
+                otherList.innerHTML = "";
+                for (aiList of filteredVideoList) {                    
+                    if(end < 5){
+                    var videoInfoAi = await getData(videoUrl+aiList.video_id.toString())
+                    let daysPassed = daysPassedSinceDate(aiList.upload_date);
+                    otherList.innerHTML += `
+                    <div>
+                        <a href="./Video.html?id=${videoInfoAi.video_id}&channel=${videoInfoAi.video_channel}">
+                            <div class="other-video-thumbnail">
+                                <span class="thumbnail-img" onmouseover="playVideo(event)" onmouseout="stopVideo(event)">
+                                    <img src="${videoInfoAi.image_link}"/>
+                                    <video src="${videoInfoAi.video_link}" preload="metadata" style="display:none" controls="true" autoplay muted></video>
+                                </span>
+                            </div>
+                        </a>
+                        <div class="other-video-text">
+                            <span class="thumnail-text">
+                                <span class="thumnail-title" data-video-id="${videoInfoAi.video_id}" data-channel-name="${videoInfoAi.video_channel}" onclick="redirectToOtherVideo(event)">${videoInfoAi.video_title}</span>
+                                <span class="thumnail-channel" data-channel-name="${videoInfoAi.video_channel}" onclick="redirectToChannel(event)">${videoInfoAi.video_channel}</span>
+                                <span class="thumnail-views">${formatNumber(videoInfoAi.views)} Views · ${formatTimePeriod(daysPassed)}</span>
+                            </span>
+                        </div>
+                    </div>
+                    `;
+                    end += 1;
+                    }
+                    else{
+                        break;
+                    }                    
+                }
+            }
             await requestOtherListApi();
             await getAllListInfo();
             rendering();
+            await getOtherTagInfo();
+            
             document.getElementById('button1').addEventListener('click', async () => {
                 try {
                     await getAllListInfo();
@@ -293,6 +360,84 @@ document.addEventListener("DOMContentLoaded", function () {
                     console.error('API 호출에 실패했습니다:', error);
                 }
             });
+            let targetVideoId = queryParams.id
+            async function getSimilarity(firstWord, secondWord) {
+                const openApiURL = "http://aiopen.etri.re.kr:8000/WiseWWN/WordRel";
+                const access_key = "af31e56b-0aa7-49a2-8275-8c95da5481ed";
+
+                let requestJson = {
+                    argument: {
+                        first_word: firstWord,
+                        second_word: secondWord,
+                    },
+                };
+
+                let response = await fetch(openApiURL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: access_key,
+                    },
+                    body: JSON.stringify(requestJson),
+                });
+                let data = await response.json();
+                return data.return_object["WWN WordRelInfo"].WordRelInfo.Distance;
+            }
+
+
+
+            async function calculateVideoSimilarities(videoList, targetTagList) {
+                let filteredVideoList = [];
+
+                for (let video of videoList) {
+                    let totalDistance = 0;
+                    let promises = [];
+
+                    for (let videoTag of video.video_tag) {
+                        for (let targetTag of targetTagList) {
+                            if (videoTag == targetTag) {
+                                promises.push(0);
+                            } else {
+                                promises.push(getSimilarity(videoTag, targetTag));
+                            }
+                        }
+                    }
+
+                    let distances = await Promise.all(promises);
+
+                    for (let distance of distances) {
+                        if (distance !== -1) {
+                            totalDistance += distance;
+                        }
+                    }
+
+                    if (totalDistance !== 0) {
+                        if (targetVideoId !== video.video_id) {
+                            filteredVideoList.push({ ...video, score: totalDistance });
+                        }
+                    }
+                }
+
+                filteredVideoList.sort((a, b) => a.score - b.score);
+
+                filteredVideoList = filteredVideoList.map((video) => ({
+                    ...video,
+                    score: 0,
+                }));                
+                return filteredVideoList;
+            }
+
+            let filteredVideoList = await calculateVideoSimilarities(
+                otherListJson,
+                videoTag
+            );
+            document.getElementById('button5').addEventListener('click', async () => {
+                try {                     
+                    renderingAi(filteredVideoList);
+                } catch (error) {
+                    console.error('API 호출에 실패했습니다:', error);
+                }
+            });
         }
 
         // 로컬 스토리지에 저장되어 있던 댓글 불러오기
@@ -315,7 +460,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         Promise.all([videoPromise])
             .then((results) => {
-                const data_video = results[0];
+                const data_video = results[0];                
                 otherListData(videoListUrl, data_video);
                 getSavedComments();
             })
