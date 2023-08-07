@@ -231,7 +231,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         targetVideoIdList.push(item.video_id);
                         targetChannelList.push(item.video_channel);
                         targetViewAndDateList.push(formatNumber(item.views) + " Views · " + formatTimePeriod(daysPassedSinceDate(item.upload_date)));
-
                         // 썸네일 & 비디오 링크 가져오기
                         const response = await fetch(videoUrl + item.video_id);
                         const videoInfoData = await response.json();
@@ -674,7 +673,7 @@ function addReply() {
     document.getElementsByClassName("comment-area")[0].value = '';
 
     const replyKey = `comment-${currVideoId}`;
-    const dateString = formatTimePeriod(daysPassedSinceDate(getTodayFormmatingApi()));
+    const dateString = daysPassedSinceDate(getTodayFormmatingApi()) + "일 전";
 
     const uuid = saveCommentInLocalStorage(replyKey, "7-eleven-team", dateString, replyText);
     drawCommentInDocument(replyText, "7-eleven-team", dateString, uuid, likeDefDir, dislikeDefDir);

@@ -60,13 +60,40 @@ nav.active {
     border: none;
     background: rgba(33, 33, 33, 0.0);
     display: inline-flex;
-    width: 56px;
-    height: 56px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1;
     position: relative;
+    cursor: pointer;
+}
+.slideIcon:active{
+    background-color: lightgray;
+    color: black;
+    border-radius: 90%;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    display: inline-flex;
+    z-index: 1;
+    display: flex;
+
+}
+.slideIcon:hover{
+    background-color: lightgray;
+    color: black;
+    border-radius: 90%;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    display: inline-flex;
+    z-index: 1;
+    display: flex;
+
 }
 
 .slideIcon img{
@@ -152,7 +179,7 @@ nav.active {
     flex-direction: column;    
     width: 276px;
     height: auto;
-    
+    cursor: pointer;
 }
 
 .thumbnail-and-video{
