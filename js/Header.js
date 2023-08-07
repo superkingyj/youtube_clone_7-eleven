@@ -28,6 +28,10 @@ async function hamburger() {
 
 // a태그 삭제필요
 
+//프로필 클릭 시 7-eleven 채널로 이동
+function redirectTo7() {
+  window.location.href = '7Channel.html';
+}
 //로고 및 aside home 버튼 클릭시 홈화면 이동
 function redirectToHome() {
   window.location.href = 'index.html';
