@@ -126,18 +126,18 @@ function formatNumber(num) {
 }
 function formatTimePeriod(x) {
     if (x < 7) {
-      return x + "일 전";
+        return x + "일 전";
     } else if (x >= 7 && x < 30) {
-      const weeks = Math.floor(x / 7);
-      return weeks + "주 전";
+        const weeks = Math.floor(x / 7);
+        return weeks + "주 전";
     } else if (x >= 30 && x < 365) {
-      const months = Math.floor(x / 30);
-      return months + "달 전";
+        const months = Math.floor(x / 30);
+        return months + "달 전";
     } else {
-      const years = Math.floor(x / 365);
-      return years + "년 전";
+        const years = Math.floor(x / 365);
+        return years + "년 전";
     }
-  }
+}
 //maincontainer
 function appendItemsToMain(data) {
 
@@ -178,9 +178,9 @@ function appendItemsToMain(data) {
         <input type="hidden" name="id" value="${data.video_id}">\n 
         <input type="hidden" name="channel" value="${data.video_channel}">\n                        
     </form>\n
-    <div class='thumbnail-and-video' onmouseover="playVideo(event)" onmouseout="stopVideo(event)">
-    <img class="thumbnail" src=${data.image_link} class="video-${data.video_id}">\n
-    <video src=${data.video_link} preload="metadata" style="display:none" controls="true" autoplay muted></video>
+    <div class='thumbnail-and-video${data.video_id}' onmouseover="playVideo(event)" onmouseout="stopVideo(event)">
+        <img class="thumbnail" src=${data.image_link} class="video-${data.video_id}">\n
+        <video src=${data.video_link} preload="metadata" style="display:none" controls="true" autoplay muted></video>
     </div>
     <div class='profile-and-desc'>\n
         <img class="channel-${data.video_id}" src="${data.profile_image}" >\n
@@ -204,7 +204,7 @@ function appendItemsToMain(data) {
             document.getElementById("channel-Form-" + data.video_id).submit()
         });
     });
-    document.querySelectorAll('.thumbnail-and-video').forEach((element) => {
+    document.querySelectorAll('.thumbnail-and-video' + data.video_id).forEach((element) => {
         element.addEventListener("click", function () {
             document.getElementById("video-Form-" + data.video_id).submit();
         });
@@ -305,7 +305,8 @@ function availabilityFunc() {
 
     recognition.addEventListener("result", (e) => {
         const transcript = e.results[0][0].transcript;
-        search(transcript);
+        searchTextbox.value = transcript;
+        searchResult();
     });
 }
 function startRecord() {
