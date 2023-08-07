@@ -9,7 +9,6 @@ async function fetchData() {
         const response = await fetch(VideoList); //fetch함수로 API URL에 응답내용을 response 변수에 담는다
         const VideoList_data = await response.json(); //response 에 담긴 내용을 json형태로 VideoList_data에 담는다
         videoData(VideoList_data);
-        console.log(VideoList_data);
     } catch (error) {
         console.error('API 호출에 실패했습니다:', error);
     }
@@ -76,7 +75,6 @@ async function fetchChannelData(searchValue) {
         const channelList_data = await response.json();
 
         videoData(channelList_data);
-        console.log(channelList_data);
 
         // 채널 정보 가져오기
         await channelData(channelList_data);
@@ -124,6 +122,20 @@ function formatNumber(num) {
         return num.toString();
     }
 }
+function formatTimePeriod(x) {
+    if (x < 7) {
+      return x + "일 전";
+    } else if (x >= 7 && x < 30) {
+      const weeks = Math.floor(x / 7);
+      return weeks + "주 전";
+    } else if (x >= 30 && x < 365) {
+      const months = Math.floor(x / 30);
+      return months + "달 전";
+    } else {
+      const years = Math.floor(x / 365);
+      return years + "년 전";
+    }
+  }
 //maincontainer
 function appendItemsToMain(data) {
 
@@ -150,6 +162,7 @@ function appendItemsToMain(data) {
         }
     }
     const daysPassed = daysPassedSinceDate(data.upload_date);
+    const timevalue = formatTimePeriod(daysPassed);
 
     const mainContainer = document.getElementById("mainContainer");  //영상들을 나열할 태그 선택
     const span = document.createElement("span"); // 영상들을 어떤 태그에 담을지 선택
@@ -169,7 +182,7 @@ function appendItemsToMain(data) {
         <div>\n
             <p class="video-${data.video_id}">${data.video_title}</p>\n
             <p class="channel-${data.video_id}">${data.video_channel}</p>\n
-            <p class="video-${data.video_id}">${formatNumber(data.views)} views · ${daysPassed}일전</p>        
+            <p class="video-${data.video_id}"  >${formatNumber(data.views)} views · ${timevalue}</p> 
         </div>\n
     </div>`;// videoData
     mainContainer.appendChild(span);
@@ -190,6 +203,7 @@ function appendItemsToMain(data) {
 
 //검색창
 const searchTextbox = document.querySelector("#searchInput"); // 검색 입력란 요소
+
 
 async function search(searchText) {
     try {
@@ -262,39 +276,34 @@ if (searchText) {
     }
 
 //음성 인식 검색 기능
-const searchConsole1 = document.getElementsByClassName("mic-icon");
+let recognition;
 
 function availabilityFunc() {
-
     recognition = new webkitSpeechRecognition() || new SpeechRecognition();
-    recognition.lang = "ko"; // 음성인식에 사용되고 반환될 언어
-    recognition.maxAlternatives = 5; 
+    recognition.lang = "ko";
+    recognition.maxAlternatives = 5;
 
     if (!recognition) {
-    alert("현재 브라우저는 사용이 불가능합니다.");
+        alert("Your browser does not support speech recognition.");
     }
-}
-//음성녹음을 실행하는 함수
-function startRecord() {
-    console.log("시작");
 
-    // 마이크 클릭 시 음성인식 시작
     recognition.addEventListener("speechstart", () => {
-    console.log("인식");
     });
 
-    //음성인식이 끝까지 이루어지면 중단
     recognition.addEventListener("speechend", () => {
-    console.log("인식2");
+        recognition.stop();
     });
 
-    //음성인식 결과를 반환
     recognition.addEventListener("result", (e) => {
-    const transcript = e.results[0][0].transcript;
-    search(transcript);
+        const transcript = e.results[0][0].transcript;
+        search(transcript);
     });
+}
+function startRecord() {
 
     recognition.start();
 }
+
+const searchConsole1 = document.getElementsByClassName("mic-icon");
 searchConsole1[0].addEventListener("click", startRecord);
 window.addEventListener("load", availabilityFunc);
