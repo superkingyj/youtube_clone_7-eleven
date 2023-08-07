@@ -121,26 +121,33 @@ nav{
 }
 
 .info-text{
+    width: 50%;
     color: #aaa;
 }
 
 /* buttons 이미지 추가 필요 */
 .info-buttons {
+    width: 50%;
     display: flex;
-    height: 50px;
+    gap: 8px;
     flex-direction: row;
     justify-content: flex-end;
 }
 
 .info-buttons button {
+    /* height: 50px; */
+    width: auto;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+    background-color: var(--border-color, hsl(0, 0%, 19%));
+    padding: 10px;
+    border-radius: 24px;
 }
 
 .info-buttons button span {
-    margin-left: 3px;
+    margin-left: 5px;
     color: #FFFFFF;
 }
 
@@ -158,6 +165,7 @@ nav{
 }
 
 .user-avatar{
+    cursor: pointer;
     margin-right: 3%;
 }
 
@@ -168,8 +176,9 @@ nav{
 }
 
 
-.user-name{
+.user_name{
     /* font-size: 14px; */
+    cursor: pointer;
     width: 100%;
     color: white;
 }
@@ -180,10 +189,12 @@ nav{
     color: #aaa;
 }
 
-/* subscribers 버튼 추가 필요
+/* subscribers 버튼 추가 필요 */
 .subscribers{
-
-} */
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+} 
 
 
 /* 동영상 정보 더보기 란 */
@@ -226,14 +237,14 @@ nav{
 .info-buttons button:hover {
     background-color: grey;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    border-radius: 24px;
   }
 
 /* 댓글화면 */
 /*  html short오타 수정 */
 .sort-by{
     display: flex;
-    /* padding-top: 25px; */
-    padding-bottom: 25px;
+    margin-bottom: 24px;
 }
 .comment_cnt{
     padding-right: 20px;
@@ -324,7 +335,7 @@ nav{
 .likeBtn span, 
 .dislikeBtn span
 {
-    margin-left: 3px;
+    margin-left: 5px;
     color: #FFFFFF;
 }
 
@@ -339,6 +350,7 @@ nav{
     display: flex;
     align-items: center;
     margin: 8px 0;
+    padding: 5px 5px 5px 0px;
     font-size: 12px;
     color:#aaa
 }
@@ -383,8 +395,13 @@ nav{
     margin-left: 3%;
 }
 
-#thumnail-channel,
-#thumnail-views{
+.thumnail-title,
+.thumnail-channel{
+    cursor: pointer;
+}
+
+.thumnail-channel,
+.thumnail-views{
     font-size: 12px;
     color : #AAAAAA;
 }
@@ -444,6 +461,10 @@ nav{
     text-align: center;
     gap: 15px;
     
+}
+
+.button{
+    cursor: pointer;
 }
 
 .other-videos{
