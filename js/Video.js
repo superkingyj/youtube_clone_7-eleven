@@ -9,16 +9,16 @@ let currVideoId = -1;
 
 function formatTimePeriod(x) {
     if (x < 7) {
-      return x + "일 전";
+        return x + "일 전";
     } else if (x >= 7 && x < 30) {
-      const weeks = Math.floor(x / 7);
-      return weeks + "주 전";
+        const weeks = Math.floor(x / 7);
+        return weeks + "주 전";
     } else if (x >= 30 && x < 365) {
-      const months = Math.floor(x / 30);
-      return months + "달 전";
+        const months = Math.floor(x / 30);
+        return months + "달 전";
     } else {
-      const years = Math.floor(x / 365);
-      return years + "년 전";
+        const years = Math.floor(x / 365);
+        return years + "년 전";
     }
 }
 
@@ -80,12 +80,12 @@ async function getData(videoUrl) {
 }
 
 // 기본 HTML틀 생성이 완료 된후 영상 불러오기
-document.addEventListener("DOMContentLoaded", function () {    
+document.addEventListener("DOMContentLoaded", function () {
     var queryParams = getQueryParams();
     if (Object.keys(queryParams).length > 0) {
 
         //video 정보가 필요한 부분
-        async function videoData(data) {            
+        async function videoData(data) {
             try {
                 const response = await fetch(data);  // videoUrl 값으로 응답내용 호출
                 const data_video = await response.json();       // json 형태로 변경              
@@ -259,7 +259,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             let end = 0;
             function rendering() {
-                
+
                 const otherList = document.getElementsByClassName('other-video')[0];
                 otherList.innerHTML = "";
                 for (let i = end; i < cnt; i++) {
@@ -286,18 +286,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
 
-            
+
             async function renderingAi(filter) {
-                
+
                 let end = 0;
-                let filteredVideoList = await filter;                                                                         
+                let filteredVideoList = await filter;
                 const otherList = document.getElementsByClassName('other-video')[0];
                 otherList.innerHTML = "";
-                for (aiList of filteredVideoList) {                    
-                    if(end < 5){
-                    var videoInfoAi = await getData(videoUrl+aiList.video_id.toString())
-                    let daysPassed = daysPassedSinceDate(aiList.upload_date);
-                    otherList.innerHTML += `
+                for (aiList of filteredVideoList) {
+                    if (end < 5) {
+                        var videoInfoAi = await getData(videoUrl + aiList.video_id.toString())
+                        let daysPassed = daysPassedSinceDate(aiList.upload_date);
+                        otherList.innerHTML += `
                     <div>
                         <a href="./Video.html?id=${videoInfoAi.video_id}&channel=${videoInfoAi.video_channel}">
                             <div class="other-video-thumbnail">
@@ -316,18 +316,18 @@ document.addEventListener("DOMContentLoaded", function () {
                         </div>
                     </div>
                     `;
-                    end += 1;
+                        end += 1;
                     }
-                    else{
+                    else {
                         break;
-                    }                    
+                    }
                 }
             }
             await requestOtherListApi();
             await getAllListInfo();
             rendering();
             await getOtherTagInfo();
-            
+
             document.getElementById('button1').addEventListener('click', async () => {
                 try {
                     await getAllListInfo();
@@ -423,7 +423,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 filteredVideoList = filteredVideoList.map((video) => ({
                     ...video,
                     score: 0,
-                }));                
+                }));
                 return filteredVideoList;
             }
 
@@ -432,7 +432,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 videoTag
             );
             document.getElementById('button5').addEventListener('click', async () => {
-                try {                     
+                try {
                     renderingAi(filteredVideoList);
                 } catch (error) {
                     console.error('API 호출에 실패했습니다:', error);
@@ -443,6 +443,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // 로컬 스토리지에 저장되어 있던 댓글 불러오기
         function getSavedComments() {
             const commentsArray = JSON.parse(localStorage.getItem(`comment-${currVideoId}`));
+            const commentCntElem = document.getElementsByClassName("comment-cnt")[0];
+            commentCntElem.innerText = `댓글 ${commentsArray.length}개`
             if (commentsArray !== null) {
                 for (let comment of commentsArray) {
                     if ((comment['like'] <= 0) && (comment['dislike'] <= 0)) {
@@ -460,7 +462,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         Promise.all([videoPromise])
             .then((results) => {
-                const data_video = results[0];                
+                const data_video = results[0];
                 otherListData(videoListUrl, data_video);
                 getSavedComments();
             })
@@ -665,6 +667,13 @@ function getTodayFormmatingApi() {
     return tmp;
 }
 
+function updateCommentCnt() {
+    const commentCntElem = document.getElementsByClassName("comment-cnt")[0];
+    const tmp = commentCntElem.innerText.split(" ")[1];
+    const newCnt = parseInt(tmp.slice(0, tmp.length - 1)) + 1;
+    commentCntElem.innerText = `댓글 ${newCnt}개`;
+}
+
 // 댓글다는 기능
 function addReply() {
     // 댓글 단 내용 가져오기
@@ -677,6 +686,7 @@ function addReply() {
 
     const uuid = saveCommentInLocalStorage(replyKey, "7-eleven-team", dateString, replyText);
     drawCommentInDocument(replyText, "7-eleven-team", dateString, uuid, likeDefDir, dislikeDefDir);
+    updateCommentCnt();
 }
 
 commentInput.addEventListener('keypress', function (event) {

@@ -182,7 +182,7 @@ nav.active {
     cursor: pointer;
 }
 
-.thumbnail-and-video{
+[class*="thumbnail-and-video"] {
     width: 276px;
     height: 155px;
 }
