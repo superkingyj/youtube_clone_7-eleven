@@ -71,12 +71,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 <section class="video-info">                    
                     <div class="video-title">${data_video.video_title}</div>
                     <div class="video-info-desc">
-                        <div class="info-text">${formatNumber(data_video.views)} · ${daysPassed}일전</div>
+                        <div class="info-text">${formatNumber(data_video.views)} · ${daysPassed}일 전</div>
                         <div class="info-buttons">
-                            <button class="likeBtn" onclick="likeAndDislikeBtnClick(event)">
+                            <button class="likeBtn" onclick="likeAndDislikeBtnClick(event, 'video')">
                                 <img src="./img/video/like.svg" alt=""><span>0</span>
                             </button>
-                            <button class="dilikeBtn" onclick="likeAndDislikeBtnClick(event)">
+                            <button class="dilikeBtn" onclick="likeAndDislikeBtnClick(event, 'video')">
                                 <img src="./img/video/DisLiked.svg" alt=""><span>0</span>
                             </button>  
                             <button>
@@ -142,7 +142,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     const normalizedArray = sub_list.map(normalize);
 
                     if (normalizedArray.includes(normalize(subHtml))) {
-                        console.log(subHtml);
                         // SUBSCRIBES 회색으로 변경하고 사용자 정의 속성 (구독했음을 표시하는 속성) 추가
                         subscribeButton.setAttribute('data-is-subscribed', 'true');
                         subscribeButton.querySelector('img').style.filter = "grayscale(100%)";
@@ -188,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     targetVideoIdList.push(item.video_id);
                     targetChannelList.push(item.video_channel);
                     targetViewAndDateList.push(
-                        item.views + " Views . " + daysPassedSinceDate(item.upload_date) + "days ago"
+                        item.views + " Views · " + daysPassedSinceDate(item.upload_date) + "일 전"
                     );
                     const response = await fetch(videoUrl + item.video_id);
                     const videoInfoData = await response.json();
@@ -205,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         targetTitleList.push(item.video_title);
                         targetVideoIdList.push(item.video_id);
                         targetChannelList.push(item.video_channel);
-                        targetViewAndDateList.push(item.views + " Views . " + daysPassedSinceDate(item.upload_date) + "일전");
+                        targetViewAndDateList.push(item.views + " Views · " + daysPassedSinceDate(item.upload_date) + "일 전");
 
                         // 썸네일 & 비디오 링크 가져오기
                         const response = await fetch(videoUrl + item.video_id);
@@ -222,7 +221,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         targetTitleList.push(item.video_title);
                         targetVideoIdList.push(item.video_id);
                         targetChannelList.push(item.video_channel);
-                        targetViewAndDateList.push(item.views + " Views . " + daysPassedSinceDate(item.upload_date) + "일전");
+                        targetViewAndDateList.push(item.views + " Views · " + daysPassedSinceDate(item.upload_date) + "일 전");
 
                         // 썸네일 & 비디오 링크 가져오기
                         const response = await fetch(videoUrl + item.video_id);
@@ -249,9 +248,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         </a>
                         <div class="other-video-text">
                             <span class="thumnail-text">
-                                <span id="thumnail-title" data-video-id="${targetVideoIdList[i]}" data-channel-name="${targetChannelList[i]}" onclick="redirectToOtherVideo(event)">${targetTitleList[i]}</span>
-                                <span id="thumnail-channel" data-channel-name="${targetChannelList[i]}" onclick="redirectToChannel(event)">${targetChannelList[i]}</span>
-                                <span id="thumnail-views">${targetViewAndDateList[i]}</span>
+                                <span class="thumnail-title" data-video-id="${targetVideoIdList[i]}" data-channel-name="${targetChannelList[i]}" onclick="redirectToOtherVideo(event)">${targetTitleList[i]}</span>
+                                <span class="thumnail-channel" data-channel-name="${targetChannelList[i]}" onclick="redirectToChannel(event)">${targetChannelList[i]}</span>
+                                <span class="thumnail-views">${targetViewAndDateList[i]}</span>
                             </span>
                         </div>
                     </div>
@@ -298,19 +297,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // 로컬 스토리지에 저장되어 있던 댓글 불러오기
         function getSavedComments() {
-            console.log(likeDefDir);
-            console.log(dislikeDefDir);
-            console.log(likeActDir);
-            console.log(dislikeActDir);
             const commentsArray = JSON.parse(localStorage.getItem(`comment-${currVideoId}`));
             if (commentsArray !== null) {
-                console.log(commentsArray);
                 for (let comment of commentsArray) {
-                    console.log(comment['like']);
-                    console.log(comment['dislike']);
-                    console.log(comment['name']);
-                    console.log(comment['content']);
-                    console.log(comment['name']);
                     if ((comment['like'] <= 0) && (comment['dislike'] <= 0)) {
                         drawCommentInDocument(comment['content'], comment['name'], comment['date'], comment['id'], likeDefDir, dislikeDefDir, comment['like'], comment['dislike']);
                     } else if ((comment['like'] > 0) && (comment['dislike'] <= 0)) {
@@ -461,7 +450,6 @@ function getUUID() {
 function saveCommentInLocalStorage(key, name, date, content) {
     const uuid = getUUID();
     if (localStorage.getItem(key) === null) {
-        console.log("첫 댓글");
         const commentsArray = [
             {
                 "id": uuid,
@@ -475,9 +463,7 @@ function saveCommentInLocalStorage(key, name, date, content) {
         localStorage.setItem(key, JSON.stringify(commentsArray));
     }
     else {
-        console.log("첫 댓글아님");
         const commentsArray = JSON.parse(localStorage.getItem(key));
-        console.log(commentsArray);
         commentsArray.push(
             {
                 "id": uuid,
@@ -495,8 +481,6 @@ function saveCommentInLocalStorage(key, name, date, content) {
 
 // 댓글 화면에 그리기
 function drawCommentInDocument(replyText, name, date, uuid, likeDir, dislikeDir, likeCnt = 0, dislikeCnt = 0) {
-    console.log(likeDir);
-    console.log(dislikeDir);
     const comments = document.getElementsByClassName("comments")[0];
     comments.insertAdjacentHTML(
         'beforeend',
@@ -544,7 +528,7 @@ function addReply() {
     document.getElementsByClassName("comment-area")[0].value = '';
 
     const replyKey = `comment-${currVideoId}`;
-    const dateString = daysPassedSinceDate(getTodayFormmatingApi()) + "일전";
+    const dateString = daysPassedSinceDate(getTodayFormmatingApi()) + "일 전";
 
     const uuid = saveCommentInLocalStorage(replyKey, "7-eleven-team", dateString, replyText);
     drawCommentInDocument(replyText, "7-eleven-team", dateString, uuid, likeDefDir, dislikeDefDir);
@@ -561,20 +545,15 @@ function editComment(targetKey, value, uuid) {
     const key = `comment-${currVideoId}`;
     const commentsArray = JSON.parse(localStorage.getItem(key));
     for (let comment of commentsArray) {
-        console.log(comment['id']);
-        console.log(uuid);
-        console.log(targetKey);
         if (comment['id'] === uuid) {
-            console.log(comment['id']);
             comment[targetKey] = value;
         }
     }
-    console.log(commentsArray);
     localStorage.setItem(key, JSON.stringify(commentsArray));
 }
 
 const commentBtns = document.getElementsByClassName('comments-btn')[0];
-function likeAndDislikeBtnClick(event) {
+function likeAndDislikeBtnClick(event, elem = "comment") {
     let buttonElem = 0;
     let imgElem = 0;
     let spanElem = 0;
@@ -597,7 +576,6 @@ function likeAndDislikeBtnClick(event) {
 
     let cnt = parseInt(spanElem.innerText);
     uuid = buttonElem.parentElement.parentElement.parentElement.getAttribute("data-uuid");
-    console.log(uuid);
 
     // 이미 좋아요를 한 상태라면
     // TODO - 지금은 꼼수 씀. 개선 필요
@@ -606,10 +584,10 @@ function likeAndDislikeBtnClick(event) {
         buttonElem.removeAttribute('data-is-activated');
         imgElem.removeAttribute('style');
         if (buttonElem.className === 'likeBtn') {
-            editComment('like', cnt - 1, uuid);
+            if (elem === "comment") editComment('like', cnt - 1, uuid);
             imgElem.setAttribute("src", "./img/video/like.svg");
         } else {
-            editComment('dislike', cnt - 1, uuid);
+            if (elem === "comment") editComment('dislike', cnt - 1, uuid);
             imgElem.setAttribute("src", "./img/video/Disliked.svg");
         }
     }
@@ -617,10 +595,10 @@ function likeAndDislikeBtnClick(event) {
         spanElem.innerText = cnt + 1;
         buttonElem.setAttribute('data-is-activated', 'true')
         if (buttonElem.className === 'likeBtn') {
-            editComment('like', cnt + 1, uuid);
+            if (elem === "comment") editComment('like', cnt + 1, uuid);
             imgElem.setAttribute("src", "./img/video/like-activated.svg");
         } else {
-            editComment('dislike', cnt + 1, uuid);
+            if (elem === "comment") editComment('dislike', cnt + 1, uuid);
             imgElem.setAttribute("src", "./img/video/Disliked-activated.svg");
         }
     }
@@ -629,28 +607,21 @@ function likeAndDislikeBtnClick(event) {
 
 // 채널 화면으로 이동
 function redirectToChannel(event) {
-    console.log("이벤트 발생");
     window.location.href = `./Channel.html?channel=${event.target.getAttribute("data-channel-name")}`;
 }
 
 // 다른 비디오 화면으로 이동
 function redirectToOtherVideo(event) {
     const targetVideoId = event.target.getAttribute('data-video-id');
-    console.log(targetVideoId);
-    console.log(event.target);
     const targetChannelName = event.target.getAttribute('data-channel-name');
-    console.log(targetChannelName);
     window.location.href = `./Video.html?id=${targetVideoId}&channel=${targetChannelName}`;
 }
 
 // 비디오 재생 이벤트
 function playVideo(event) {
-    console.log("마우스 호버함");
     setTimeout(() => {
         const videoElement = event.target.parentElement.querySelector('video');
         const thumbnailImg = event.target.parentElement.querySelector('img');
-        console.log(videoElement);
-        console.log(thumbnailImg);
         thumbnailImg.style.display = "none";
         videoElement.style.display = "block";
         videoElement.play();
@@ -658,7 +629,6 @@ function playVideo(event) {
 }
 
 function stopVideo(event) {
-    console.log("마우스 땜");
     setTimeout(() => {
         const videoElement = event.target.parentElement.querySelector('video');
         const thumbnailImg = event.target.parentElement.querySelector('img');
