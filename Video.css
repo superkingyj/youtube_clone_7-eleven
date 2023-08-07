@@ -88,7 +88,7 @@ nav{
     max-width: 1240px;
     width: 100%;
     height: auto;
-    position: sticky;
+    position: static;
     top: 0;
     text-align: center;
     /* z-index: -1; */
